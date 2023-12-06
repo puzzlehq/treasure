@@ -9,8 +9,8 @@ function NavDots({ step, totalSteps }: NavDotsProps) {
       {Array.from({ length: totalSteps }).map((_, ix) => (
         <div
           key={ix}
-          className={`h-3 w-6 rounded-full bg-primary ${
-            ix > step ? 'opacity-40' : ''
+          className={`h-3 w-3 rounded-full  ${
+            ix > step ? 'bg-primary-light' : 'bg-primary'
           }`}
         ></div>
       ))}

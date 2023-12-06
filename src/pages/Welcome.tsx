@@ -36,9 +36,15 @@ export const Welcome = () => {
           treasure!
         </p>
         <Button
+          variant='gray'
+          onClick={() => navigate('/aleo-introduction')}
+        >
+          Learn more
+        </Button>
+        <Button
           className='font-pirata max-w-[250px] font-header'
           onClick={connect}
-          color='yellow'
+          variant='primary'
           disabled={accountLoading || connectLoading}
         >
           {accountLoading ? 'Loading...' : connectLoading ? 'Connecting...' : 'Connect Wallet'}

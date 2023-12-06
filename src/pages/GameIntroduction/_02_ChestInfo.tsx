@@ -31,7 +31,7 @@ const ChestInfo = () => {
         <Button
           fullWidth
           onClick={() => setStep(Step._03_Locked)}
-          color='green'
+          variant='primary'
         >
           NEXT
         </Button>

@@ -31,7 +31,7 @@ const Locked = () => {
         <Button
           fullWidth
           onClick={() => setStep(Step._04_Unlocked)}
-          color='green'
+          variant='primary'
         >
           NEXT
         </Button>

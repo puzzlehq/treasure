@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import GameInfo from '@components/GameInfo.js';
 import Button from '@components/Button.js';
-import { useNewGameStore } from './store';
+import { useNewGameVsPersonStore } from './store';
 import { useEvent } from '@puzzlehq/sdk';
 import Nav from '@components/Nav';
 
 function GameStarted(props: { done: () => void }) {
-  const [inputs, eventId] = useNewGameStore((state) => [
+  const [inputs, eventId] = useNewGameVsPersonStore((state) => [
     state.inputs,
     state.eventId,
   ]);

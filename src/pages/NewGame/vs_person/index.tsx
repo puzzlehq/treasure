@@ -4,7 +4,7 @@ import StartWager from './_03_StartWager';
 import ConfirmStartGame from './_04_ConfirmStartGame';
 import GameStarted from './_05_GameStarted';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { Step, useNewGameStore } from './store';
+import { Step, useNewGameVsPersonStore } from './store';
 import { useEffect } from 'react';
 import { useInitCurrentGame } from '@hooks/currentGame';
 import { useEventHandling } from '@hooks/eventHandling';
@@ -12,7 +12,7 @@ import { Box } from '@components/Box';
 
 const NewGameVsPerson = () => {
   const navigate = useNavigate();
-  const [step,eventId, setInputs, setEventId, setStep] = useNewGameStore((state) => [
+  const [step,eventId, setInputs, setEventId, setStep] = useNewGameVsPersonStore((state) => [
     state.step,
     state.eventId,
     state.setInputs,
@@ -38,6 +38,7 @@ const NewGameVsPerson = () => {
 
   useEventHandling({
     id: eventId,
+    stepName: 'Vs Person',
     onSettled: () => setStep(Step._05_GameStarted),
   });
 

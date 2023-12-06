@@ -23,7 +23,7 @@ import {
 import { useEffect, useState } from 'react';
 import jsyaml from 'js-yaml';
 
-import { Step, useNewGameStore } from './store.js';
+import { Step, useNewGameVsPersonStore } from './store.js';
 import { useSearchParams } from 'react-router-dom';
 import Nav from '@components/Nav.js';
 
@@ -35,7 +35,7 @@ enum ConfirmStep {
 }
 
 function ConfirmStartGame() {
-  const [inputs, eventId, setInputs, setEventId, setStep] = useNewGameStore(
+  const [inputs, eventId, setInputs, setEventId, setStep] = useNewGameVsPersonStore(
     (state) => [
       state.inputs,
       state.eventId,
@@ -54,6 +54,7 @@ function ConfirmStartGame() {
 
   const { loading, error, event, setLoading, setError } = useEventHandling({
     id: eventId,
+    stepName: 'Confirm Start',
     onSettled: () => setStep(Step._05_GameStarted),
   });
   const [searchParams, setSearchParams] = useSearchParams();
@@ -166,7 +167,7 @@ function ConfirmStartGame() {
         <div className='flex flex-col gap-2'>
           <SelectedAlexLocation answer={answer as Answer} win={undefined} />
           <div className='self-center whitespace-nowrap text-center text-sm font-extrabold tracking-tight text-primary-green '>
-            You chose to hide the treasure {answer}!
+            You are hiding the treasure {answer}!
           </div>
         </div>
       )}

@@ -24,7 +24,7 @@ export const useInitCurrentGame = () => {
           game.gameNotification.recordData.game_multisig === game_multisig
       );
       _currentGame && setCurrentGame(_currentGame);
-    } else if (!game_multisig && location.pathname !== '/new-game') {
+    } else if (!game_multisig && !location.pathname.includes('/new-game')) {
       navigate('/');
     }
   }, [game_multisig, currentGame, [...yourTurn, ...theirTurn].toString()]);

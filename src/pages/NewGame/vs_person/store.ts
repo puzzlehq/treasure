@@ -10,7 +10,7 @@ export enum Step {
   _05_GameStarted,
 }
 
-type NewGameStore = {
+type NewGameVsPersonStore = {
   inputs?: Partial<ProposeGameInputs>;
   eventId?: string;
   step: Step;
@@ -21,7 +21,7 @@ type NewGameStore = {
   close: () => void;
 };
 
-export const useNewGameStore = create<NewGameStore>()(
+export const useNewGameVsPersonStore = create<NewGameVsPersonStore>()(
   persist(
     (set) => ({
       inputs: undefined,

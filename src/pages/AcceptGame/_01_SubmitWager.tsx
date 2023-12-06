@@ -54,6 +54,7 @@ const SubmitWager = () => {
 
   const { loading, error, event, setLoading, setError } = useEventHandling({
     id: eventIdSubmit,
+    stepName: 'Submit Wager',
     onSettled: () => setStep(Step._02_AcceptGame),
   });
 

@@ -31,6 +31,7 @@ const Reveal = () => {
 
   const { loading, error, event, setLoading, setError } = useEventHandling({
     id: eventId,
+    stepName: 'Reveal',
     onSettled: () => setStep(Step._02_Confirmed),
   });
 
@@ -149,16 +150,16 @@ const Reveal = () => {
         <div className='flex flex-col gap-2'>
           <SelectedAlexLocation answer={answer} win={undefined} />
           <div className='self-center whitespace-nowrap text-center text-sm font-extrabold tracking-tight text-primary-green'>
-            You chose to hide the booty {answer}!
+            You hid the booty {answer}!
           </div>
         </div>
       )}
       <div className='flex flex-grow flex-col' />
       {error && <p>{error}</p>}
       <Button
-        color='green'
         onClick={createEvent}
         disabled={disabled || loading}
+        variant='primary'
       >
         {buttonText}
       </Button>

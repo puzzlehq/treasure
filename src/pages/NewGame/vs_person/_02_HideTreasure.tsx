@@ -4,10 +4,10 @@ import ChooseTreasureLocation from '@components/ChooseTreasureLocation';
 import PageHeader from '@components/PageHeader';
 import Button from '@components/Button';
 import { Answer } from '@state/RecordTypes/treasure_hunt_vxxx';
-import { Step, useNewGameStore } from './store';
+import { Step, useNewGameVsPersonStore } from './store';
 
 function HideTreasure() {
-  const [inputs, setInputs, setStep] = useNewGameStore((state) => [
+  const [inputs, setInputs, setStep] = useNewGameVsPersonStore((state) => [
     state.inputs,
     state.setInputs,
     state.setStep,
@@ -41,7 +41,7 @@ function HideTreasure() {
             fullWidth
             onClick={() => setStep(Step._03_StartWager)}
             disabled={!inputs || !inputs.challenger_answer}
-            color='green'
+            variant='primary'
           >
             NEXT
           </Button>

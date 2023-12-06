@@ -4,11 +4,11 @@ import PageHeader from '@components/PageHeader';
 import Button from '@components/Button';
 import { useAccount } from '@puzzlehq/sdk';
 import { aleoAddressRegex } from '../../../utils.js';
-import { Step, useNewGameStore } from '../vs_person/store.js';
+import { Step, useNewGameVsPersonStore } from '../vs_person/store.js';
 import { useNavigate } from 'react-router-dom';
 
 function NewGame() {
-  const [inputs, setInputs, setStep] = useNewGameStore((state) => [
+  const [inputs, setInputs, setStep] = useNewGameVsPersonStore((state) => [
     state.inputs,
     state.setInputs,
     state.setStep,

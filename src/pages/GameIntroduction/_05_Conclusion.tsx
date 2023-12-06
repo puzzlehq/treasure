@@ -72,7 +72,7 @@ const Conclusion = () => {
             navigate('/');
             close()
           }}
-          color='green'
+          variant='primary'
         >
           NEXT
         </Button>

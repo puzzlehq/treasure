@@ -56,7 +56,7 @@ const GameParts = () => {
         <Button
           fullWidth
           onClick={() => setStep(Step._02_ChestInfo)}
-          color='green'
+          variant='primary'
         >
           NEXT
         </Button>

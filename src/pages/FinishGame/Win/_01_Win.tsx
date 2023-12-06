@@ -1,5 +1,5 @@
 import PageHeader from '@components/PageHeader';
-import SelectedAlexLocation from '@components/SelectedTreasureLocation';
+import SelectedTreasureLocation from '@components/SelectedTreasureLocation';
 import Wager from '@components/Wager';
 import Button from '@components/Button';
 import { useGameStore } from '@state/gameStore';
@@ -164,21 +164,21 @@ const Win = () => {
       <PageHeader text="WHERE'S ALEX" bg='bg-primary-blue' />
       <Wager wagerAmount={wager} winnings />
       <div className='flex flex-col gap-2'>
-        <SelectedAlexLocation
+        <SelectedTreasureLocation
           answer={getAnswer(challenger_answer)}
           win={true}
         />
         <div className='self-center whitespace-nowrap text-center text-sm font-extrabold tracking-tight text-primary-green'>
           {isChallenger
-            ? `You put Alex ${getAnswer(challenger_answer)}`
-            : `${shortenAddress(challenger_address)} put Alex ${getAnswer(
+            ? `You put the booty ${getAnswer(challenger_answer)}`
+            : `${shortenAddress(challenger_address)} put the booty ${getAnswer(
                 challenger_answer
               )}`}
         </div>
         <div className='self-center whitespace-nowrap text-center text-sm font-extrabold tracking-tight text-primary-green'>
           {!isChallenger
-            ? `You guessed Alex was ${getAnswer(opponent_answer)}`
-            : `${shortenAddress(opponent_address)} guessed Alex was ${getAnswer(
+            ? `You guessed the booty was ${getAnswer(opponent_answer)}`
+            : `${shortenAddress(opponent_address)} guessed the booty was ${getAnswer(
                 opponent_answer
               )}`}
         </div>
@@ -194,7 +194,7 @@ const Win = () => {
           {transitionFees.finish_game} public credits!
         </p>
       )}
-      <Button color='green' disabled={disabled || loading} onClick={claim}>
+      <Button variant='primary' disabled={disabled || loading} onClick={claim}>
         {buttonText}
       </Button>
     </div>

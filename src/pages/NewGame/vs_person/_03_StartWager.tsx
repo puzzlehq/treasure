@@ -4,11 +4,11 @@ import PageHeader from '@components/PageHeader';
 import Button from '@components/Button';
 import { useGameStore } from '@state/gameStore';
 import { useMemo, useState } from 'react';
-import { Step, useNewGameStore } from './store';
+import { Step, useNewGameVsPersonStore } from './store';
 
 function StartWager() {
   const [error, setError] = useState<string | undefined>();
-  const [inputs, setInputs, setStep] = useNewGameStore((state) => [
+  const [inputs, setInputs, setStep] = useNewGameVsPersonStore((state) => [
     state.inputs,
     state.setInputs,
     state.setStep,
@@ -39,7 +39,7 @@ function StartWager() {
 
   const { inputTextColor, inputOpacity } = useMemo(() => {
     return {
-      inputTextColor: wager !== 0 ? 'text-primary-green' : '',
+      inputTextColor: wager !== 0 ? 'text-primary' : '',
       inputOpacity: wager === 0 ? 'opacity-40' : '',
     };
   }, [wager]);
@@ -83,7 +83,7 @@ function StartWager() {
           fullWidth
           onClick={() => setStep(Step._04_ConfirmStartGame)}
           disabled={isDisabled || !!error}
-          color='green'
+          variant='primary'
         >
           NEXT
         </Button>

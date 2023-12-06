@@ -18,6 +18,7 @@ import RevealAnswer from './pages/RevealAnswer/index.js';
 import MapImage from '@components/MapImage.js';
 import GameIntroduction from '@pages/GameIntroduction/index.js';
 import NewGame from '@pages/NewGame/index.js';
+import AleoIntroduction from '@pages/AleoIntroduction/index.js';
 
 const Rerouter = () => {
   const navigate = useNavigate();
@@ -65,7 +66,8 @@ function App() {
                   <Route path='win/:game_multisig' element={<WinRoute />} />
                   <Route path='lose/:game_multisig' element={<LoseRoute />} />
                 </Route>
-                <Route path='/introduction' element={<GameIntroduction/>} />
+                <Route path='/aleo-introduction' element={<AleoIntroduction/>} />
+                <Route path='/game-introduction' element={<GameIntroduction/>} />
               </Routes>
             </div>
           </div>

@@ -38,7 +38,7 @@ export const SubmitWagerButton = ({ game }: { game: Game }) => {
           `/accept-game/${game.gameNotification.recordData.game_multisig}`
         );
       }}
-      color='green'
+      variant='green'
       size='md'
       disabled={puzzleRecord === undefined}
     >
@@ -59,7 +59,7 @@ export const AcceptGameButton = ({ game }: { game: Game }) => {
           `/accept-game/${game.gameNotification.recordData.game_multisig}`
         );
       }}
-      color='green'
+      variant='green'
       size='md'
     >
       Accept
@@ -113,16 +113,19 @@ const AcceptGame = () => {
 
   useEventHandling({
     id: eventIdSubmit,
+    stepName: 'Accept Game 1',
     onSettled: () => setStep(Step._02_AcceptGame),
   });
   useEventHandling({
     id: eventIdAccept,
     address: currentGame?.gameNotification.recordData.game_multisig,
     multisig: true,
+    stepName: 'Accept Game 2',
     onSettled: () => setStep(Step._03_Confirmed),
   });
 
   useEventHandling({
+    stepName: 'Accept Game 3',
     id: eventIdFund,
   });
 

@@ -4,8 +4,10 @@ import TotalWinnings from '@components/TotalWinnings';
 import TheirTurn from '@components/TheirTurn';
 import YourTurn from '@components/YourTurn';
 import { useGameStore } from '@state/gameStore';
-import { useNewGameStore } from './NewGame/vs_person/store';
+import { useNewGameVsPersonStore } from './NewGame/vs_person/store';
 import { useAccount } from '@puzzlehq/sdk';
+import { useGameIntroStore } from './GameIntroduction/store';
+import { useEffect } from 'react';
 
 function Home() {
   const [yourTurn, theirTurn, totalBalance] = useGameStore((state) => [
@@ -13,9 +15,17 @@ function Home() {
     state.theirTurn,
     state.totalBalance,
   ]);
-  const [initialize] = useNewGameStore((state) => [state.initialize]);
+  const [initialize] = useNewGameVsPersonStore((state) => [state.initialize]);
   const { account } = useAccount();
   const navigate = useNavigate();
+
+  const [visited] = useGameIntroStore((state) => [state.visited]);
+
+  useEffect(() => {
+    if (!visited) {
+      navigate('/game-introduction')
+    }
+  }, [])
 
   return (
     <div className='flex h-full flex-col justify-between '>

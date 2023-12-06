@@ -31,7 +31,7 @@ const Unlocked = () => {
         <Button
           fullWidth
           onClick={() => setStep(Step._05_Conclusion)}
-          color='green'
+          variant='primary'
         >
           NEXT
         </Button>

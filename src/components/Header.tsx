@@ -9,7 +9,7 @@ export const AppHeader = () => {
   const navigate = useNavigate();
 
   return (
-    <div className='flex w-full items-stretch justify-between gap-5  p-4'>
+    <div className='flex w-full items-stretch justify-between gap-5 p-4'>
       {account && account.address ? (
         <>
           <button
