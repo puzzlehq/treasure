@@ -3,8 +3,8 @@ import Nav from '@components/Nav';
 import PageHeader from '@components/PageHeader';
 import Button from '@components/Button';
 import { useAccount } from '@puzzlehq/sdk';
-import { aleoAddressRegex } from '../../utils.js';
-import { Step, useNewGameStore } from './store.js';
+import { aleoAddressRegex } from '../../../utils.js';
+import { Step, useNewGameStore } from '../vs_person/store.js';
 import { useNavigate } from 'react-router-dom';
 
 function NewGame() {

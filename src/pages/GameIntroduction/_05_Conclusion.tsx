@@ -1,7 +1,6 @@
 import leo from '@assets/leo.png'
 import treasure_closed from '@assets/treasure_closed.png'
 import treasure_open_full from '@assets/treasure_open_full.png'
-import { Box } from "@components/Box";
 import Header from "./-header";
 import { Step, useGameIntroStore } from './store';
 import Button from '@components/Button';
@@ -12,7 +11,7 @@ const Conclusion = () => {
   const navigate = useNavigate();
 
   return (
-    <Box>
+    <>
       <Header step={4} />
       <p className='self-center opacity-60'>How the game works</p>
       <div className="flex flex-col align-middle gap-8">
@@ -78,7 +77,7 @@ const Conclusion = () => {
           NEXT
         </Button>
       </div>
-    </Box>
+    </>
   )
 }
 

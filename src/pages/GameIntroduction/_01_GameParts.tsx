@@ -1,7 +1,6 @@
 import leo from '@assets/leo.png';
 import puzzle_coin from '@assets/puzzle_coin.png'
 import treasure_closed from '@assets/treasure_closed.png'
-import { Box } from "@components/Box";
 import Header from "./-header";
 import { Step, useGameIntroStore } from './store';
 import Button from '@components/Button';
@@ -10,7 +9,7 @@ const GameParts = () => {
   const [setStep] = useGameIntroStore((state) => [state.setStep]);
 
   return (
-    <Box>
+    <>
       <Header step={0} />
       <div className="grid grid-rows-3 gap-2 md:gap-4 w-full items-center grid-cols-[1fr_65px] sm:grid-cols-[1fr_115px]">
         <div className="col-start-1 col-span-1 flex flex-col gap-1">
@@ -62,7 +61,7 @@ const GameParts = () => {
           NEXT
         </Button>
       </div>
-    </Box>
+    </>
   )
 }
 

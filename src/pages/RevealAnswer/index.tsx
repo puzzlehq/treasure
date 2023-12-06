@@ -5,6 +5,7 @@ import { useSearchParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useInitCurrentGame } from '@hooks/currentGame';
 import { useEventHandling } from '@hooks/eventHandling';
+import { Box } from '@components/Box';
 
 const RevealAnswer = () => {
   const [step, eventId, setEventId, setStep] = useRevealAnswerStore((state) => [
@@ -29,10 +30,10 @@ const RevealAnswer = () => {
   });
 
   return (
-    <div className='flex h-full w-full flex-col'>
+    <Box>
       {step === Step._01_Finish && <Reveal />}
       {step === Step._02_Confirmed && <Confirmed />}
-    </div>
+    </Box>
   );
 };
 

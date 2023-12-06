@@ -11,7 +11,7 @@ import {
 } from './RecordTypes/treasure_hunt_vxxx';
 import { useRenegeStore } from '@pages/Renege/store';
 import { Step, useAcceptGameStore } from '@pages/AcceptGame/store';
-import { useNewGameStore } from '@pages/NewGame/store';
+import { useNewGameStore } from '@pages/NewGame/vs_person/store';
 import { useClaimPrizeWinStore } from '@pages/FinishGame/Win/store';
 import { useRevealAnswerStore } from '@pages/RevealAnswer/store';
 import _ from 'lodash';

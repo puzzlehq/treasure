@@ -1,3 +1,4 @@
+import { Box } from "@components/Box";
 import GameParts from "./_01_GameParts";
 import ChestInfo from "./_02_ChestInfo";
 import Locked from "./_03_Locked";
@@ -10,13 +11,13 @@ const GameIntroduction = () => {
   const [step] = useGameIntroStore((state) => [state.step]);
 
   return (
-    <div>
+    <Box>
       {step === Step._01_GameParts && <GameParts/>}
       {step === Step._02_ChestInfo && <ChestInfo/>}
       {step === Step._03_Locked && <Locked/>}
       {step === Step._04_Unlocked && <Unlocked/>}
       {step === Step._05_Conclusion && <Conclusion/>}
-    </div>
+    </Box>
   )
 }
 

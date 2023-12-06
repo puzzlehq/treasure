@@ -1,5 +1,5 @@
 import Home from './pages/Home.js';
-import NewGame from './pages/NewGame/index.js';
+import NewGameVsPerson from './pages/NewGame/vs_person/index.js';
 import {
   BrowserRouter as Router,
   Route,
@@ -16,8 +16,8 @@ import RenegeGame from './pages/Renege/_01_Renege.js';
 import { useInitGame } from './hooks/initGame.js';
 import RevealAnswer from './pages/RevealAnswer/index.js';
 import MapImage from '@components/MapImage.js';
-import { Box } from '@components/Box.js';
 import GameIntroduction from '@pages/GameIntroduction/index.js';
+import NewGame from '@pages/NewGame/index.js';
 
 const Rerouter = () => {
   const navigate = useNavigate();
@@ -44,22 +44,26 @@ function App() {
             <div className='h-full w-full max-w-screen-sm p-4'>
               <Routes>
                 <Route index element={account ? <Home /> : <Welcome />} />
-                <Route path='/new-game' element={<Box><NewGame /></Box>} />
+                <Route path='/new-game'>
+                  <Route index element={<NewGame />} />
+                  <Route path='vs_bot' element={<NewGameVsPerson/>} />
+                  <Route path='vs_person' element={<NewGameVsPerson/>} />
+                </Route>
                 <Route
                   path='/renege-game/:game_multisig'
-                  element={<Box><RenegeGame /></Box>}
+                  element={<RenegeGame />}
                 />
                 <Route
                   path='/accept-game/:game_multisig'
-                  element={<Box><AcceptGame /></Box>}
+                  element={<AcceptGame />}
                 />
                 <Route
                   path='/reveal-answer/:game_multisig'
-                  element={<Box><RevealAnswer /></Box>}
+                  element={<RevealAnswer />}
                 />
                 <Route path='/finish-game'>
-                  <Route path='win/:game_multisig' element={<Box><WinRoute /></Box>} />
-                  <Route path='lose/:game_multisig' element={<Box><LoseRoute /></Box>} />
+                  <Route path='win/:game_multisig' element={<WinRoute />} />
+                  <Route path='lose/:game_multisig' element={<LoseRoute />} />
                 </Route>
                 <Route path='/introduction' element={<GameIntroduction/>} />
               </Routes>

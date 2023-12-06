@@ -5,6 +5,7 @@ import { Step, useClaimPrizeWinStore } from './store';
 import { useSearchParams } from 'react-router-dom';
 import { useInitCurrentGame } from '@hooks/currentGame';
 import { useEventHandling } from '@hooks/eventHandling';
+import { Box } from '@components/Box';
 
 const WinRoute = () => {
   const [step, eventId, setEventId, setStep] = useClaimPrizeWinStore((state) => [
@@ -32,10 +33,10 @@ const WinRoute = () => {
   });
 
   return (
-    <div className='flex h-full w-full flex-col'>
+    <Box >
       {step === Step._01_Claim && <Win />}
       {step === Step._02_GameOver && <GameOver />}
-    </div>
+    </Box>
   );
 };
 

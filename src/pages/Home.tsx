@@ -4,7 +4,7 @@ import TotalWinnings from '@components/TotalWinnings';
 import TheirTurn from '@components/TheirTurn';
 import YourTurn from '@components/YourTurn';
 import { useGameStore } from '@state/gameStore';
-import { useNewGameStore } from './NewGame/store';
+import { useNewGameStore } from './NewGame/vs_person/store';
 import { useAccount } from '@puzzlehq/sdk';
 
 function Home() {

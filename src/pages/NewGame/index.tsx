@@ -1,54 +1,31 @@
-import NewGamePage from './_01_NewGame';
-import HideTreasure from './_02_HideTreasure';
-import StartWager from './_03_StartWager';
-import ConfirmStartGame from './_04_ConfirmStartGame';
-import GameStarted from './_05_GameStarted';
-import { useNavigate, useSearchParams } from 'react-router-dom';
-import { Step, useNewGameStore } from './store';
-import { useEffect } from 'react';
-import { useInitCurrentGame } from '@hooks/currentGame';
-import { useEventHandling } from '@hooks/eventHandling';
+import { Box } from "@components/Box";
+import Button from "@components/Button";
+import PageHeader from "@components/PageHeader";
+import { useNavigate } from "react-router-dom";
 
 const NewGame = () => {
   const navigate = useNavigate();
-  const [step,eventId, setInputs, setEventId, setStep] = useNewGameStore((state) => [
-    state.step,
-    state.eventId,
-    state.setInputs,
-    state.setEventId,
-    state.setStep,
-  ]);
-
-  const done = () => {
-    setInputs({});
-    setStep(Step._01_NewGame);
-    navigate('/');
-  };
-
-  const [searchParams] = useSearchParams();
-
-  useInitCurrentGame();
-  useEffect(() => {
-    const _eventId = searchParams.get('eventId');
-    if (_eventId) {
-      setEventId(_eventId);
-    }
-  }, [searchParams]);
-
-  useEventHandling({
-    id: eventId,
-    onSettled: () => setStep(Step._05_GameStarted),
-  });
-
   return (
-    <div className='flex h-full w-full flex-col'>
-      {step === Step._01_NewGame && <NewGamePage />}
-      {step === Step._02_HideAlex && <HideTreasure />}
-      {step === Step._03_StartWager && <StartWager />}
-      {step === Step._04_ConfirmStartGame && <ConfirmStartGame />}
-      {step === Step._05_GameStarted && <GameStarted done={done} />}
-    </div>
-  );
-};
+    <Box>
+      <PageHeader
+        text='Ready to play?'
+        bg='bg-primary-blue'
+      />
+      <p>ZK gaming awaits</p>
+      <Button
+        variant='primary'
+        onClick={() => navigate('./vs_bot')}
+      >
+        Play with Leo the Pirate
+      </Button>
+      <Button
+        variant='primary'
+        onClick={() => navigate('./vs_person')}
+      >
+        Play with a friend
+      </Button>
+    </Box>
+  )
+}
 
 export default NewGame;

@@ -1,5 +1,4 @@
 import scene_12 from '@assets/12treasure.svg'
-import { Box } from "@components/Box";
 import Header from "./-header";
 import { Step, useGameIntroStore } from './store';
 import Button from '@components/Button';
@@ -8,7 +7,7 @@ const ChestInfo = () => {
   const [setStep] = useGameIntroStore((state) => [state.setStep]);
 
   return (
-    <Box>
+    <>
       <Header step={1} />
       <p className='self-center opacity-60'>How the magic treasure chest works</p>
       <div className="flex flex-col flex-grow align-middle items-center">
@@ -37,7 +36,7 @@ const ChestInfo = () => {
           NEXT
         </Button>
       </div>
-    </Box>
+    </>
   )
 }
 

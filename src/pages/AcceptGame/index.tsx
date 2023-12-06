@@ -8,6 +8,7 @@ import Button from '@components/Button';
 import { useEffect } from 'react';
 import { useInitCurrentGame } from '@hooks/currentGame';
 import { useEventHandling } from '@hooks/eventHandling';
+import { Box } from '@components/Box';
 
 export const SubmitWagerButton = ({ game }: { game: Game }) => {
   const [initializeSubmitWager] = useAcceptGameStore((state) => [
@@ -133,11 +134,11 @@ const AcceptGame = () => {
   };
 
   return (
-    <div className='flex h-full w-full flex-col'>
+    <Box>
       {step === Step._01_SubmitWager && <SubmitWager />}
       {step === Step._02_AcceptGame && <AcceptGamePage />}
       {step === Step._03_Confirmed && <Confirmed done={done} />}
-    </div>
+    </Box>
   );
 };
 

@@ -4,6 +4,7 @@ import PageHeader from '@components/PageHeader.js';
 import Wager from '@components/Wager.js';
 import Button from '@components/Button.js';
 import { useRenegeStore } from './store';
+import { Box } from '@components/Box';
 
 const RenegeGame = () => {
   const navigate = useNavigate();
@@ -16,7 +17,7 @@ const RenegeGame = () => {
   ]);
 
   return (
-    <div className='flex h-full w-full flex-col justify-center gap-8'>
+    <Box>
       <PageHeader bg='bg-primary-red' text='Renege CHALLENGE' />
       <Versus versus={opponent ?? ''} />
       <Wager wagerAmount={wager ?? -1} />
@@ -42,7 +43,7 @@ const RenegeGame = () => {
           CANCEL
         </Button>
       </div>
-    </div>
+    </Box>
   );
 };
 
