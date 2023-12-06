@@ -34,7 +34,7 @@ const Lose = () => {
     challenger_address,
   } = currentGame.gameNotification.recordData;
 
-  const wager = total_pot ?? 0 / 2;
+  const wager = (total_pot ?? 0) / 2;
   const user = owner;
   const isChallenger = user === challenger_address;
 

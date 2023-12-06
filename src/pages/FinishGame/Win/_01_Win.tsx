@@ -149,7 +149,7 @@ const Win = () => {
     challenger_address,
   } = currentGame.gameNotification.recordData;
 
-  const wager = total_pot ?? 0 / 2;
+  const wager = (total_pot ?? 0) / 2;
   const isChallenger = owner === challenger_address;
 
   const disabled =
