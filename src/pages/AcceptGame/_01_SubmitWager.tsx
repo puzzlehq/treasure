@@ -134,7 +134,7 @@ const SubmitWager = () => {
   return (
     <div className='flex h-full w-full flex-col justify-center gap-8'>
       <div className='flex w-full flex-col gap-2'>
-        <Nav step={1} isChallenger={false} />
+        <Nav step={1} totalSteps={3}/>
         <PageHeader bg='bg-primary-pink' text={`YOU'VE BEEN CHALLENGED!`} />
       </div>
       {opponent && <Versus versus={opponent} />}

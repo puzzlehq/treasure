@@ -1,5 +1,5 @@
 import NewGamePage from './_01_NewGame';
-import HideAlex from './_02_HideAlex';
+import HideTreasure from './_02_HideTreasure';
 import StartWager from './_03_StartWager';
 import ConfirmStartGame from './_04_ConfirmStartGame';
 import GameStarted from './_05_GameStarted';
@@ -43,7 +43,7 @@ const NewGame = () => {
   return (
     <div className='flex h-full w-full flex-col'>
       {step === Step._01_NewGame && <NewGamePage />}
-      {step === Step._02_HideAlex && <HideAlex />}
+      {step === Step._02_HideAlex && <HideTreasure />}
       {step === Step._03_StartWager && <StartWager />}
       {step === Step._04_ConfirmStartGame && <ConfirmStartGame />}
       {step === Step._05_GameStarted && <GameStarted done={done} />}

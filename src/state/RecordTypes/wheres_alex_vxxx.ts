@@ -2,12 +2,12 @@ import { RecordWithPlaintext, zodAddress } from '@puzzlehq/sdk';
 import { z } from 'zod';
 
 export enum Answer {
-  InTheWeeds = 'In the Weeds',
-  BehindTheBuilding = 'Behind the Building',
+  left = 'on the left',
+  right = 'on the right',
 }
 
 export const getAnswer = (answer: '0field' | '1field') =>
-  answer === '0field' ? Answer.InTheWeeds : Answer.BehindTheBuilding;
+  answer === '0field' ? Answer.left : Answer.right;
 
 export const GameRecordSchema = z.object({
   owner: zodAddress,

@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import PageHeader from '@components/PageHeader';
 import Nav from '@components/Nav';
-import ChooseAlexLocation from '@components/ChooseAlexLocation';
+import ChooseTreasureLocation from '@components/ChooseTreasureLocation.js';
 import Button from '@components/Button';
 import {
   requestCreateEvent,
@@ -200,13 +200,13 @@ function AcceptGame() {
     <div className='flex h-full flex-col justify-between'>
       <div className='flex h-full w-full flex-col items-center gap-6 px-5'>
         <div className='flex w-full flex-col gap-2'>
-          <Nav step={2} isChallenger={false} />
+          <Nav step={2} totalSteps={3} />
           <PageHeader bg='bg-primary-blue' text='FIND ALEX' />
         </div>
-        <ChooseAlexLocation
+        <ChooseTreasureLocation
           setAnswer={(answer) => {
             const newAnswer =
-              answer === Answer.InTheWeeds ? '0field' : '1field';
+              answer === Answer.left ? '0field' : '1field';
             setInputs({
               ...inputs,
               opponent_answer: newAnswer,

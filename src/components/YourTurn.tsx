@@ -33,7 +33,7 @@ function YourTurnItem({ game }: { game: Game }) {
                 `/reveal-answer/${game.gameNotification.recordData.game_multisig}`
               );
             }}
-            size='sm'
+            size='md'
             color='yellow'
           >
             Reveal
@@ -48,7 +48,7 @@ function YourTurnItem({ game }: { game: Game }) {
                 `/finish-game/lose/${game.gameNotification.recordData.game_multisig}`
               );
             }}
-            size='sm'
+            size='md'
             color='yellow'
           >
             See Answer
@@ -64,7 +64,7 @@ function YourTurnItem({ game }: { game: Game }) {
               );
             }}
             color='yellow'
-            size='sm'
+            size='md'
           >
             View Result
           </Button>

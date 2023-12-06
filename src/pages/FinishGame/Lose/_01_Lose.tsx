@@ -1,5 +1,5 @@
 import PageHeader from '@components/PageHeader';
-import SelectedAlexLocation from '@components/SelectedAlexLocation';
+import SelectedAlexLocation from '@components/SelectedTreasureLocation';
 import Wager from '@components/Wager';
 import Button from '@components/Button';
 import { useNavigate } from 'react-router-dom';

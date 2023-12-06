@@ -1,7 +1,7 @@
 import Button from './Button';
 import Nav from './Nav';
 
-export type BannerProps = {
+export type BoxWithFlowProps = {
   title: React.ReactNode;
   body: React.ReactNode;
   step: number;
@@ -12,7 +12,7 @@ export type BannerProps = {
   onClickRight: () => void;
 };
 
-export const Banner = ({
+export const BoxWithFlow = ({
   title,
   body,
   step,
@@ -21,7 +21,7 @@ export const Banner = ({
   rightDisabled = false,
   onClickLeft,
   onClickRight,
-}: BannerProps) => {
+}: BoxWithFlowProps) => {
   return (
     <div className='relative z-10 flex flex-col items-center justify-center rounded-[20px] border-[5px] border-bg2 bg-bg1 p-8'>
       <h1 className='text-primary-white overflow-visible whitespace-nowrap text-center font-header text-[72px] font-extrabold leading-[72px] tracking-tight sm:text-[96px] sm:leading-[96px]'>
@@ -47,7 +47,7 @@ export const Banner = ({
   );
 };
 
-export const NakedBanner = ({
+export const NakedBox = ({
   title,
   body,
 }: {
@@ -65,3 +65,13 @@ export const NakedBanner = ({
     </div>
   );
 };
+
+export const Box = ({
+  children
+}: { children: React.ReactNode }) => {
+  return (
+    <div className='relative z-10 flex flex-col items-center justify-center gap-8 rounded-[20px] border-[5px] border-bg2 bg-bg1 p-8'>
+      {children}
+    </div>
+  )
+}

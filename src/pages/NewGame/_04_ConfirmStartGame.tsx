@@ -2,7 +2,7 @@
 import Versus from '@components/Versus.js';
 import PageHeader from '@components/PageHeader.js';
 import Wager from '@components/Wager.js';
-import SelectedAlexLocation from '@components/SelectedAlexLocation.js';
+import SelectedAlexLocation from '@components/SelectedTreasureLocation.js';
 import Button from '@components/Button.js';
 import {
   GAME_FUNCTIONS,
@@ -25,6 +25,7 @@ import jsyaml from 'js-yaml';
 
 import { Step, useNewGameStore } from './store.js';
 import { useSearchParams } from 'react-router-dom';
+import Nav from '@components/Nav.js';
 
 const messageToSign = '1234567field';
 
@@ -107,7 +108,7 @@ function ConfirmStartGame() {
           challenger_sig: signature.signature,
           challenger_nonce: messageToSign, /// todo - make this random
           challenger_answer:
-            inputs.challenger_answer === Answer.InTheWeeds
+            inputs.challenger_answer === Answer.left
               ? '0field'
               : '1field',
           game_multisig_seed,
@@ -157,6 +158,7 @@ function ConfirmStartGame() {
 
   return (
     <div className='flex h-full w-full flex-col justify-center gap-8'>
+      <Nav step={3} totalSteps={5}/>
       <PageHeader bg='bg-primary-pink' text='REVIEW AND KICKOFF GAME' />
       <Versus versus={opponent} />
       <Wager wagerAmount={Number(amount)} />
@@ -172,16 +174,18 @@ function ConfirmStartGame() {
       {error && <p>Error: {error}</p>}
       <div className='flex flex-col gap-4'>
         <Button
+          fullWidth
           onClick={createProposeGameEvent}
-          color='green'
+          variant='tertiary'
           disabled={disabled || loading}
         >
           {buttonText}
         </Button>
         <Button
+          fullWidth
           onClick={() => setStep(Step._03_StartWager)}
           disabled={loading}
-          color='gray'
+          variant='primary'
         >
           BACK
         </Button>

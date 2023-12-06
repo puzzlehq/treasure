@@ -53,7 +53,7 @@ function StartWager() {
 
   return (
     <div className='flex h-full flex-col justify-between gap-2 px-5'>
-      <Nav step={3} />
+      <Nav step={2} totalSteps={5}/>
       <PageHeader
         bg='bg-primary-blue'
         text='HOW MUCH WOULD YOU LIKE TO WAGER?'
@@ -67,18 +67,27 @@ function StartWager() {
         placeholder='Enter amount'
       />
       <p className='mx-auto mt-6'>
-        {'Available balance: ' + availableBalance} Pieces
+        {'Available balance: ' + availableBalance.toLocaleString()} Pieces
       </p>
       {error && <p className='mx-auto text-primary-red'>{error}</p>}
       <div className='flex flex-grow flex-col' />
-      <Button
-        className='mb-6'
-        onClick={() => setStep(Step._04_ConfirmStartGame)}
-        disabled={isDisabled || !!error}
-        color='green'
-      >
-        NEXT
-      </Button>
+      <div className='flex gap-4 w-full'>
+        <Button
+          fullWidth
+          onClick={() => setStep(Step._02_HideAlex)}
+          variant='tertiary'
+        >
+          BACK
+        </Button>
+        <Button
+          fullWidth
+          onClick={() => setStep(Step._04_ConfirmStartGame)}
+          disabled={isDisabled || !!error}
+          color='green'
+        >
+          NEXT
+        </Button>
+      </div>
     </div>
   );
 }

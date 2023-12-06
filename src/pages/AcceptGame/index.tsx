@@ -1,7 +1,7 @@
 import SubmitWager from './_01_SubmitWager';
 import AcceptGamePage from './_02_AcceptGame';
 import Confirmed from './_03_Confirmed';
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Step, useAcceptGameStore } from './store';
 import { Game, useGameStore } from '@state/gameStore';
 import Button from '@components/Button';
@@ -37,8 +37,8 @@ export const SubmitWagerButton = ({ game }: { game: Game }) => {
           `/accept-game/${game.gameNotification.recordData.game_multisig}`
         );
       }}
-      color='yellow'
-      size='sm'
+      color='green'
+      size='md'
       disabled={puzzleRecord === undefined}
     >
       Submit Wager
@@ -58,8 +58,8 @@ export const AcceptGameButton = ({ game }: { game: Game }) => {
           `/accept-game/${game.gameNotification.recordData.game_multisig}`
         );
       }}
-      color='yellow'
-      size='sm'
+      color='green'
+      size='md'
     >
       Accept
     </Button>

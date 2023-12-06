@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Button from '@components/Button.js';
 import PageHeader from '@components/PageHeader.js';
-import SelectedAlexLocation from '@components/SelectedAlexLocation.js';
+import SelectedAlexLocation from '@components/SelectedTreasureLocation.js';
 import Wager from '@components/Wager.js';
 import Versus from '@components/Versus.js';
 import { useGameStore } from '@state/gameStore.js';
@@ -103,8 +103,8 @@ const Reveal = () => {
     currentGame?.gameNotification.recordData.total_pot ?? 0 / 2;
   const answer =
     inputs?.challenger_answer_record?.data.answer === '0field.private'
-      ? Answer.InTheWeeds
-      : Answer.BehindTheBuilding;
+      ? Answer.left
+      : Answer.right;
 
   const createEvent = async () => {
     if (

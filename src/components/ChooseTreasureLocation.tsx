@@ -1,38 +1,37 @@
-import inWeedsImg from '../assets/in_weeds.jpg';
-import behindBuildingImg from '../assets/behind_building.svg';
+import treasure_closed from '../assets/treasure_closed.png';
 import { Answer } from '@state/RecordTypes/wheres_alex_vxxx';
 
-type HideAlexProps = {
+type HideTreasureProps = {
   setAnswer: (answer: Answer) => void;
   answer?: Answer;
-  hiding: boolean; // are we hiding alex? or finding alex?
+  hiding: boolean; // are we the treasure? or finding it?
 };
 
-function ChooseAlexLocation({ setAnswer, answer, hiding }: HideAlexProps) {
+function ChooseTreasureLocation({ setAnswer, answer, hiding }: HideTreasureProps) {
   return (
     <section className='mt-4 flex max-w-full flex-col gap-4'>
       <div className='flex gap-5'>
-        <AlexButton
-          imgSrc={inWeedsImg}
-          text='In the Weeds'
-          onClick={() => setAnswer(Answer.InTheWeeds)}
-          selected={answer ? answer === Answer.InTheWeeds : undefined}
+        <TreasureButton
+          imgSrc={treasure_closed}
+          text='Left'
+          onClick={() => setAnswer && setAnswer(Answer.left)}
+          selected={answer ? answer === Answer.left : undefined}
         />
-        <AlexButton
-          imgSrc={behindBuildingImg}
-          text='Behind the Building'
-          onClick={() => setAnswer(Answer.BehindTheBuilding)}
-          selected={answer ? answer === Answer.BehindTheBuilding : undefined}
+        <TreasureButton
+          imgSrc={treasure_closed}
+          text='Right'
+          onClick={() => setAnswer && setAnswer(Answer.right)}
+          selected={answer ? answer === Answer.right : undefined}
         />
       </div>
       <p className='self-center whitespace-nowrap text-center text-sm font-extrabold tracking-tight text-primary-green'>
         {((): string => {
           if (answer === undefined && hiding) {
-            return 'Choose where to hide Alex';
+            return 'Choose where to hide the booty';
           } else if (hiding) {
-            return `You chose to hide Alex ${answer}`;
+            return `You chose to hide the booty ${answer}`;
           } else {
-            return `You think Alex is ${answer}`;
+            return `You think the booty is ${answer}`;
           }
         })()}
       </p>
@@ -40,18 +39,23 @@ function ChooseAlexLocation({ setAnswer, answer, hiding }: HideAlexProps) {
   );
 }
 
-type AlexButtonProps = {
+type TreasureButtonProps = {
   imgSrc: string;
   text: string;
   selected?: boolean;
   onClick: () => void;
 };
 
-const AlexButton = ({ imgSrc, text, selected, onClick }: AlexButtonProps) => {
+const TreasureButton = ({
+  imgSrc,
+  text,
+  selected,
+  onClick,
+}: TreasureButtonProps) => {
   return (
     <button
       onClick={onClick}
-      className={`group flex flex-col self-center rounded-lg outline-primary-green hover:outline ${
+      className={`group flex flex-col self-center rounded-lg outline-primary hover:outline ${
         selected ? 'outline' : ''
       } flex w-[150px] flex-col items-center gap-2 p-4 hover:opacity-100`}
     >
@@ -66,9 +70,9 @@ const AlexButton = ({ imgSrc, text, selected, onClick }: AlexButtonProps) => {
       <div
         className={`mt-2.5 whitespace-nowrap text-center text-sm font-extrabold ${
           selected
-            ? 'text-primary-green'
+            ? 'text-primary'
             : selected === false
-            ? 'text-primary-white opacity-40 group-hover:text-primary-green'
+            ? 'text-primary-white opacity-40 group-hover:text-primary'
             : 'text-primary-white'
         }`}
       >
@@ -78,4 +82,5 @@ const AlexButton = ({ imgSrc, text, selected, onClick }: AlexButtonProps) => {
   );
 };
 
-export default ChooseAlexLocation;
+export default ChooseTreasureLocation;
+

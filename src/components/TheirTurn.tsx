@@ -36,7 +36,7 @@ function TheirTurnItem({ game }: { game: Game }) {
         // This is just an example
         return (
           <div className='flex gap-2'>
-            <Button onClick={handlePingClick} color='pink' size='sm'>
+            <Button onClick={handlePingClick} color='pink' size='md'>
               Ping
             </Button>
           </div>
@@ -56,7 +56,7 @@ function TheirTurnItem({ game }: { game: Game }) {
                 );
               }}
               color='gray'
-              size='sm'
+              size='md'
             >
               Renege
             </Button>
@@ -71,7 +71,7 @@ function TheirTurnItem({ game }: { game: Game }) {
                 `/finish-game/lose/${game.gameNotification.recordData.game_multisig}`
               );
             }}
-            size='sm'
+            size='md'
             color='gray'
           >
             See Answer
