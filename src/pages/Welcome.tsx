@@ -1,5 +1,5 @@
 import { useAccount, useConnect } from '@puzzlehq/sdk';
-import swaggers from '../assets/swaggers.png';
+import leo from '../assets/leo.png';
 import Button from '../components/Button.js';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
@@ -19,7 +19,7 @@ export const Welcome = () => {
     <div className='h-full w-full items-stretch justify-between'>
       <div className='align-items-center flex w-full justify-center'>
         <img
-          src={swaggers}
+          src={leo}
           className='max-h-[163px]'
           alt={'Leo McPirate'}
         />

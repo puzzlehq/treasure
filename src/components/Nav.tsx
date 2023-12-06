@@ -1,9 +1,9 @@
-type NavProps = {
+export type NavDotsProps = {
   step: number;
   totalSteps: number;
 };
 
-function NavDots({ step, totalSteps }: NavProps) {
+function NavDots({ step, totalSteps }: NavDotsProps) {
   return (
     <nav className='flex justify-center gap-3'>
       {Array.from({ length: totalSteps }).map((_, ix) => (

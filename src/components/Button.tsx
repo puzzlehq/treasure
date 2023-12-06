@@ -8,7 +8,7 @@ const buttonVariants = cva(
       variant: {
         primary: 'bg-primary disabled:opacity-40 font-header text-black drop-shadow-lg',
         secondary: 'bg-bg1 border-bg2 border-[5px] disabled:opacity-40 drop-shadow-lg',
-        tertiary: 'bg-primary-light disabled:opacity-40 font-header text-black drop-shadow-lg',
+        tertiary: 'bg-primary-light disabled:opacity-40 font-header text-black drop-shadow-',
         green: 'bg-primary-green disabled:opacity-40',
         red: 'bg-primary-red disabled:opacity-40',
         gray: 'bg-bg2 disabled:opacity-40',
@@ -39,7 +39,6 @@ const Button = ({ className, variant, size, fullWidth = false, ...props }: Butto
       className={`${className === undefined ? '' : className} ${fullWidth ? 'w-full' : ''} ${buttonVariants({
       variant,
         size,
-  
       })}`}
       {...props}
     />
