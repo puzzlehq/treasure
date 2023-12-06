@@ -63,7 +63,7 @@ function StartWager() {
         min={0}
         value={wager ?? ''}
         onChange={onWagerInput}
-        className={`mt-14 flex w-full flex-col rounded-lg border-[3px] border-primary-gray bg-transparent px-5 py-7 max-md:mt-10 ${inputTextColor} ${inputOpacity} self-center text-center text-3xl font-bold`}
+        className={`mt-14 flex w-full flex-col rounded-lg border-[3px] border-primary-gray bg-transparent px-5 py-7 max-md:mt-10 ${inputTextColor} ${inputOpacity} self-center text-center text-3xl font-bold focus:outline-none focus:border-primary`}
         placeholder='Enter amount'
       />
       <p className='mx-auto mt-6'>

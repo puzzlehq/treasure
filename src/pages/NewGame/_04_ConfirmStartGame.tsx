@@ -146,13 +146,13 @@ function ConfirmStartGame() {
     if (!loading) {
       setButtonText('PROPOSE GAME');
     } else if (event?.status === EventStatus.Creating) {
-      setButtonText('CREATING EVENT...');
+      setButtonText('CREATING...');
     } else if (event?.status === EventStatus.Pending) {
-      setButtonText('EVENT PENDING...');
+      setButtonText('PENDING...');
     } else if (confirmStep === ConfirmStep.Signing) {
-      setButtonText('REQUESTING SIGNATURE...');
+      setButtonText('SIGNING...');
     } else if (confirmStep === ConfirmStep.RequestingEvent) {
-      setButtonText('REQUESTING EVENT...');
+      setButtonText('REQUESTING...');
     }
   }, [loading, event?.status, confirmStep]);
 
@@ -165,29 +165,29 @@ function ConfirmStartGame() {
       {answer && (
         <div className='flex flex-col gap-2'>
           <SelectedAlexLocation answer={answer as Answer} win={undefined} />
-          <div className='self-center whitespace-nowrap text-center text-sm font-extrabold tracking-tight text-primary-green'>
-            You chose to hide Alex {answer}!
+          <div className='self-center whitespace-nowrap text-center text-sm font-extrabold tracking-tight text-primary-green '>
+            You chose to hide the treasure {answer}!
           </div>
         </div>
       )}
       <div className='flex flex-grow flex-col' />
       {error && <p>Error: {error}</p>}
-      <div className='flex flex-col gap-4'>
-        <Button
-          fullWidth
-          onClick={createProposeGameEvent}
-          variant='tertiary'
-          disabled={disabled || loading}
-        >
-          {buttonText}
-        </Button>
+      <div className='flex gap-4'>
         <Button
           fullWidth
           onClick={() => setStep(Step._03_StartWager)}
           disabled={loading}
-          variant='primary'
+          variant='tertiary'
         >
           BACK
+        </Button>
+        <Button
+          fullWidth
+          onClick={createProposeGameEvent}
+          variant='primary'
+          disabled={disabled || loading}
+        >
+          {buttonText}
         </Button>
       </div>
     </div>
