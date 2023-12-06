@@ -86,7 +86,7 @@ const SubmitWager = () => {
       opponent_message_5: messageFields.field_5,
       opponent_sig: signature.signature,
     };
-    const game_multisig_seed = currentGame?.utilRecords?.[0].data.seed ?? '';
+    const game_multisig_seed = inputs.key_record.data.seed ?? '';
     console.log('game_multisig seed', game_multisig_seed);
     const { data } = await importSharedState(game_multisig_seed);
     console.log(`Shared state imported: ${data?.address}`);

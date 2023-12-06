@@ -3,7 +3,7 @@ import SelectedAlexLocation from '@components/SelectedTreasureLocation';
 import Wager from '@components/Wager';
 import Button from '@components/Button';
 import { useGameStore } from '@state/gameStore';
-import { getAnswer } from '@state/RecordTypes/wheres_alex_vxxx';
+import { getAnswer } from '@state/RecordTypes/treasure_hunt_vxxx';
 import {
   GAME_FUNCTIONS,
   GAME_PROGRAM_ID,
@@ -36,7 +36,7 @@ const Win = () => {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const msAddress = currentGame?.gameNotification.recordData.game_multisig;
-  const { msPuzzleRecords, msGameRecords } = useMsRecords(msAddress);
+  const msRecords = useMsRecords(msAddress);
   const { loading, error, event, setLoading, setError } = useEventHandling({
     id: eventId,
     address: msAddress,
@@ -52,16 +52,16 @@ const Win = () => {
     msBalances && msBalances?.length > 0 ? msBalances[0].public : 0;
 
   useEffect(() => {
-    if (!currentGame || !msPuzzleRecords || !msGameRecords) return;
-    const game_record = msGameRecords[0];
+    if (!currentGame || !msRecords) return;
+    const game_record = msRecords.find((r) => r.data.ix === '16u32.private');
 
-    const joint_piece_winner = msPuzzleRecords.find(
+    const joint_piece_winner = msRecords.find(
       (r) => r.data.ix === '12u32.private'
     );
-    const piece_joint_stake = msPuzzleRecords.find(
+    const piece_joint_stake = msRecords.find(
       (r) => r.data.ix === '9u32.private'
     );
-    const joint_piece_time_claim = msPuzzleRecords.find(
+    const joint_piece_time_claim = msRecords.find(
       (r) => r.data.ix === '8u32.private'
     );
 
@@ -85,7 +85,7 @@ const Win = () => {
     );
   }, [
     currentGame?.gameNotification.recordData.game_multisig,
-    [msPuzzleRecords, msGameRecords].toString(),
+    msRecords?.toString(),
   ]);
 
   const [buttonText, setButtonText] = useState('CLAIM WINNINGS');
@@ -99,7 +99,7 @@ const Win = () => {
     }
   }, [loading, event?.status]);
 
-  if (!currentGame || currentGame?.gameNotification.recordData.ix !== '9u32') {
+  if (!currentGame || currentGame?.gameNotification.recordData.ix !== '24u32') {
     return (
       <div className='flex h-full w-full flex-col justify-center gap-4'>
         <p>oops! you aren't supposed to be here</p>

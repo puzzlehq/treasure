@@ -26,7 +26,7 @@ export const GameRecordSchema = z.object({
     '5field',
     '6field',
   ]),
-  ix: z.literal('1u32'),
+  ix: z.literal('16u32'),
   _nonce: z.string(),
 });
 export type GameRecord = {
@@ -42,7 +42,7 @@ export const GameReqNotificationSchema = z.object({
   total_pot: z.string().transform(Number),
   challenger_address: zodAddress,
   opponent_address: zodAddress,
-  ix: z.literal('2u32'),
+  ix: z.literal('17u32'),
   _nonce: z.string(),
 });
 export type GameReqNotification = {
@@ -58,7 +58,7 @@ export const WaitingAcceptanceNotificationSchema = z.object({
   total_pot: z.string().transform(Number),
   challenger_address: zodAddress,
   opponent_address: zodAddress,
-  ix: z.literal('3u32'),
+  ix: z.literal('18u32'),
   _nonce: z.string(),
 });
 export type WaitingAcceptanceNotification = {
@@ -75,7 +75,7 @@ export const StakeRenegedNotificationSchema = z.object({
   challenger_address: zodAddress,
   opponent_address: zodAddress,
   renege_address: zodAddress,
-  ix: z.literal('4u32'),
+  ix: z.literal('19u32'),
   _nonce: z.string(),
 });
 export type StakeRenegedNotification = {
@@ -91,7 +91,7 @@ export const ChallengerWagerNotificationSchema = z.object({
   total_pot: z.string().transform(Number),
   challenger_address: zodAddress,
   opponent_address: zodAddress,
-  ix: z.literal('5u32'),
+  ix: z.literal('20u32'),
   _nonce: z.string(),
 });
 export type ChallengerWagerNotification = {
@@ -107,7 +107,7 @@ export const OpponentWagerNotificationSchema = z.object({
   total_pot: z.string().transform(Number),
   challenger_address: zodAddress,
   opponent_address: zodAddress,
-  ix: z.literal('6u32'),
+  ix: z.literal('21u32'),
   _nonce: z.string(),
 });
 export type OpponentWagerNotification = {
@@ -123,7 +123,7 @@ export const WaitingRevealNotificationSchema = z.object({
   total_pot: z.string().transform(Number),
   challenger_address: zodAddress,
   opponent_address: zodAddress,
-  ix: z.literal('7u32'),
+  ix: z.literal('22u32'),
   _nonce: z.string(),
 });
 export type WaitingRevealNotification = {
@@ -140,7 +140,7 @@ export const RevealAnswerNotificationSchema = z.object({
   challenger_address: zodAddress,
   opponent_address: zodAddress,
   opponent_answer: z.enum(['0field', '1field']),
-  ix: z.literal('8u32'),
+  ix: z.literal('23u32'),
   _nonce: z.string(),
 });
 export type RevealAnswerNotification = {
@@ -160,7 +160,7 @@ export const GameFinishReqNotificationSchema = z.object({
   opponent_answer: z.enum(['0field', '1field']),
   winner: zodAddress,
   loser: zodAddress,
-  ix: z.literal('9u32'),
+  ix: z.literal('24u32'),
   _nonce: z.string(),
 });
 export type GameFinishReqNotification = {
@@ -178,7 +178,7 @@ export const GameFinishedNotificationSchema = z.object({
   opponent_address: zodAddress,
   winner: zodAddress,
   loser: zodAddress,
-  ix: z.literal('10u32'),
+  ix: z.literal('25u32'),
   _nonce: z.string(),
 });
 export type GameFinishedNotification = {
@@ -232,25 +232,25 @@ export const getGameState = (game: GameNotification): GameState => {
       : 'opponent';
 
   switch (game.recordData.ix) {
-    case '2u32':
+    case '17u32':
       return `opponent:1`;
-    case '3u32':
+    case '18u32':
       return `challenger:1`;
-    case '4u32':
+    case '19u32':
       return `${challenger_or_opponent}:0`;
-    case '5u32':
+    case '20u32':
       return `challenger:2`;
-    case '6u32':
+    case '21u32':
       return `opponent:2`;
-    case '7u32':
+    case '22u32':
       return `opponent:3`;
-    case '8u32':
+    case '23u32':
       return `challenger:3`;
-    case '9u32': {
+    case '24u32': {
       const isWinner = game.recordData.winner === game.recordData.owner;
       return isWinner ? `winner:4` : `loser:4`;
     }
-    case '10u32':
+    case '25u32':
       return `${challenger_or_opponent}:5`;
     default:
       return 'challenger:0';

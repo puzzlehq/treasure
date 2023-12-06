@@ -14,7 +14,6 @@ import { LoseRoute } from './pages/FinishGame/Lose/index.js';
 import WinRoute from './pages/FinishGame/Win/index.js';
 import RenegeGame from './pages/Renege/_01_Renege.js';
 import { useInitGame } from './hooks/initGame.js';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import RevealAnswer from './pages/RevealAnswer/index.js';
 import MapImage from '@components/MapImage.js';
 import { Box } from '@components/Box.js';

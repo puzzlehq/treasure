@@ -4,7 +4,7 @@ import Wager from '@components/Wager';
 import Button from '@components/Button';
 import { useNavigate } from 'react-router-dom';
 import { useGameStore } from '@state/gameStore';
-import { getAnswer } from '@state/RecordTypes/wheres_alex_vxxx';
+import { getAnswer } from '@state/RecordTypes/treasure_hunt_vxxx';
 import { shortenAddress } from '@puzzlehq/sdk';
 import { useInitCurrentGame } from '@hooks/currentGame';
 
@@ -13,7 +13,7 @@ const Lose = () => {
   const navigate = useNavigate();
   const [currentGame] = useGameStore((state) => [state.currentGame]);
 
-  if (!currentGame || currentGame?.gameNotification.recordData.ix !== '9u32') {
+  if (!currentGame || currentGame?.gameNotification.recordData.ix !== '24u32') {
     return (
       <div className='flex h-full w-full flex-col justify-center gap-4'>
         <p>oops! you aren't supposed to be here</p>

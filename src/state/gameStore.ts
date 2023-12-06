@@ -8,7 +8,7 @@ import {
   getGameAction,
   getGameState,
   parseGameRecord,
-} from './RecordTypes/wheres_alex_vxxx';
+} from './RecordTypes/treasure_hunt_vxxx';
 import { useRenegeStore } from '@pages/Renege/store';
 import { Step, useAcceptGameStore } from '@pages/AcceptGame/store';
 import { useNewGameStore } from '@pages/NewGame/store';
@@ -48,15 +48,8 @@ export type Game = {
   gameNotification: GameNotification;
   gameState: GameState;
   gameAction?: GameAction;
-  puzzleRecords: RecordWithPlaintext[];
-  utilRecords: RecordWithPlaintext[];
-  msRecords?: MSGameRecords;
-};
-
-export type MSGameRecords = {
-  gameRecords: RecordWithPlaintext[];
-  puzzleRecords: RecordWithPlaintext[];
-  utilRecords: RecordWithPlaintext[];
+  records: RecordWithPlaintext[];
+  msRecords?: RecordWithPlaintext[];
 };
 
 type GameStore = {
@@ -64,61 +57,16 @@ type GameStore = {
   yourTurn: Game[];
   theirTurn: Game[];
   finished: Game[];
-  puzzleRecords: RecordWithPlaintext[];
+  records: RecordWithPlaintext[];
   availableBalance: number;
   totalBalance: number;
   largestPiece?: RecordWithPlaintext;
   setRecords: (
-    user: string,
-    records: {
-      gameNotifications: RecordWithPlaintext[];
-      utilRecords: RecordWithPlaintext[];
-      puzzleRecords: RecordWithPlaintext[];
-    },
-    msRecords?: MSGameRecords
+    records: RecordWithPlaintext[],
+    msRecords?: RecordWithPlaintext[]
   ) => void;
   setCurrentGame: (game?: Game) => void;
   clearFlowStores: () => void;
-};
-
-const createGame = (
-  gameNotification: GameNotification,
-  puzzleRecords: RecordWithPlaintext[],
-  utilRecords: RecordWithPlaintext[],
-  msRecords?: MSGameRecords
-): Game => {
-  const gameState = getGameState(gameNotification);
-  return {
-    gameNotification,
-    gameState: gameState,
-    gameAction: getGameAction(gameState),
-    puzzleRecords: puzzleRecords.filter(
-      (puzzleRecord) =>
-        puzzleRecord.data.game_multisig?.replace('.private', '') ===
-        gameNotification.recordData.game_multisig
-    ),
-    utilRecords: utilRecords.filter(
-      (utilRecord) =>
-        utilRecord.data.game_multisig?.replace('.private', '') ===
-        gameNotification.recordData.game_multisig
-    ),
-    msRecords: msRecords
-      ? {
-          gameRecords: msRecords.gameRecords.filter(
-            (gameRecord) =>
-              gameRecord.owner === gameNotification.recordData.game_multisig
-          ),
-          puzzleRecords: msRecords.puzzleRecords.filter(
-            (puzzleRecord) =>
-              puzzleRecord.owner === gameNotification.recordData.game_multisig
-          ),
-          utilRecords: msRecords.utilRecords.filter(
-            (utilRecord) =>
-              utilRecord.owner === gameNotification.recordData.game_multisig
-          ),
-        }
-      : undefined,
-  };
 };
 
 const validStates = {
@@ -152,22 +100,19 @@ export const useGameStore = create<GameStore>()(
       yourTurn: [] as Game[],
       theirTurn: [] as Game[],
       finished: [] as Game[],
-      puzzleRecords: [] as RecordWithPlaintext[],
+      records: [] as RecordWithPlaintext[],
       availableBalance: 0,
       totalBalance: 0,
       largestPiece: undefined,
-      setRecords: (user, records, msRecords) => {
+      setRecords: (records, msRecords) => {
         const currentGame = get().currentGame;
 
-        const utilRecords = records.utilRecords;
-
-        const puzzleRecords = records.puzzleRecords;
         const { availableBalance, totalBalance, largestPiece } =
-          parsePuzzlePieces(puzzleRecords);
+          parsePuzzlePieces(records);
         set({ availableBalance, totalBalance, largestPiece });
 
         const allGameNotifications: GameNotification[] =
-          records.gameNotifications
+          records
             .map((record) => {
               const gameNotification: GameNotification | undefined =
                 parseGameRecord(record);
@@ -208,12 +153,13 @@ export const useGameStore = create<GameStore>()(
         }>(
           (acc, gameNotification) => {
             const game_state = getGameState(gameNotification);
-            const game = createGame(
+            const game: Game = {
               gameNotification,
-              puzzleRecords,
-              utilRecords,
+              gameState: game_state,
+              records,
+              gameAction: getGameAction(game_state),
               msRecords
-            );
+            }
             if (
               currentGame &&
               game.gameNotification.recordData.game_multisig ===

@@ -8,23 +8,19 @@ export const useInitGame = () => {
 
   const [setRecords] = useGameStore((state) => [state.setRecords]);
 
-  const { gameNotifications, puzzleRecords, utilRecords } = useGameRecords();
+  const records = useGameRecords();
 
   useEffect(() => {
     if (
-      gameNotifications !== undefined &&
-      puzzleRecords !== undefined &&
-      utilRecords !== undefined &&
+      records !== undefined &&
       account
     ) {
-      setRecords(account.address, {
-        gameNotifications,
-        puzzleRecords,
-        utilRecords,
-      });
+      setRecords(
+        records,
+      );
     }
   }, [
-    [gameNotifications, puzzleRecords, utilRecords].toString(),
+    records?.toString(),
     account?.address,
   ]);
 };

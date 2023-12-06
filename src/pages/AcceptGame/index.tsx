@@ -28,7 +28,7 @@ export const SubmitWagerButton = ({ game }: { game: Game }) => {
   return (
     <Button
       onClick={() => {
-        const key_record = game.utilRecords[0];
+        const key_record = game.records.find((r) => r.data.ix === '30u32');
         const game_req_notification = game.gameNotification.recordWithPlaintext;
         if (!puzzleRecord || !key_record || !game_req_notification) return;
         initializeSubmitWager(puzzleRecord, key_record, game_req_notification);

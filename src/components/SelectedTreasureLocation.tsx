@@ -1,5 +1,5 @@
 import treasure_closed from '../assets/treasure_closed.png';
-import { Answer } from '@state/RecordTypes/wheres_alex_vxxx.js';
+import { Answer } from '@state/RecordTypes/treasure_hunt_vxxx.js';
 
 type SelectedTreasureLocationProps = {
   answer: Answer;

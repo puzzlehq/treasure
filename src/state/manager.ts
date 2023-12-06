@@ -1,5 +1,5 @@
 import { RecordWithPlaintext } from '@puzzlehq/sdk';
-import { Answer } from './RecordTypes/wheres_alex_vxxx';
+import { Answer } from './RecordTypes/treasure_hunt_vxxx';
 
 export const GAME_PROGRAM_ID = 'wheres_alex_v018.aleo';
 

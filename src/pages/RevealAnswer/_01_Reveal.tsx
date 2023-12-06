@@ -5,7 +5,7 @@ import SelectedAlexLocation from '@components/SelectedTreasureLocation.js';
 import Wager from '@components/Wager.js';
 import Versus from '@components/Versus.js';
 import { useGameStore } from '@state/gameStore.js';
-import { Answer } from '@state/RecordTypes/wheres_alex_vxxx.js';
+import { Answer } from '@state/RecordTypes/treasure_hunt_vxxx.js';
 import {
   GAME_FUNCTIONS,
   GAME_PROGRAM_ID,
@@ -28,12 +28,7 @@ const Reveal = () => {
     ]);
   const [currentGame] = useGameStore((state) => [
     state.currentGame,
-    state.puzzleRecords,
   ]);
-
-  const { msPuzzleRecords, msGameRecords } = useMsRecords(
-    currentGame?.gameNotification.recordData.game_multisig
-  );
 
   const { loading, error, event, setLoading, setError } = useEventHandling({
     id: eventId,
@@ -44,26 +39,23 @@ const Reveal = () => {
 
   useEffect(() => {
     if (
-      !currentGame ||
-      !msPuzzleRecords ||
-      !msGameRecords ||
-      !currentGame.utilRecords
+      !currentGame
     )
       return;
     const reveal_answer_notification_record =
       currentGame.gameNotification.recordWithPlaintext;
 
-    const challenger_answer_record = currentGame.utilRecords.find(
+    const challenger_answer_record = currentGame.records.find(
       (r) =>
         r.data.owner.replace('.private', '') ===
         currentGame.gameNotification.recordData.challenger_address
     );
 
-    const joint_piece_stake = currentGame.puzzleRecords.find(
+    const joint_piece_stake = currentGame.records.find(
       (r) => r.data.ix.replace('.private', '') === '10u32'
     );
 
-    const challenger_claim_signature = currentGame.puzzleRecords.find(
+    const challenger_claim_signature = currentGame.records.find(
       (r) => r.data.ix.replace('.private', '') === '7u32'
     );
 
@@ -92,10 +84,7 @@ const Reveal = () => {
   }, [
     currentGame?.gameNotification.recordData.game_multisig,
     [
-      msPuzzleRecords,
-      msGameRecords,
-      currentGame?.utilRecords,
-      currentGame?.puzzleRecords,
+      currentGame?.records,
     ].toString(),
   ]);
   const opponent = currentGame?.gameNotification.recordData.challenger_address;
@@ -133,14 +122,14 @@ const Reveal = () => {
     }
   };
 
-  const [buttonText, setButtonText] = useState('REVEAL ANSWER');
+  const [buttonText, setButtonText] = useState('REVEAL');
   useEffect(() => {
     if (!loading) {
-      setButtonText('REVEAL ANSWER');
+      setButtonText('REVEAL');
     } else if (event?.status === EventStatus.Creating) {
-      setButtonText('CREATING EVENT...');
+      setButtonText('EVENT...');
     } else if (event?.status === EventStatus.Pending) {
-      setButtonText('EVENT PENDING...');
+      setButtonText('PENDING...');
     }
   }, [loading, event?.status]);
 
@@ -161,7 +150,7 @@ const Reveal = () => {
         <div className='flex flex-col gap-2'>
           <SelectedAlexLocation answer={answer} win={undefined} />
           <div className='self-center whitespace-nowrap text-center text-sm font-extrabold tracking-tight text-primary-green'>
-            You chose to hide Alex {answer}!
+            You chose to hide the booty {answer}!
           </div>
         </div>
       )}

@@ -10,7 +10,7 @@ import {
   ProposeGameInputs,
   transitionFees,
 } from '@state/manager.js';
-import { Answer } from '@state/RecordTypes/wheres_alex_vxxx.js';
+import { Answer } from '@state/RecordTypes/treasure_hunt_vxxx.js';
 import { useEventHandling } from '@hooks/eventHandling.js';
 import {
   createSharedState,

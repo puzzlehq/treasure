@@ -17,7 +17,7 @@ import {
   transitionFees,
 } from '@state/manager.js';
 import { useEffect, useState } from 'react';
-import { Answer } from '@state/RecordTypes/wheres_alex_vxxx.js';
+import { Answer } from '@state/RecordTypes/treasure_hunt_vxxx.js';
 import { Step, useAcceptGameStore } from './store.js';
 import { useGameStore } from '@state/gameStore.js';
 import { useMsRecords } from '@hooks/msRecords.js';
@@ -47,7 +47,7 @@ function AcceptGame() {
   const [currentGame] = useGameStore((state) => [state.currentGame]);
 
   const msAddress = currentGame?.gameNotification.recordData.game_multisig;
-  const { msPuzzleRecords, msGameRecords } = useMsRecords(msAddress);
+  const msRecords = useMsRecords(msAddress);
 
   const { loading, error, event, setLoading, setError } = useEventHandling({
     id: eventIdAccept,
@@ -75,8 +75,11 @@ function AcceptGame() {
   const amountToFundMs = (transitionFees.accept_game + transitionFees.finish_game - msPublicBalance);
 
   useEffect(() => {
-    if (!currentGame || !msPuzzleRecords || !msGameRecords) return;
-    const piece_stake_challenger = msPuzzleRecords?.find(
+    if (!currentGame || !msRecords) return;
+    const game_record = msRecords?.find(
+      (r) => r.data.ix === '16u32.private'
+    );
+    const piece_stake_challenger = msRecords?.find(
       (r) =>
         r.data.ix === '3u32.private' &&
         r.data.challenger.replace('.private', '') ===
@@ -84,7 +87,7 @@ function AcceptGame() {
         r.data.staker.replace('.private', '') ===
           currentGame.gameNotification.recordData.challenger_address
     );
-    const piece_claim_challenger = msPuzzleRecords.find(
+    const piece_claim_challenger = msRecords.find(
       (r) =>
         r.data.ix === '6u32.private' &&
         r.data.challenger.replace('.private', '') ===
@@ -92,7 +95,7 @@ function AcceptGame() {
         r.data.claimer.replace('.private', '') ===
           currentGame.gameNotification.recordData.challenger_address
     );
-    const piece_stake_opponent = msPuzzleRecords.find(
+    const piece_stake_opponent = msRecords.find(
       (r) =>
         r.data.ix === '3u32.private' &&
         r.data.opponent.replace('.private', '') ===
@@ -100,7 +103,7 @@ function AcceptGame() {
         r.data.staker.replace('.private', '') ===
           currentGame.gameNotification.recordData.opponent_address
     );
-    const piece_claim_opponent = msPuzzleRecords.find(
+    const piece_claim_opponent = msRecords.find(
       (r) =>
         r.data.ix === '6u32.private' &&
         r.data.opponent.replace('.private', '') ===
@@ -109,7 +112,7 @@ function AcceptGame() {
           currentGame.gameNotification.recordData.opponent_address
     );
 
-    console.log('msGameRecords[0]', msGameRecords[0]);
+    console.log('game_record', game_record);
     console.log('piece_stake_challenger', piece_stake_challenger);
     console.log('piece_claim_challenger', piece_claim_challenger);
     console.log('piece_stake_opponent', piece_stake_opponent);
@@ -119,11 +122,11 @@ function AcceptGame() {
       piece_claim_opponent === undefined ||
       piece_stake_challenger === undefined ||
       piece_stake_opponent === undefined ||
-      msGameRecords[0] === undefined
+      game_record === undefined
     )
       return;
     initializeAcceptGame(
-      msGameRecords[0],
+      game_record,
       piece_stake_challenger,
       piece_claim_challenger,
       piece_stake_opponent,
@@ -131,7 +134,7 @@ function AcceptGame() {
     );
   }, [
     currentGame?.gameNotification.recordData.game_multisig,
-    [msPuzzleRecords, msGameRecords].toString(),
+    msRecords?.toString(),
   ]);
 
   const createFundEvent = async () => {
@@ -150,7 +153,7 @@ function AcceptGame() {
         setFundingError(response.error);
       } else if (response.eventId) {
         setEventIdFund(response.eventId);
-        setSearchParams({ eventIdFund: response.eventId });
+        setSearchParams({ ...searchParams, eventIdFund: response.eventId });
       }
     } catch (e) {
       setFundingError((e as Error).message);
@@ -202,7 +205,7 @@ function AcceptGame() {
       } else {
         console.log('success', response.eventId);
         setEventIdAccept(response.eventId);
-        setSearchParams({ eventIdAccept: response.eventId });
+        setSearchParams({ ...searchParams, eventIdAccept: response.eventId });
       }
     } catch (e) {
       setError((e as Error).message);
@@ -265,6 +268,7 @@ function AcceptGame() {
           }}
           answer={answer}
           hiding={false}
+          disabled={loading}
         />
         <div className='flex flex-grow flex-col' />
         {error && <p>Error: {error}</p>}
