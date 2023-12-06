@@ -15,7 +15,7 @@ function Confirmed(props: { done: () => void }) {
 
   return (
     <div className='flex h-full flex-col justify-between'>
-      <div className='flex h-full w-full flex-col items-center px-5'>
+      <div className='flex h-full w-full flex-col items-center'>
         {game_address && event && event.transactionId && (
           <GameInfo
             multisig={game_address}

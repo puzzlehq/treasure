@@ -115,50 +115,52 @@ const SubmitWager = () => {
 
   const disabled = !opponent || !wager || !opponent_wager_record || !inputs;
 
-  const [buttonText, setButtonText] = useState('SUBMIT WAGER');
+  const [buttonText, setButtonText] = useState('SUBMIT');
 
   useEffect(() => {
     if (!loading) {
-      setButtonText('SUBMIT WAGER');
+      setButtonText('SUBMIT');
     } else if (event?.status === EventStatus.Creating) {
-      setButtonText('CREATING EVENT...');
+      setButtonText('CREATING...');
     } else if (event?.status === EventStatus.Pending) {
-      setButtonText('EVENT PENDING...');
+      setButtonText('PENDING...');
     } else if (confirmStep === ConfirmStep.Signing) {
-      setButtonText('REQUESTING SIGNATURE...');
+      setButtonText('SIGNING...');
     } else if (confirmStep === ConfirmStep.RequestingEvent) {
-      setButtonText('REQUESTING EVENT...');
+      setButtonText('REQUESTING...');
     }
   }, [loading, event?.status, confirmStep]);
 
   return (
     <div className='flex h-full w-full flex-col justify-center gap-8'>
       <div className='flex w-full flex-col gap-2'>
-        <Nav step={1} totalSteps={3}/>
+        <Nav step={0} totalSteps={3}/>
         <PageHeader bg='bg-primary-pink' text={`YOU'VE BEEN CHALLENGED!`} />
       </div>
       {opponent && <Versus versus={opponent} />}
       <Wager wagerAmount={Number(wager)} />
       <div className='flex flex-grow flex-col' />
-      <div className='flex w-full flex-col gap-4'>
-        {error && <p>Error: {error}</p>}
+      {error && <p>Error: {error}</p>}
+      <div className='flex w-full gap-4'>
         <Button
-          color='green'
+          fullWidth
+          variant='tertiary'
+          disabled={loading}
+          onClick={() => {
+            navigate('/');
+          }}
+        >
+          BACK
+        </Button>
+        <Button
+          fullWidth
+          variant='primary'
           disabled={disabled || loading}
           onClick={createEvent}
         >
           {buttonText}
         </Button>
-        <Button
-          color='gray'
-          disabled={loading}
-          onClick={() => {
-            /// todo - way more here
-            navigate('/');
-          }}
-        >
-          REJECT
-        </Button>
+
       </div>
     </div>
   );

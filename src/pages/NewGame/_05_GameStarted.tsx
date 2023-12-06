@@ -15,7 +15,7 @@ function GameStarted(props: { done: () => void }) {
   const { event } = useEvent({ id: eventId });
 
   return (
-    <div className='flex h-full flex-col justify-between px-5 items-center'>
+    <div className='flex h-full flex-col justify-between items-center'>
       <Nav step={4} totalSteps={5}/>
       {game_multisig && event && event.transactionId && (
         <GameInfo

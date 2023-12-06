@@ -28,7 +28,9 @@ function ChooseTreasureLocation({ setAnswer, answer, hiding }: HideTreasureProps
         {((): string => {
           if (answer === undefined && hiding) {
             return 'Choose where to hide the booty';
-          } else if (hiding) {
+          } else if (answer === undefined && !hiding) {
+            return 'Choose where you think the booty is';
+          } if (hiding) {
             return `You chose to hide the booty ${answer}`;
           } else {
             return `You think the booty is ${answer}`;

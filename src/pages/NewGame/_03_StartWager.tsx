@@ -52,7 +52,7 @@ function StartWager() {
     !wagerRecord;
 
   return (
-    <div className='flex h-full flex-col justify-between gap-2 px-5'>
+    <div className='flex h-full flex-col justify-between gap-2'>
       <Nav step={2} totalSteps={5}/>
       <PageHeader
         bg='bg-primary-blue'

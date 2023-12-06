@@ -175,7 +175,9 @@ function AcceptGame() {
 
   const answer = inputs?.opponent_answer_readable;
 
-  const disabled =
+  const disabledFund = ''
+
+  const disabledAccept =
     !inputs?.game_record ||
     !inputs?.opponent_answer ||
     !inputs.piece_stake_challenger ||
@@ -185,23 +187,23 @@ function AcceptGame() {
     !answer ||
     msPublicBalance < transitionFees.accept_game + transitionFees.finish_game;
 
-  const [buttonText, setButtonText] = useState('ACCEPT GAME');
+  const [buttonText, setButtonText] = useState('ACCEPT');
   useEffect(() => {
     if (!loading) {
-      setButtonText('ACCEPT GAME');
+      setButtonText('ACCEPT');
     } else if (event?.status === EventStatus.Creating) {
-      setButtonText('CREATING EVENT...');
+      setButtonText('CREATING...');
     } else if (event?.status === EventStatus.Pending) {
-      setButtonText('EVENT PENDING...');
+      setButtonText('PENDING...');
     }
   }, [loading, event?.status]);
 
   return (
     <div className='flex h-full flex-col justify-between'>
-      <div className='flex h-full w-full flex-col items-center gap-6 px-5'>
+      <div className='flex h-full w-full flex-col items-center gap-6'>
         <div className='flex w-full flex-col gap-2'>
           <Nav step={2} totalSteps={3} />
-          <PageHeader bg='bg-primary-blue' text='FIND ALEX' />
+          <PageHeader bg='bg-primary-blue' text='SELECT TREASURE CHEST' />
         </div>
         <ChooseTreasureLocation
           setAnswer={(answer) => {
@@ -218,21 +220,36 @@ function AcceptGame() {
         />
         <div className='flex flex-grow flex-col' />
         {error && <p>Error: {error}</p>}
+        <div className='flex flex-col items-center text-center'>
         {!loading && (
           <p>Game multisig public balance: {msPublicBalance} public credits</p>
         )}
         {!loading &&
           msPublicBalance <
             transitionFees.accept_game + transitionFees.finish_game && (
-            <p>
-              {shortenAddress(msAddress ?? '') ?? 'Game multisig'} needs at
-              least {transitionFees.accept_game + transitionFees.finish_game}{' '}
-              public credits!
-            </p>
-          )}
+            <div className='flex flex-col gap-2'>
+              <p>
+                {shortenAddress(msAddress ?? '') ?? 'Game multisig'} needs at
+                least {transitionFees.accept_game + transitionFees.finish_game}{' '}
+                public credits!
+              </p>
+              <Button
+                fullWidth
+                onClick={createEvent}
+                disabled={disabledAccept || loading}
+                color='green'
+              >
+                {buttonText}
+              </Button>
+            </div>
+
+          )
+        }
+        </div>
         <Button
+          fullWidth
           onClick={createEvent}
-          disabled={disabled || loading}
+          disabled={disabledAccept || loading}
           color='green'
         >
           {buttonText}

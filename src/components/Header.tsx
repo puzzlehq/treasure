@@ -26,7 +26,11 @@ export const AppHeader = () => {
             size='md'
             variant='secondary'
             className='w-fit'
-            onClick={disconnect}
+            onClick={() => {
+              disconnect();
+              useGameStore.getState().clearFlowStores();
+              navigate('/');
+            }}
             disabled={loading}
           >
             {shortenAddress(account.address)}

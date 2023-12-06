@@ -15,7 +15,7 @@ function HideTreasure() {
 
   return (
     <div className='flex h-full flex-col justify-between'>
-      <div className='flex h-full w-full flex-col items-center gap-2 px-5'>
+      <div className='flex h-full w-full flex-col items-center gap-2'>
         <Nav step={1} totalSteps={5}/>
         <PageHeader
           text='WHERE WOULD YOU LIKE TO HIDE THE TREASURE?'

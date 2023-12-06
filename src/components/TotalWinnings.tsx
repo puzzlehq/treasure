@@ -1,6 +1,6 @@
 function TotalWinnings({ amount }: { amount: number }) {
   return (
-    <section className='mt-8 flex flex-col self-stretch rounded-br-[5px] rounded-tl-[5px] rounded-tr-[5px] border-2 border-solid border-bg2 bg-bg1 px-2.5 pt-3.5 text-primary'>
+    <section className='mt-8 flex flex-col self-stretch rounded-t-[10px] rounded-br-[10px] border-2 border-solid border-bg2 bg-bg1 px-2.5 pt-3.5 text-primary'>
       <div
         className='overflow-hidden text-right text-[40px] font-bold tabular-nums leading-[48px]'
         style={{ direction: 'rtl' }}

@@ -54,7 +54,7 @@ const Conclusion = () => {
             />
             <div className='flex gap-2'>
               <p className='font-header text-4xl'>3.</p>
-              <p>Pick the right chest and loot Leo's puzzle pieces. Pick the wrong chest, and he'll loot your booty!</p>
+              <p>Pick the correct chest and loot Leo's puzzle pieces. Pick the wrong chest, and he'll loot your booty!</p>
             </div>
           </div>
         </div>

@@ -19,7 +19,7 @@ function NewGame() {
   const opponent = inputs?.opponent;
 
   return (
-    <div className='flex h-full w-full flex-col items-center justify-between gap-2 px-5'>
+    <div className='flex h-full w-full flex-col items-center justify-between gap-2'>
       <Nav step={0} totalSteps={5}/>
       <PageHeader
         text='WHO WOULD YOU LIKE TO CHALLENGE?'

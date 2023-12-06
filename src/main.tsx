@@ -11,10 +11,10 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   <div className='h-screen w-screen'>
     <QueryClientProvider client={queryClient}>
       <PuzzleWalletProvider
-        dAppName="Where's Alex?"
+        dAppName="Treasure Hunt"
         dAppDescription='A friendly wager between friends'
-        dAppUrl='https://wheresalex.puzzle.online'
-        dAppIconURL='https://wheresalex.puzzle.online/alex_head.png'
+        dAppUrl='https://treasures.puzzle.online'
+        dAppIconURL='https://i.imgur.com/TXRCKod.png'
       >
         <App />
       </PuzzleWalletProvider>
