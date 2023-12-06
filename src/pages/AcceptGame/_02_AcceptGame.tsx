@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import PageHeader from '@components/PageHeader';
-import Nav from '@components/Nav';
+import NavDots from '@components/Nav';
 import ChooseTreasureLocation from '@components/ChooseTreasureLocation.js';
 import Button from '@components/Button';
 import {
@@ -28,15 +28,19 @@ function AcceptGame() {
   const [
     inputs,
     eventIdAccept,
+    eventIdFund,
     setInputs,
     setEventIdAccept,
+    setEventIdFund,
     initializeAcceptGame,
     setStep,
   ] = useAcceptGameStore((state) => [
     state.inputsAcceptGame,
     state.eventIdAccept,
+    state.eventIdFund,
     state.setAcceptGameInputs,
     state.setEventIdAccept,
+    state.setEventIdFund,
     state.initializeAcceptGame,
     state.setStep,
   ]);
@@ -52,6 +56,10 @@ function AcceptGame() {
     onSettled: () => setStep(Step._03_Confirmed),
   });
 
+  const { loading: fundingLoading, event: fundingEvent, setLoading: setFundingLoading, setError: setFundingError } = useEventHandling({
+    id: eventIdFund,
+  });
+
   const [searchParams, setSearchParams] = useSearchParams();
 
   const { balances: msBalances } = useBalance({
@@ -60,6 +68,11 @@ function AcceptGame() {
   });
   const msPublicBalance =
     msBalances && msBalances?.length > 0 ? msBalances[0].public : 0;
+  
+  const { balances } = useBalance({});
+  const publicBalance =
+    balances && balances?.length > 0 ? balances[0].public : 0;
+  const amountToFundMs = (transitionFees.accept_game + transitionFees.finish_game - msPublicBalance);
 
   useEffect(() => {
     if (!currentGame || !msPuzzleRecords || !msGameRecords) return;
@@ -121,7 +134,31 @@ function AcceptGame() {
     [msPuzzleRecords, msGameRecords].toString(),
   ]);
 
-  const createEvent = async () => {
+  const createFundEvent = async () => {
+    if (amountToFundMs < 0 || !msAddress) return;
+    setFundingLoading(true);
+    setError(undefined);
+    try {
+      const response = await requestCreateEvent({
+        type: EventType.Send,
+        functionId: 'transfer_public',
+        programId: 'credits.aleo',
+        inputs: [msAddress, (amountToFundMs * 1_000_000).toString() + 'u64'],
+        fee: 0.5,
+      })
+      if (response.error) {
+        setFundingError(response.error);
+      } else if (response.eventId) {
+        setEventIdFund(response.eventId);
+        setSearchParams({ eventIdFund: response.eventId });
+      }
+    } catch (e) {
+      setFundingError((e as Error).message);
+    }
+    setFundingLoading(false);
+  }
+
+  const createAcceptEvent = async () => {
     if (
       !inputs?.game_record ||
       !inputs?.opponent_answer ||
@@ -175,7 +212,7 @@ function AcceptGame() {
 
   const answer = inputs?.opponent_answer_readable;
 
-  const disabledFund = ''
+  const disabledFund = amountToFundMs < 0 || (publicBalance < amountToFundMs)
 
   const disabledAccept =
     !inputs?.game_record ||
@@ -187,14 +224,25 @@ function AcceptGame() {
     !answer ||
     msPublicBalance < transitionFees.accept_game + transitionFees.finish_game;
 
-  const [buttonText, setButtonText] = useState('ACCEPT');
+  const [buttonFundText, setButtonFundText] = useState('FUND MULTISIG');
+  useEffect(() => {
+    if (!fundingLoading) {
+      setButtonFundText('FUND MULTISIG');
+    } else if (fundingEvent?.status === EventStatus.Creating) {
+      setButtonFundText('CREATING...');
+    } else if (fundingEvent?.status === EventStatus.Pending) {
+      setButtonFundText('PENDING...');
+    }
+  }, [fundingLoading, fundingEvent?.status]);
+  
+  const [buttonAcceptText, setButtonAcceptText] = useState('ACCEPT');
   useEffect(() => {
     if (!loading) {
-      setButtonText('ACCEPT');
+      setButtonAcceptText('ACCEPT');
     } else if (event?.status === EventStatus.Creating) {
-      setButtonText('CREATING...');
+      setButtonAcceptText('CREATING...');
     } else if (event?.status === EventStatus.Pending) {
-      setButtonText('PENDING...');
+      setButtonAcceptText('PENDING...');
     }
   }, [loading, event?.status]);
 
@@ -202,7 +250,7 @@ function AcceptGame() {
     <div className='flex h-full flex-col justify-between'>
       <div className='flex h-full w-full flex-col items-center gap-6'>
         <div className='flex w-full flex-col gap-2'>
-          <Nav step={2} totalSteps={3} />
+          <NavDots step={1} totalSteps={3} />
           <PageHeader bg='bg-primary-blue' text='SELECT TREASURE CHEST' />
         </div>
         <ChooseTreasureLocation
@@ -222,37 +270,41 @@ function AcceptGame() {
         {error && <p>Error: {error}</p>}
         <div className='flex flex-col items-center text-center'>
         {!loading && (
-          <p>Game multisig public balance: {msPublicBalance} public credits</p>
+          <p>• Game multisig public balance: {msPublicBalance} public credits</p>
         )}
         {!loading &&
           msPublicBalance <
             transitionFees.accept_game + transitionFees.finish_game && (
             <div className='flex flex-col gap-2'>
-              <p>
-                {shortenAddress(msAddress ?? '') ?? 'Game multisig'} needs at
-                least {transitionFees.accept_game + transitionFees.finish_game}{' '}
-                public credits!
-              </p>
+              <div className='flex flex-col'>
+                <p>
+                • {shortenAddress(msAddress ?? '') ?? 'Game multisig'} needs at
+                  least {transitionFees.accept_game + transitionFees.finish_game}{' '}
+                  public credits!
+                </p>
+                <p>
+                • Your balance: {publicBalance} public credits
+                </p>
+              </div>
               <Button
                 fullWidth
-                onClick={createEvent}
-                disabled={disabledAccept || loading}
+                onClick={createFundEvent}
+                disabled={disabledFund || fundingLoading}
                 color='green'
               >
-                {buttonText}
+                {buttonFundText}
               </Button>
             </div>
-
           )
         }
         </div>
         <Button
           fullWidth
-          onClick={createEvent}
+          onClick={createAcceptEvent}
           disabled={disabledAccept || loading}
           color='green'
         >
-          {buttonText}
+          {buttonAcceptText}
         </Button>
       </div>
     </div>

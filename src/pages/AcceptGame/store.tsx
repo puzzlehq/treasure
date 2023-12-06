@@ -14,6 +14,7 @@ type AcceptGameStore = {
   inputsAcceptGame?: Partial<AcceptGameInputs>;
   eventIdSubmit?: string;
   eventIdAccept?: string;
+  eventIdFund?: string;
   step: Step;
   setSubmitWagerInputs: (inputs: Partial<SubmitWagerInputs>) => void;
   setAcceptGameInputs: (inputs: Partial<AcceptGameInputs>) => void;
@@ -32,6 +33,7 @@ type AcceptGameStore = {
   ) => void;
   setEventIdSubmit: (id: string) => void;
   setEventIdAccept: (id: string) => void;
+  setEventIdFund: (id: string) => void;
   close: () => void;
 };
 
@@ -97,6 +99,9 @@ export const useAcceptGameStore = create<AcceptGameStore>()(
         set({ eventIdSubmit: id });
       },
       setEventIdAccept: (id: string) => {
+        set({ eventIdAccept: id });
+      },
+      setEventIdFund: (id: string) => {
         set({ eventIdAccept: id });
       },
       close: () => {

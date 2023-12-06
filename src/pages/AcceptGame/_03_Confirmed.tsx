@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import GameInfo from '@components/GameInfo';
 import Button from '@components/Button';
+import NavDots from '@components/Nav';
 import { useAcceptGameStore } from './store';
 import { useEvent } from '@puzzlehq/sdk';
 
@@ -16,6 +17,7 @@ function Confirmed(props: { done: () => void }) {
   return (
     <div className='flex h-full flex-col justify-between'>
       <div className='flex h-full w-full flex-col items-center'>
+        <NavDots step={2} totalSteps={3} />
         {game_address && event && event.transactionId && (
           <GameInfo
             multisig={game_address}

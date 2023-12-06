@@ -2,7 +2,7 @@ import Wager from '@components/Wager';
 import PageHeader from '@components/PageHeader';
 import Versus from '@components/Versus';
 import Button from '@components/Button';
-import Nav from '@components/Nav';
+import NavDots from '@components/Nav';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import {
@@ -134,7 +134,7 @@ const SubmitWager = () => {
   return (
     <div className='flex h-full w-full flex-col justify-center gap-8'>
       <div className='flex w-full flex-col gap-2'>
-        <Nav step={0} totalSteps={3}/>
+        <NavDots step={0} totalSteps={3}/>
         <PageHeader bg='bg-primary-pink' text={`YOU'VE BEEN CHALLENGED!`} />
       </div>
       {opponent && <Versus versus={opponent} />}

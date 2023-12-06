@@ -73,32 +73,41 @@ const AcceptGame = () => {
     step,
     eventIdSubmit,
     eventIdAccept,
+    eventIdFund,
     setStep,
     setAcceptGameInputs,
     setSubmitWagerInputs,
     setEventIdSubmit,
     setEventIdAccept,
+    setEventIdFund
   ] = useAcceptGameStore((state) => [
     state.step,
     state.eventIdSubmit,
     state.eventIdAccept,
+    state.eventIdFund,
     state.setStep,
     state.setAcceptGameInputs,
     state.setSubmitWagerInputs,
     state.setEventIdSubmit,
     state.setEventIdAccept,
+    state.setEventIdFund
   ]);
 
   const { currentGame } = useInitCurrentGame();
   useEffect(() => {
     const _eventIdSubmit = searchParams.get('eventIdSubmit');
     const _eventIdAccept = searchParams.get('eventIdAccept');
+    const _eventIdFund = searchParams.get('eventIdFund');
     if (_eventIdSubmit) {
       setEventIdSubmit(_eventIdSubmit);
     }
     if (_eventIdAccept) {
       setEventIdAccept(_eventIdAccept);
     }
+    if (_eventIdFund) {
+      setEventIdFund(_eventIdFund);
+    }
+
   }, [searchParams]);
 
   useEventHandling({
@@ -110,6 +119,10 @@ const AcceptGame = () => {
     address: currentGame?.gameNotification.recordData.game_multisig,
     multisig: true,
     onSettled: () => setStep(Step._03_Confirmed),
+  });
+
+  useEventHandling({
+    id: eventIdFund,
   });
 
   const done = () => {
