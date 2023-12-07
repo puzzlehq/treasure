@@ -8,8 +8,7 @@ const ChestInfo = () => {
 
   return (
     <>
-      <Header step={1} />
-      <p className='self-center opacity-60'>How the magic treasure chest works</p>
+      <Header step={1} text='How the magic treasure chest works'/>
       <div className="flex flex-col flex-grow align-middle items-center">
         <div className='rounded-lg bg-bg2 max-w-[300px] p-5'>
           You can open the chest if you put enough puzzle pieces in it.

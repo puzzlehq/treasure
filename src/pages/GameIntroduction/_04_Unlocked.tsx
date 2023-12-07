@@ -8,8 +8,7 @@ const Unlocked = () => {
 
   return (
     <>
-      <Header step={3} />
-      <p className='self-center opacity-60'>How the magic treasure chest works</p>
+      <Header step={3} text='How the magic treasure chest works'/>
       <div className="flex flex-col flex-grow align-middle items-center">
         <div className='rounded-lg bg-bg2 max-w-[300px] p-5'>
           If someone with the master puzzle key (like Leo the Pirate) comes in, they can loot your lost puzzle pieces!

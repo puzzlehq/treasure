@@ -4,9 +4,11 @@ import treasure_closed from '@assets/treasure_closed.png'
 import Header from "./-header";
 import { Step, useGameIntroStore } from './store';
 import Button from '@components/Button';
+import { useNavigate } from 'react-router-dom';
 
 const GameParts = () => {
-  const [setStep] = useGameIntroStore((state) => [state.setStep]);
+  const [visited, setStep, close] = useGameIntroStore((state) => [state.visited, state.setStep, state.close]);
+  const navigate = useNavigate();
 
   return (
     <>
@@ -53,6 +55,16 @@ const GameParts = () => {
         </div>
       </div>
       <div className='flex w-full gap-4'>
+        {visited && <Button
+          fullWidth
+          onClick={() => {
+            close();
+            navigate('/')
+          }}
+          variant='tertiary'
+        >
+          HOME
+        </Button>}
         <Button
           fullWidth
           onClick={() => setStep(Step._02_ChestInfo)}

@@ -1,23 +1,26 @@
 import { BiX } from 'react-icons/bi';
-import { Step, useGameIntroStore } from "./store";
+import { useGameIntroStore } from "./store";
 import NavDots from "@components/Nav";
 import { useNavigate } from 'react-router-dom';
 
-const Header = ({ step }: {step: number}) => {
+const Header = ({ step, text }: {step: number , text?: string}) => {
   const [close] = useGameIntroStore((state) => [state.close]);
   const navigate = useNavigate();
   return (
-    <div className="w-full grid grid-cols-3 items-center">
-      <div className="flex justify-start">
-        <BiX size={24} className='text-light1' onClick={() => {
-          navigate('/');
-          close();
-        }} />
+    <div className='flex flex-col items-center gap-2'>
+      <div className="w-full grid grid-cols-3 items-center">
+        <div className="flex justify-start">
+          <BiX size={24} className='text-light1' onClick={() => {
+            navigate('/');
+            close();
+          }} />
+        </div>
+        <div className="flex justify-center">
+          <NavDots step={step} totalSteps={5}/>
+        </div>
+        <div></div> {/* This is a placeholder to keep the space on the right side equal to the left side */}
       </div>
-      <div className="flex justify-center">
-        <NavDots step={step} totalSteps={5}/>
-      </div>
-      <div></div> {/* This is a placeholder to keep the space on the right side equal to the left side */}
+      {text && <p className='self-center opacity-60 font-bold'>{text}</p>}
     </div>
   )
 }

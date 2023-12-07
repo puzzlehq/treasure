@@ -12,7 +12,7 @@ const NewGame = () => {
   
   return (
     <Box>
-      <div className="w-full grid grid-cols-3 items-start">
+      <div className="w-full grid grid-cols-[10%,80%,10%] items-start">
         <a className="flex justify-start align-top">
           <BiX size={24}
             className='text-light1'
@@ -25,7 +25,7 @@ const NewGame = () => {
         <div className="flex justify-center">
           <PageHeader
             text='Ready to play?'
-            bg='bg-primary-blue'
+            bg='primary'
           />
         </div>
         <div></div> {/* This is a placeholder to keep the space on the right side equal to the left side */}
@@ -36,12 +36,14 @@ const NewGame = () => {
       />
       <p>ZK gaming awaits</p>
       <Button
+        fullWidth
         variant='primary'
         onClick={() => navigate('./vs_bot')}
       >
         Play with Leo
       </Button>
       <Button
+        fullWidth
         variant='primary'
         onClick={() => navigate('./vs_person')}
       >

@@ -22,7 +22,7 @@ function NewGame() {
     <div className='flex h-full w-full flex-col items-center justify-between gap-2'>
       <Nav step={0} totalSteps={5}/>
       <PageHeader
-        text='WHO WOULD YOU LIKE TO CHALLENGE?'
+        text='CHOOSE YOUR CHALLENGER'
         bg='bg-primary-blue'
       />
       <input
@@ -39,10 +39,10 @@ function NewGame() {
       <div className='flex w-full gap-4'>
         <Button
           fullWidth
-          onClick={() => navigate('/')}
+          onClick={() => navigate('/new-game')}
           variant='tertiary'
         >
-          HOME
+          BACK
         </Button>
         <Button
           fullWidth
