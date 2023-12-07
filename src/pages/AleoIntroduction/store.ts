@@ -17,7 +17,7 @@ type IntroStore = {
 export const useAleoIntroStore = create<IntroStore>()(
   persist(
     (set) => ({
-      step: Step._01_GameParts,
+      step: Step._01_HiddenInformation,
       setStep: (step: Step) => {
         set({ step });
       },
