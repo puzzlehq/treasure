@@ -31,9 +31,7 @@ export const Welcome = () => {
           HUNT
         </h1>
         <p className='text-primary-white mb-8 mt-8 max-w-[400px] text-center text-base font-bold tracking-tight'>
-          Arhhh! Pirate Leo the Lion hid his Puzzle Piece treasure on Aleo! Use
-          your Puzzle Pieces to try to find the correct chests where he hid his
-          treasure!
+          Win rewards in a fun guessing game on Aleo. Play against friends or Leo the Pirate.
         </p>
         <div className='flex flex-col items-center w-full gap-2'>
           <Button
