@@ -42,7 +42,7 @@ export const SubmitWagerButton = ({ game }: { game: Game }) => {
       size='md'
       disabled={puzzleRecord === undefined}
     >
-      Submit Wager
+      Wager
     </Button>
   );
 };
