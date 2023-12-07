@@ -46,9 +46,7 @@ const Reveal = () => {
       currentGame.gameNotification.recordWithPlaintext;
 
     const challenger_answer_record = currentGame.records.find(
-      (r) =>
-        r.data.owner.replace('.private', '') ===
-        currentGame.gameNotification.recordData.challenger_address && r.data.ix === '26u32.private'
+      (r) => r.data.ix === '26u32'
     );
 
     const joint_piece_stake = currentGame.records.find(
@@ -83,9 +81,7 @@ const Reveal = () => {
     );
   }, [
     currentGame?.gameNotification.recordData.game_multisig,
-    [
-      currentGame?.records,
-    ].toString(),
+    [currentGame?.records].toString(),
   ]);
   const opponent = currentGame?.gameNotification.recordData.challenger_address;
   const wagerAmount =
@@ -132,6 +128,11 @@ const Reveal = () => {
       setButtonText('PENDING...');
     }
   }, [loading, event?.status]);
+
+  console.log('reveal_answer_notification_record', inputs?.reveal_answer_notification_record)
+  console.log('challenger_answer_record', inputs?.challenger_answer_record)
+  console.log('joint_piece_stake', inputs?.joint_piece_stake)
+  console.log('challenger_claim_signature', inputs?.challenger_claim_signature)
 
   const disabled =
     !inputs?.reveal_answer_notification_record ||

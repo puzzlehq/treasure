@@ -8,9 +8,9 @@ export const useInitGame = () => {
   const { account } = useAccount();
 
   const [currentGame, setRecords] = useGameStore((state) => [state.currentGame, state.setRecords]);
-
-  const msRecords = useMsRecords(currentGame?.gameNotification.recordData.challenger_address);
+  
   const records = useGameRecords();
+  const msRecords = useMsRecords(currentGame?.gameNotification.recordData.game_multisig);
 
   useEffect(() => {
     if (
