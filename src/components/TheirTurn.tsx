@@ -25,11 +25,11 @@ function TheirTurnItem({ game }: { game: Game }) {
       case 'challenger:2':{
         message = `${
           game.gameNotification.recordData.total_pot / 2
-          } puzzle pieces are on the line. Go to https://treasures.puzzle.online to see if you won!`;
+          } puzzle pieces are on the line. Go to https://treasures.puzzle.online to find the booty!`;
         break;
       }
       case 'opponent:3': {
-        message = `${
+        message = `Results are in and ${
           game.gameNotification.recordData.total_pot / 2
           } puzzle pieces are on the line. Go to https://treasures.puzzle.online to see if you won!`;
         break;
