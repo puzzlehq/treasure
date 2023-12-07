@@ -1,5 +1,4 @@
 import { useNavigate } from 'react-router-dom';
-import { useRenegeStore } from '../pages/Renege/store';
 import Button from './Button';
 import { Game, useGameStore } from '@state/gameStore';
 import { shortenAddress } from '@puzzlehq/sdk';
@@ -92,7 +91,7 @@ function TheirTurnItem({ game }: { game: Game }) {
 
 function TheirTurn({ games }: { games: Game[] }) {
   return (
-    <section className='flex grow flex-col self-stretch rounded-b-[5px] border-2 border-solid border-bg2 bg-bg1 pb-6'>
+    <section className='flex grow flex-col rounded-b-[10px] rounded-tr-[10px] border-2 border-solid border-bg2 bg-bg1 pb-6'>
       <div className='flex max-w-full flex-col self-start bg-bg2 px-5 py-2'>
         <div className='self-center whitespace-nowrap text-left text-xs font-extrabold leading-3'>
           THEIR TURN
