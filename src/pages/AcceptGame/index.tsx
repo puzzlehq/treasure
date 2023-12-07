@@ -95,7 +95,6 @@ const AcceptGame = () => {
   ]);
 
   const { currentGame } = useInitCurrentGame();
-  console.log(currentGame);
   useEffect(() => {
     if (currentGame?.gameNotification.recordData.game_state === '2field') {
       setStep(Step._02_AcceptGame);
