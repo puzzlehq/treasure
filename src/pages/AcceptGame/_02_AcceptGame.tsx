@@ -149,7 +149,7 @@ function AcceptGame() {
         functionId: 'transfer_public',
         programId: 'credits.aleo',
         inputs: [msAddress, (amountToFundMs * 1_000_000).toString() + 'u64'],
-        fee: 0.263,
+        fee: 0.5,
       })
       if (response.error) {
         setFundingError(response.error);
@@ -276,36 +276,34 @@ function AcceptGame() {
         <div className='flex flex-grow flex-col' />
         {error && <p>Error: {error}</p>}
         <div className='flex flex-col items-center text-center'>
-        {!loading && (
           <p>
             • Game multisig public balance: {msPublicBalance} public credits
           </p>
-        )}
-        {!loading &&
-          msPublicBalance <
-            transitionFees.accept_game + transitionFees.finish_game && (
-            <div className='flex flex-col gap-2'>
-              <div className='flex flex-col'>
-                <p>
-                  • {shortenAddress(msAddress ?? '') ?? 'Game multisig'} needs at
-                    least {transitionFees.accept_game + transitionFees.finish_game}{' '}
-                    public credits!
-                </p>
-                <p>
-                  • Your balance: {publicBalance} public credits
-                </p>
+          {
+            msPublicBalance <
+              transitionFees.accept_game + transitionFees.finish_game && (
+              <div className='flex flex-col gap-2'>
+                <div className='flex flex-col'>
+                  <p>
+                    • {shortenAddress(msAddress ?? '') ?? 'Game multisig'} needs at
+                      least {transitionFees.accept_game + transitionFees.finish_game}{' '}
+                      public credits!
+                  </p>
+                  <p>
+                    • Your balance: {publicBalance} public credits
+                  </p>
+                </div>
+                <Button
+                  fullWidth
+                  onClick={createFundEvent}
+                  disabled={disabledFund || fundingLoading}
+                  color='green'
+                >
+                  {buttonFundText}
+                </Button>
               </div>
-              <Button
-                fullWidth
-                onClick={createFundEvent}
-                disabled={disabledFund || fundingLoading}
-                color='green'
-              >
-                {buttonFundText}
-              </Button>
-            </div>
-          )
-        }
+            )
+          }
         </div>
         <Button
           fullWidth

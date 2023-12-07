@@ -39,6 +39,7 @@ const NewGame = () => {
         fullWidth
         variant='primary'
         onClick={() => navigate('./vs_bot')}
+        disabled
       >
         Play with Leo
       </Button>
