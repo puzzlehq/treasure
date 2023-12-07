@@ -15,7 +15,7 @@ const GameOver = () => {
     <div className='flex h-full w-full flex-col justify-center gap-8'>
       <PageHeader bg='bg-primary-blue' text='CONGRATS WINNER!' />
       <div className='flex flex-col items-center gap-2'>
-        <Wager wagerAmount={getNumberAmount(wager)} winnings />
+        <Wager wagerAmount={getNumberAmount(wager)} winnings={true} />
         <a
           className={`font-extrabold text-primary-green hover:text-primary-green hover:underline`}
           href='/'

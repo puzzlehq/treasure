@@ -8,7 +8,7 @@ const Wager = ({ wagerAmount, winnings = false }: WagerProps) => {
     <div className='w-fit self-center bg-bg1'>
       <div className='flex w-full flex-col items-center gap-0'>
         <div className='text-white w-full bg-bg2 text-center text-lg font-extrabold'>
-          {winnings ? 'WINNINGS' : 'WAGER'}
+          {winnings === undefined ? 'WAGER' : winnings === false ? 'LOSE' : 'PRIZE'}
         </div>
         <div className='flex w-full items-center gap-2 border-[3px] border-bg2 p-1'>
           <p className='flex-1 text-3xl font-bold text-primary'>

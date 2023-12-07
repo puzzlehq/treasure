@@ -41,7 +41,7 @@ const Lose = () => {
   return (
     <div className='flex h-full w-full flex-col justify-center gap-4'>
       <PageHeader text="WHERE'S THE BOOTY" bg='bg-primary-blue' />
-      <Wager wagerAmount={wager} winnings />
+      <Wager wagerAmount={wager} winnings={false} />
       <div className='flex flex-col gap-2'>
         {challenger_answer && (
           <SelectedTreasureLocation

@@ -162,7 +162,7 @@ const Win = () => {
   return (
     <div className='flex h-full w-full flex-col justify-center gap-4'>
       <PageHeader text="WHERE'S THE BOOTY" bg='bg-primary-blue' />
-      <Wager wagerAmount={wager} winnings />
+      <Wager wagerAmount={wager} winnings={true} />
       <div className='flex flex-col gap-2'>
         <SelectedTreasureLocation
           answer={getAnswer(challenger_answer)}
