@@ -1,3 +1,5 @@
+import treasure_open_empty from '../assets/treasure_open_empty.png';
+import treasure_open_full from '../assets/treasure_open_full.png';
 import treasure_closed from '../assets/treasure_closed.png';
 import { Answer } from '@state/RecordTypes/treasure_hunt_vxxx.js';
 
@@ -13,8 +15,8 @@ function SelectedTreasureLocation({ answer, win }: SelectedTreasureLocationProps
       <div className='flex w-1/2 flex-col gap-2 self-start'>
         <img
           loading='lazy'
-          src={treasure_closed}
-          className={`aspect-square w-full self-stretch overflow-hidden rounded-[50%] object-cover object-center
+          src={win === undefined ? treasure_closed : win === true ? treasure_open_full : treasure_open_empty}
+          className={`aspect-square w-full self-stretch overflow-hidden object-fit object-center
                       ${isSelected ? '' : 'opacity-40'}`}
           alt={side}
         />

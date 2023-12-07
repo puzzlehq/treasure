@@ -3,7 +3,7 @@ import treasure from '../assets/treasure_open_full.png';
 function GameInfo(props: {
   multisig: string;
   transactionId: string;
-  newGame: boolean;
+  title: 'GAME BEGUN!' | 'GAME ACCEPTED!' | 'ANSWER REVEALED!';
 }) {
   return (
     <section className='mb-24 mt-24 flex grow flex-col items-center gap-2 self-stretch max-md:mt-10'>
@@ -14,7 +14,7 @@ function GameInfo(props: {
       />
       <div className='flex w-full flex-col items-center justify-center self-stretch rounded-lg border-[5px] border-bg2 bg-bg1 px-5 py-1.5'>
         <h1 className='text-primary-black mt-1.5 max-w-[295px] self-center break-words text-center text-base font-extrabold leading-4'>
-          {props.newGame ? 'GAME BEGUN!' : 'GAME ACCEPTED!'}
+          {props.title}
         </h1>
         <p className='mt-1.5 max-w-[295px] self-center break-words text-center text-base font-extrabold leading-4 text-primary-black'>
           GAME ID: {props.multisig}

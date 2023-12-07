@@ -4,10 +4,12 @@ import Button from '@components/Button';
 import { useGameStore } from '@state/gameStore';
 import { useRevealAnswerStore } from './store';
 import { useEvent } from '@puzzlehq/sdk';
+import { useNavigate } from 'react-router-dom';
 
 function Confirmed() {
   const [eventId] = useRevealAnswerStore((state) => [state.eventId]);
   const [currentGame] = useGameStore((state) => [state.currentGame]);
+  const navigate = useNavigate();
 
   const game_address = currentGame?.gameNotification.recordData.game_multisig;
   const { event } = useEvent({ id: eventId });
@@ -19,12 +21,17 @@ function Confirmed() {
           <GameInfo
             multisig={game_address}
             transactionId={event.transactionId}
-            newGame={false}
+            title='ANSWER REVEALED!'
           />
         )}
         <div className='flex flex-grow flex-col' />
         <div className='flex flex-col gap-4'>
-          <Button color='transparent'>GO HOME</Button>
+          <Button
+            variant='green'
+            onClick={() => navigate('/')}
+          >
+            GO HOME
+          </Button>
         </div>
       </div>
     </div>

@@ -22,7 +22,7 @@ function Confirmed(props: { done: () => void }) {
           <GameInfo
             multisig={game_address}
             transactionId={event.transactionId}
-            newGame={false}
+            title='GAME ACCEPTED!'
           />
         )}
         <div className='flex flex-grow flex-col' />

@@ -13,29 +13,33 @@ function TheirTurnItem({ game }: { game: Game }) {
   const wager = game.gameNotification.recordData.total_pot / 2;
 
   const navigate = useNavigate(); // Hook to navigate
-  const [initializeRenege] = useRenegeStore((state) => [state.initialize]);
   const [setCurrentGame] = useGameStore((state) => [state.setCurrentGame]);
 
   // Function to handle the ping button click
-  const handlePingClick_1 = () => {
+  const handlePingClick = () => {
     // You might want to replace 'ENTER_PHONE_NUMBER' with the actual number if needed
     const phoneNumber = 'ENTER_PHONE_NUMBER'; // Leave this as is if you want the user to enter the number.
-    const message = `I'm betting you ${
-      game.gameNotification.recordData.total_pot / 2
-    } puzzle pieces that you can't find where I hid the booty! Go to https://treasures.puzzle.online to play!`;
-    const encodedMessage = encodeURIComponent(message);
-    const smsHref = `sms:${phoneNumber}?&body=${encodedMessage}`;
-
-    window.location.href = smsHref;
-  };
-
-  // Function to handle the ping button click
-  const handlePingClick_2 = () => {
-    // You might want to replace 'ENTER_PHONE_NUMBER' with the actual number if needed
-    const phoneNumber = 'ENTER_PHONE_NUMBER'; // Leave this as is if you want the user to enter the number.
-    const message = `${
-      game.gameNotification.recordData.total_pot / 2
-    } puzzle pieces are on the line. Go to https://treasures.puzzle.online to see if you won!`;
+    let message = `I'm betting you puzzle pieces that you can't find where I hid the booty! Go to https://treasures.puzzle.online to play!`;
+    switch (game.gameState) {
+      case 'challenger:1':
+      case 'challenger:2':{
+        message = `${
+          game.gameNotification.recordData.total_pot / 2
+          } puzzle pieces are on the line. Go to https://treasures.puzzle.online to see if you won!`;
+        break;
+      }
+      case 'opponent:3': {
+        message = `${
+          game.gameNotification.recordData.total_pot / 2
+          } puzzle pieces are on the line. Go to https://treasures.puzzle.online to see if you won!`;
+        break;
+      } case 'loser:4': {
+        message = `I lost, and you won ${
+          game.gameNotification.recordData.total_pot / 2
+          } puzzle pieces!. Go to https://treasures.puzzle.online to claim your prize!`;
+        break;
+      }
+    }
     const encodedMessage = encodeURIComponent(message);
     const smsHref = `sms:${phoneNumber}?&body=${encodedMessage}`;
 
@@ -45,19 +49,12 @@ function TheirTurnItem({ game }: { game: Game }) {
   const renderActionButton = () => {
     switch (game.gameAction) {
       case 'Ping':
+      case 'Renege':
         // Assuming 'Claim' needs a special button not shown in this snippet
         // This is just an example
         return (
           <div className='flex gap-2'>
-            <Button onClick={handlePingClick_2} color='pink' size='md'>
-              Ping
-            </Button>
-          </div>
-        );
-      case 'Renege':
-        return (
-          <div className='flex gap-2'>
-            <Button onClick={handlePingClick_1} variant='gray' size='md'>
+            <Button onClick={handlePingClick} color='pink' size='md'>
               Ping
             </Button>
           </div>

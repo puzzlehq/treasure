@@ -21,7 +21,7 @@ function GameStarted(props: { done: () => void }) {
         <GameInfo
           multisig={game_multisig}
           transactionId={event.transactionId}
-          newGame={true}
+          title='GAME BEGUN!'
         />
       )}
       <div className='flex flex-grow' />

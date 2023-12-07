@@ -48,7 +48,7 @@ const Reveal = () => {
     const challenger_answer_record = currentGame.records.find(
       (r) =>
         r.data.owner.replace('.private', '') ===
-        currentGame.gameNotification.recordData.challenger_address
+        currentGame.gameNotification.recordData.challenger_address && r.data.ix === '26u32.private'
     );
 
     const joint_piece_stake = currentGame.records.find(
@@ -127,7 +127,7 @@ const Reveal = () => {
     if (!loading) {
       setButtonText('REVEAL');
     } else if (event?.status === EventStatus.Creating) {
-      setButtonText('EVENT...');
+      setButtonText('CREATING...');
     } else if (event?.status === EventStatus.Pending) {
       setButtonText('PENDING...');
     }
