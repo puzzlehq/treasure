@@ -11,6 +11,7 @@ import {
   importSharedState,
   requestCreateEvent,
   requestSignature,
+  useBalance,
 } from '@puzzlehq/sdk';
 import {
   GAME_FUNCTIONS,
@@ -57,6 +58,9 @@ const SubmitWager = () => {
     stepName: 'Submit Wager',
     onSettled: () => setStep(Step._02_AcceptGame),
   });
+
+  const {balances} = useBalance({});
+  const balance = balances?.[0].public ?? 0;
 
   const createEvent = async () => {
     if (
@@ -114,7 +118,7 @@ const SubmitWager = () => {
   const wager = (currentGame?.gameNotification.recordData.total_pot ?? 0) / 2;
   const opponent_wager_record = largestPiece;
 
-  const disabled = !opponent || !wager || !opponent_wager_record || !inputs;
+  const disabled = !opponent || !wager || !opponent_wager_record || !inputs || balance === 0;
 
   const [buttonText, setButtonText] = useState('SUBMIT');
 

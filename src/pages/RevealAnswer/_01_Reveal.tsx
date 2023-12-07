@@ -12,7 +12,7 @@ import {
   transitionFees,
 } from '@state/manager.js';
 import { Step, useRevealAnswerStore } from './store.js';
-import { EventStatus, EventType, requestCreateEvent } from '@puzzlehq/sdk';
+import { EventStatus, EventType, requestCreateEvent, useBalance } from '@puzzlehq/sdk';
 import { useEventHandling } from '@hooks/eventHandling.js';
 import { useSearchParams } from 'react-router-dom';
 
@@ -36,6 +36,9 @@ const Reveal = () => {
   });
 
   const [searchParams, setSearchParams] = useSearchParams();
+
+  const { balances } = useBalance({});
+  const balance = balances?.[0].public ?? 0;
 
   useEffect(() => {
     if (
@@ -138,7 +141,8 @@ const Reveal = () => {
     !inputs?.reveal_answer_notification_record ||
     !inputs?.challenger_answer_record ||
     !inputs?.joint_piece_stake ||
-    !inputs?.challenger_claim_signature;
+    !inputs?.challenger_claim_signature || 
+    balance === 0
 
   return (
     <div className='flex h-full w-full flex-col gap-4'>
