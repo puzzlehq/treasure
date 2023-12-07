@@ -9,7 +9,7 @@ const Locked = () => {
   return (
     <>
       <Header step={2} text='How the magic treasure chest works' />
-      <div className="flex flex-col flex-grow align-middle">
+      <div className="flex flex-col flex-grow align-middle items-center">
         <div className='rounded-lg bg-bg2 max-w-[300px] p-5'>
           If you don't put enough puzzle pieces in the chest, you can't open it and lose them.
         </div>

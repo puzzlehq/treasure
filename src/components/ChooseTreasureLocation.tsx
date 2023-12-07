@@ -70,7 +70,7 @@ const TreasureButton = ({
       <img
         loading='lazy'
         src={imgSrc}
-        className={`aspect-square h-[100px] w-[100px] overflow-hidden rounded-[50%] object-cover object-center ${
+        className={`aspect-square h-[100px] w-[100px] object-fit object-center ${
           selected || selected === undefined ? '' : 'opacity-40'
         }`}
         alt={text}

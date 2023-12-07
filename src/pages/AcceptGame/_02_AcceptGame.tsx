@@ -59,6 +59,7 @@ function AcceptGame() {
 
   const { loading: fundingLoading, event: fundingEvent, setLoading: setFundingLoading, setError: setFundingError } = useEventHandling({
     id: eventIdFund,
+    stepName: 'Funding Multisig'
   });
 
   const [searchParams, setSearchParams] = useSearchParams();
@@ -152,14 +153,15 @@ function AcceptGame() {
       })
       if (response.error) {
         setFundingError(response.error);
+        setFundingLoading(false);
       } else if (response.eventId) {
         setEventIdFund(response.eventId);
         setSearchParams({ ...searchParams, eventIdFund: response.eventId });
       }
     } catch (e) {
       setFundingError((e as Error).message);
+      setFundingLoading(false);
     }
-    setFundingLoading(false);
   }
 
   const createAcceptEvent = async () => {
@@ -275,7 +277,9 @@ function AcceptGame() {
         {error && <p>Error: {error}</p>}
         <div className='flex flex-col items-center text-center'>
         {!loading && (
-          <p>• Game multisig public balance: {msPublicBalance} public credits</p>
+          <p>
+            • Game multisig public balance: {msPublicBalance} public credits
+          </p>
         )}
         {!loading &&
           msPublicBalance <
@@ -283,12 +287,12 @@ function AcceptGame() {
             <div className='flex flex-col gap-2'>
               <div className='flex flex-col'>
                 <p>
-                • {shortenAddress(msAddress ?? '') ?? 'Game multisig'} needs at
-                  least {transitionFees.accept_game + transitionFees.finish_game}{' '}
-                  public credits!
+                  • {shortenAddress(msAddress ?? '') ?? 'Game multisig'} needs at
+                    least {transitionFees.accept_game + transitionFees.finish_game}{' '}
+                    public credits!
                 </p>
                 <p>
-                • Your balance: {publicBalance} public credits
+                  • Your balance: {publicBalance} public credits
                 </p>
               </div>
               <Button

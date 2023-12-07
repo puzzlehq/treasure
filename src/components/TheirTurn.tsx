@@ -17,12 +17,25 @@ function TheirTurnItem({ game }: { game: Game }) {
   const [setCurrentGame] = useGameStore((state) => [state.setCurrentGame]);
 
   // Function to handle the ping button click
-  const handlePingClick = () => {
+  const handlePingClick_1 = () => {
     // You might want to replace 'ENTER_PHONE_NUMBER' with the actual number if needed
     const phoneNumber = 'ENTER_PHONE_NUMBER'; // Leave this as is if you want the user to enter the number.
     const message = `I'm betting you ${
       game.gameNotification.recordData.total_pot / 2
-    } puzzle pieces that you can't find where I hid the booty! Click here to download Puzzle Wallet https://puzzle.online to play!`;
+    } puzzle pieces that you can't find where I hid the booty! Go to https://treasures.puzzle.online to play!`;
+    const encodedMessage = encodeURIComponent(message);
+    const smsHref = `sms:${phoneNumber}?&body=${encodedMessage}`;
+
+    window.location.href = smsHref;
+  };
+
+  // Function to handle the ping button click
+  const handlePingClick_2 = () => {
+    // You might want to replace 'ENTER_PHONE_NUMBER' with the actual number if needed
+    const phoneNumber = 'ENTER_PHONE_NUMBER'; // Leave this as is if you want the user to enter the number.
+    const message = `${
+      game.gameNotification.recordData.total_pot / 2
+    } puzzle pieces are on the line. Go to https://treasures.puzzle.online to see if you won!`;
     const encodedMessage = encodeURIComponent(message);
     const smsHref = `sms:${phoneNumber}?&body=${encodedMessage}`;
 
@@ -36,7 +49,7 @@ function TheirTurnItem({ game }: { game: Game }) {
         // This is just an example
         return (
           <div className='flex gap-2'>
-            <Button onClick={handlePingClick} color='pink' size='md'>
+            <Button onClick={handlePingClick_2} color='pink' size='md'>
               Ping
             </Button>
           </div>
@@ -44,21 +57,8 @@ function TheirTurnItem({ game }: { game: Game }) {
       case 'Renege':
         return (
           <div className='flex gap-2'>
-            <Button
-              onClick={() => {
-                initializeRenege(
-                  game.gameNotification.recordData.opponent_address,
-                  game.gameNotification.recordData.total_pot / 2
-                );
-                setCurrentGame(game);
-                navigate(
-                  `/renege-game/${game.gameNotification.recordData.game_multisig}`
-                );
-              }}
-              color='gray'
-              size='md'
-            >
-              Renege
+            <Button onClick={handlePingClick_1} variant='gray' size='md'>
+              Ping
             </Button>
           </div>
         );
@@ -82,10 +82,10 @@ function TheirTurnItem({ game }: { game: Game }) {
 
   return (
     <div className='mb-2 grid w-full grid-cols-[1fr,auto,1fr] items-center gap-5'>
-      <div className='my-auto self-center text-left text-xs font-bold text-primary-red'>
+      <div className='my-auto self-center text-left text-base font-bold '>
         {shortenAddress(vs)}
       </div>
-      <div className='my-auto self-center text-left text-xs font-bold text-primary-red'>
+      <div className='my-auto self-center text-left text-base font-bold'>
         {wager} pieces
       </div>
       <div className='flex justify-end'>{renderActionButton()}</div>

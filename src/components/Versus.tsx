@@ -16,7 +16,7 @@ function Versus({ versus, isChallenger = true }: VersusProps) {
       <div className='w-[200px] max-w-full whitespace-nowrap rounded-[200px] border-4 border-solid border-bg2 bg-zinc-50 px-4 py-2 text-center text-lg font-bold text-bg2'>
         {displayOpponent}
       </div>
-      {!isChallenger && 'is challenging you'}
+      {!isChallenger && 'is challenging you '}
       to find where you hid the treasure!
     </div>
   );

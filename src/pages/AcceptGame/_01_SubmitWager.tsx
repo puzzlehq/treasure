@@ -138,7 +138,7 @@ const SubmitWager = () => {
         <NavDots step={0} totalSteps={3}/>
         <PageHeader bg='bg-primary-pink' text={`YOU'VE BEEN CHALLENGED!`} />
       </div>
-      {opponent && <Versus versus={opponent} />}
+      {opponent && <Versus versus={opponent} isChallenger={false} />}
       <Wager wagerAmount={Number(wager)} />
       <div className='flex flex-grow flex-col' />
       {error && <p>Error: {error}</p>}
