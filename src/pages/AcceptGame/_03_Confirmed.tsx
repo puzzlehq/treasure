@@ -3,7 +3,7 @@ import GameInfo from '@components/GameInfo';
 import Button from '@components/Button';
 import NavDots from '@components/Nav';
 import { useAcceptGameStore } from './store';
-import { useEvent } from '@puzzlehq/sdk';
+import { useEventHandling } from '@hooks/eventHandling';
 
 function Confirmed(props: { done: () => void }) {
   const [inputs, eventIdAccept] = useAcceptGameStore((state) => [
@@ -12,7 +12,10 @@ function Confirmed(props: { done: () => void }) {
   ]);
 
   const game_address = inputs?.game_record?.owner;
-  const { event } = useEvent({ id: eventIdAccept });
+  const { event } = useEventHandling({
+    id: eventIdAccept,
+    stepName: 'Accept Confirmed'
+  });
 
   return (
     <div className='flex h-full flex-col justify-between'>
