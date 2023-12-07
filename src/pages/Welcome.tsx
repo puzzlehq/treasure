@@ -37,7 +37,7 @@ export const Welcome = () => {
           <Button
             variant='gray'
             size='md'
-            onClick={() => navigate('/aleo-introduction')}
+            onClick={() => navigate('/aleo-info')}
           >
             Learn more
           </Button>

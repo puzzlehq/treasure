@@ -70,7 +70,7 @@ const Conclusion = () => {
           fullWidth
           onClick={() => {
             navigate('/');
-            close()
+            close();
           }}
           variant='primary'
         >

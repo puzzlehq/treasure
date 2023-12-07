@@ -66,8 +66,8 @@ function App() {
                   <Route path='win/:game_multisig' element={<WinRoute />} />
                   <Route path='lose/:game_multisig' element={<LoseRoute />} />
                 </Route>
-                <Route path='/aleo-introduction' element={<AleoIntroduction/>} />
-                <Route path='/game-introduction' element={<GameIntroduction/>} />
+                <Route path='/aleo-info' element={<AleoIntroduction/>} />
+                <Route path='/game-info' element={<GameIntroduction/>} />
               </Routes>
             </div>
           </div>

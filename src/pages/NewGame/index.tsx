@@ -39,7 +39,7 @@ const NewGame = () => {
         variant='primary'
         onClick={() => navigate('./vs_bot')}
       >
-        Play with Leo the Pirate
+        Play with Leo
       </Button>
       <Button
         variant='primary'

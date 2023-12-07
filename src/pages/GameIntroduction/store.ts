@@ -26,7 +26,8 @@ export const useGameIntroStore = create<IntroStore>()(
       },
       close: () => {
         set({
-          visited: true
+          visited: true,
+          step: Step._01_GameParts
         });
       },
     }),

@@ -8,6 +8,7 @@ import { useNewGameVsPersonStore } from './NewGame/vs_person/store';
 import { useAccount } from '@puzzlehq/sdk';
 import { useGameIntroStore } from './GameIntroduction/store';
 import { useEffect } from 'react';
+import Info from '@components/Info';
 
 function Home() {
   const [yourTurn, theirTurn, totalBalance] = useGameStore((state) => [
@@ -23,7 +24,7 @@ function Home() {
 
   useEffect(() => {
     if (!visited) {
-      navigate('/game-introduction')
+      navigate('/game-info')
     }
   }, [])
 
@@ -51,11 +52,7 @@ function Home() {
         )}
       </div>
       <div className='mt-4 pb-4 text-center'>
-        {' '}
-        {/* Adding px-4 back here to maintain padding for the bottom button */}
-        <Button color='blue' size='md'>
-          Past Games
-        </Button>
+        <Info/>
       </div>
     </div>
   );

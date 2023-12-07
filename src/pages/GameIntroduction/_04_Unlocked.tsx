@@ -1,4 +1,4 @@
-import scene_14 from '@assets/14treasure.svg'
+import scene_14 from '@assets/14.png'
 import Header from "./-header";
 import { Step, useGameIntroStore } from './store';
 import Button from '@components/Button';
