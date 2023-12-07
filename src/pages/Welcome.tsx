@@ -35,20 +35,23 @@ export const Welcome = () => {
           your Puzzle Pieces to try to find the correct chests where he hid his
           treasure!
         </p>
-        <Button
-          variant='gray'
-          onClick={() => navigate('/aleo-introduction')}
-        >
-          Learn more
-        </Button>
-        <Button
-          className='font-pirata max-w-[250px] font-header'
-          onClick={connect}
-          variant='primary'
-          disabled={accountLoading || connectLoading}
-        >
-          {accountLoading ? 'Loading...' : connectLoading ? 'Connecting...' : 'Connect Wallet'}
-        </Button>
+        <div className='flex flex-col items-center w-full gap-2'>
+          <Button
+            variant='gray'
+            size='md'
+            onClick={() => navigate('/aleo-introduction')}
+          >
+            Learn more
+          </Button>
+          <Button
+            className='font-pirata max-w-[250px] font-header'
+            onClick={connect}
+            variant='primary'
+            disabled={accountLoading || connectLoading}
+          >
+            {accountLoading ? 'Loading...' : connectLoading ? 'Connecting...' : 'Connect Wallet'}
+          </Button>
+        </div>
       </div>
     </div>
   );
