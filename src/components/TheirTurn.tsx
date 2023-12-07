@@ -22,16 +22,16 @@ function TheirTurnItem({ game }: { game: Game }) {
     let message = `I'm betting you puzzle pieces that you can't find where I hid the booty! Go to https://treasures.puzzle.online to play!`;
     switch (game.gameState) {
       case 'challenger:1':
-      case 'challenger:2':{
+      case 'challenger:2': {
         message = `${
           game.gameNotification.recordData.total_pot / 2
           } puzzle pieces are on the line. Go to https://treasures.puzzle.online to find the booty!`;
         break;
       }
       case 'opponent:3': {
-        message = `Results are in and ${
+        message = `I accepted your ${
           game.gameNotification.recordData.total_pot / 2
-          } puzzle pieces are on the line. Go to https://treasures.puzzle.online to see if you won!`;
+          } piece wager. Go to https://treasures.puzzle.online to reveal the answer!`;
         break;
       } case 'loser:4': {
         message = `I lost, and you won ${
