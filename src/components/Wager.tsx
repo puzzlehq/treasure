@@ -3,7 +3,7 @@ type WagerProps = {
   winnings?: boolean;
 };
 
-const Wager = ({ wagerAmount, winnings = false }: WagerProps) => {
+const Wager = ({ wagerAmount, winnings }: WagerProps) => {
   return (
     <div className='w-fit self-center bg-bg1'>
       <div className='flex w-full flex-col items-center gap-0'>
