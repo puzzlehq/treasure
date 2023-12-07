@@ -9,10 +9,10 @@ const Unlocked = () => {
   return (
     <>
       <Header step={3} />
-      <div className='w-[50px] h-[50px] bg-bg2 rounded-full items-center align-middle'>
+      <div className='w-[50px] h-[50px] bg-bg2 rounded-full align-middle flex justify-center items-center'>
         <BiStar size={24} />
       </div>
-      <p className='font-heading text-4xl'>Win rewards for playing</p>
+      <p className='font-header text-4xl text-center'>Win rewards for playing</p>
       <p>Puzzle is the first Aleo wallet to let you earn rewards on Aleo. Puzzle pieces are rewards that can be redeemed for prizes (coming soon). </p>
       <div className='flex w-full gap-4'>
         <Button

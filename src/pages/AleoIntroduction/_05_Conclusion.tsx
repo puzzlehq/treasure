@@ -10,8 +10,8 @@ const Conclusion = () => {
   return (
     <>
       <Header step={4} />
-      <p className='font-heading text-4xl'>Ready to play</p>
-      <p className='font-heading text-6xl'>Treasure Hunt?</p>
+      <p className='font-header text-4xl'>Ready to play</p>
+      <p className='font-header text-6xl'>Treasure Hunt?</p>
       <div className='flex w-full gap-4'>
         <Button
           fullWidth

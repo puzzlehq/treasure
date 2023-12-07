@@ -11,13 +11,13 @@ const HiddenInformation = () => {
   return (
     <>
       <Header step={0} />
-      <div className='w-[50px] h-[50px] bg-bg2 rounded-full items-center align-middle'>
+      <div className='w-[50px] h-[50px] bg-bg2 rounded-full align-middle flex justify-center items-center'>
         <img
           src={aleo_logo}
           className='w-6 h-6'
         />
       </div>
-      <p className='font-heading text-4xl'>Hidden information onchain games with Aleo</p>
+      <p className='font-header text-4xl text-center'>Hidden information onchain games with Aleo</p>
       <p>Blockchains can’t normally support hidden information games, because player actions can be sniped.  Aleo’s ZK cryptography enforced at the L1 solves this.</p>
       <div className='flex w-full gap-4'>
         <Button
