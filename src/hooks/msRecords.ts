@@ -12,7 +12,7 @@ export const useMsRecords = (address?: string) => {
     multisig: true,
   });
 
-  console.log(records);
+  console.log('msRecords', records);
 
   return records;
 };

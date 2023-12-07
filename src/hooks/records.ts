@@ -11,7 +11,7 @@ export const useGameRecords = () => {
     multisig: false,
   });
 
-  console.log(records);
+  console.log('records', records);
 
   return records;
 };

@@ -95,6 +95,13 @@ const AcceptGame = () => {
   ]);
 
   const { currentGame } = useInitCurrentGame();
+  console.log(currentGame);
+  useEffect(() => {
+    if (currentGame?.msRecords?.find((r) => r.data.game_state === '2field')) {
+      setStep(Step._02_AcceptGame);
+    }
+  }, [currentGame?.gameNotification])
+
   useEffect(() => {
     const _eventIdSubmit = searchParams.get('eventIdSubmit');
     const _eventIdAccept = searchParams.get('eventIdAccept');
