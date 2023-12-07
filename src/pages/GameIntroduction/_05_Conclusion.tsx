@@ -48,7 +48,7 @@ const Conclusion = () => {
           <div className='flex w-full gap-4'>
             <img
               src={treasure_open_full}
-              className='w-[85px] sm:w-[115px]'
+              className='w-[85px] sm:w-[115px] object-scale-down'
               alt='Open treasure with booty'
             />
             <div className='flex gap-2'>

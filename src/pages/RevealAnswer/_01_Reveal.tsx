@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Button from '@components/Button.js';
 import PageHeader from '@components/PageHeader.js';
-import SelectedAlexLocation from '@components/SelectedTreasureLocation.js';
+import SelectedTreasureLocation from '@components/SelectedTreasureLocation.js';
 import Wager from '@components/Wager.js';
 import Versus from '@components/Versus.js';
 import { useGameStore } from '@state/gameStore.js';
@@ -148,7 +148,7 @@ const Reveal = () => {
       {wagerAmount && <Wager wagerAmount={wagerAmount} />}
       {answer && (
         <div className='flex flex-col gap-2'>
-          <SelectedAlexLocation answer={answer} win={undefined} />
+          <SelectedTreasureLocation answer={answer} win={undefined} />
           <div className='self-center whitespace-nowrap text-center text-sm font-extrabold tracking-tight text-primary-green'>
             You hid the booty {answer}!
           </div>

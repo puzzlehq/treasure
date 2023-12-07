@@ -46,7 +46,7 @@ function NewGame() {
         </Button>
         <Button
           fullWidth
-          onClick={() => setStep(Step._02_HideAlex)}
+          onClick={() => setStep(Step._02_HideBooty)}
           variant='primary'
           disabled={
             !inputs ||

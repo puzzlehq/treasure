@@ -4,16 +4,17 @@ import NavDots from "@components/Nav";
 import { useNavigate } from 'react-router-dom';
 
 const Header = ({ step, text }: {step: number , text?: string}) => {
-  const [close] = useGameIntroStore((state) => [state.close]);
+  const [visited, close] = useGameIntroStore((state) => [state.visited, state.close]);
   const navigate = useNavigate();
+
   return (
     <div className='flex flex-col items-center gap-2'>
       <div className="w-full grid grid-cols-3 items-center">
         <div className="flex justify-start">
-          <BiX size={24} className='text-light1' onClick={() => {
+          {visited && <BiX size={24} className='text-light1' onClick={() => {
             navigate('/');
             close();
-          }} />
+          }} />}
         </div>
         <div className="flex justify-center">
           <NavDots step={step} totalSteps={5}/>

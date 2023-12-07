@@ -74,7 +74,7 @@ function StartWager() {
       <div className='flex gap-4 w-full'>
         <Button
           fullWidth
-          onClick={() => setStep(Step._02_HideAlex)}
+          onClick={() => setStep(Step._02_HideBooty)}
           variant='tertiary'
         >
           BACK
