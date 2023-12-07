@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 
 export const Welcome = () => {
   const navigate = useNavigate();
-  const { loading: accountLoading, account } = useAccount();
+  const { account } = useAccount();
   const { loading: connectLoading, connect } = useConnect();
 
   useEffect(() => {
@@ -45,9 +45,9 @@ export const Welcome = () => {
             className='font-pirata max-w-[250px] font-header'
             onClick={connect}
             variant='primary'
-            disabled={accountLoading || connectLoading}
+            disabled={connectLoading}
           >
-            {accountLoading ? 'Loading...' : connectLoading ? 'Connecting...' : 'Connect Wallet'}
+            {connectLoading ? 'Connecting...' : 'Connect Wallet'}
           </Button>
         </div>
       </div>
