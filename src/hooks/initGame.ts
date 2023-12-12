@@ -15,7 +15,6 @@ export const useInitGame = () => {
   useEffect(() => {
     if (
       records !== undefined &&
-      msRecords !== undefined && 
       account
     ) {
       setRecords(

@@ -24,7 +24,7 @@ const parsePuzzlePieces = (records: RecordWithPlaintext[]) => {
       .filter((record) => !record.spent)
       .map((record) => {
         const amount = record.data?.amount?.replace('u64.private', '');
-        if (amount && record.data?.ix === '0u32.private') {
+        if (amount && ['0u32.private', '0u32'].includes(record.data.ix)) {
           /// find largestPiece (and thus availableBalance)
           const amountInt = parseInt(amount);
           availableBalance = Math.max(availableBalance, amountInt);
