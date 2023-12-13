@@ -59,7 +59,8 @@ const SubmitWager = () => {
     onSettled: () => setStep(Step._02_AcceptGame),
   });
 
-  const {balances} = useBalance({});
+  const { balances } = useBalance({});
+  console.log(balances);
   const balance = balances?.[0].public ?? 0;
 
   const createEvent = async () => {
@@ -119,7 +120,7 @@ const SubmitWager = () => {
   const wager = (currentGame?.gameNotification.recordData.total_pot ?? 0) / 2;
   const opponent_wager_record = largestPiece;
 
-  const disabled = !opponent || !wager || !opponent_wager_record || !inputs || balance === 0;
+  const disabled = !opponent || !wager || !opponent_wager_record || !inputs;
 
   const [buttonText, setButtonText] = useState('SUBMIT');
 
