@@ -153,7 +153,8 @@ export const useGameStore = create<GameStore>()(
         }>(
           (acc, gameNotification) => {
             const game_state = getGameState(gameNotification);
-            const _records = records.filter((r) => r.data.game_multisig === gameNotification.recordData.game_multisig)
+            const _records = records.filter((r) => r.data.game_multisig === gameNotification.recordData.game_multisig);
+            const _msRecords = msRecords?.filter((r) => r.data.owner === gameNotification.recordData.game_multisig);
             const game: Game = {
               gameNotification,
               gameState: game_state,

@@ -103,6 +103,7 @@ const SubmitWager = () => {
       functionId: GAME_FUNCTIONS.submit_wager,
       fee: transitionFees.submit_wager,
       inputs: Object.values(newInputs),
+      address: inputs.game_req_notification.owner, // opponent address
     });
     if (response.error) {
       setError(response.error);

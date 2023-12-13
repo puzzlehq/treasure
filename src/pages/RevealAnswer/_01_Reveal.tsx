@@ -141,8 +141,7 @@ const Reveal = () => {
     !inputs?.reveal_answer_notification_record ||
     !inputs?.challenger_answer_record ||
     !inputs?.joint_piece_stake ||
-    !inputs?.challenger_claim_signature ||
-    balance === 0;
+    !inputs?.challenger_claim_signature
 
   return (
     <div className='flex h-full w-full flex-col gap-4'>
