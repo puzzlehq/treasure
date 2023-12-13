@@ -53,11 +53,11 @@ const Reveal = () => {
     );
 
     const joint_piece_stake = currentGame.records.find(
-      (r) => r.data.ix.replace('.private', '') === '10u32'
+      (r) => r.data.ix === '10u32'
     );
 
     const challenger_claim_signature = currentGame.records.find(
-      (r) => r.data.ix.replace('.private', '') === '7u32'
+      (r) => r.data.ix === '7u32'
     );
 
     console.log(
@@ -141,8 +141,8 @@ const Reveal = () => {
     !inputs?.reveal_answer_notification_record ||
     !inputs?.challenger_answer_record ||
     !inputs?.joint_piece_stake ||
-    !inputs?.challenger_claim_signature || 
-    balance === 0
+    !inputs?.challenger_claim_signature ||
+    balance === 0;
 
   return (
     <div className='flex h-full w-full flex-col gap-4'>

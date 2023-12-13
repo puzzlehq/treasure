@@ -13,6 +13,6 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       dAppIconURL='https://i.imgur.com/TXRCKod.png'
     >
       <App />
-  </PuzzleWalletProvider>
+    </PuzzleWalletProvider>
   </div>
 );
