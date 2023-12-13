@@ -162,7 +162,7 @@ function ConfirmStartGame() {
   }, [loading, event?.status, confirmStep]);
 
   return (
-    <div className='flex h-full w-full flex-col justify-center gap-8'>
+    <div className='flex h-full w-full flex-col justify-center gap-2'>
       <Nav step={3} totalSteps={5}/>
       <PageHeader bg='bg-primary-pink' text='REVIEW AND KICKOFF GAME' />
       <Versus versus={opponent} />
@@ -179,7 +179,7 @@ function ConfirmStartGame() {
       {error && <p>Error: {error}</p>}
       <div className='flex gap-4'>
         <Button
-          fullWidth
+          className='w-1/2'
           onClick={() => setStep(Step._03_StartWager)}
           disabled={loading}
           variant='tertiary'
@@ -187,7 +187,7 @@ function ConfirmStartGame() {
           BACK
         </Button>
         <Button
-          fullWidth
+          className='w-1/2'
           onClick={createProposeGameEvent}
           variant='primary'
           disabled={disabled || loading}

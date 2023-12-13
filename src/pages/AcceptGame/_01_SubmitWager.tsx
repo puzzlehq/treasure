@@ -139,7 +139,7 @@ const SubmitWager = () => {
   }, [loading, event?.status, confirmStep]);
 
   return (
-    <div className='flex h-full w-full flex-col justify-center gap-8'>
+    <div className='flex h-full w-full flex-col justify-center gap-2'>
       <div className='flex w-full flex-col gap-2'>
         <NavDots step={0} totalSteps={3}/>
         <PageHeader bg='bg-primary-pink' text={`YOU'VE BEEN CHALLENGED!`} />
@@ -150,8 +150,8 @@ const SubmitWager = () => {
       {error && <p>Error: {error}</p>}
       <div className='flex w-full gap-4'>
         <Button
-          fullWidth
           variant='tertiary'
+          className='w-1/2'
           disabled={loading}
           onClick={() => {
             navigate('/');
@@ -160,7 +160,7 @@ const SubmitWager = () => {
           BACK
         </Button>
         <Button
-          fullWidth
+          className='w-1/2'
           variant='primary'
           disabled={disabled || loading}
           onClick={createEvent}

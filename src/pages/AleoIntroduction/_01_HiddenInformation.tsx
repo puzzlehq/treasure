@@ -21,14 +21,14 @@ const HiddenInformation = () => {
       <p>Blockchains can’t normally support hidden information games, because player actions can be sniped.  Aleo’s ZK cryptography enforced at the L1 solves this.</p>
       <div className='flex w-full gap-4'>
         <Button
-          fullWidth
+          className='w-1/2'
           onClick={() => navigate('/')}
           variant='tertiary'
         >
           BACK
         </Button>
         <Button
-          fullWidth
+          className='w-1/2'
           onClick={() => setStep(Step._02_HiddenTreasure)}
           variant='primary'
         >

@@ -10,8 +10,8 @@ type HideTreasureProps = {
 
 function ChooseTreasureLocation({ setAnswer, answer, hiding, disabled = false }: HideTreasureProps) {
   return (
-    <section className='mt-4 flex max-w-full flex-col gap-4'>
-      <div className='flex gap-5'>
+    <section className='flex max-w-full flex-col gap-4'>
+      <div className='flex w-full justify-center gap-5'>
         <TreasureButton
           imgSrc={treasure_closed}
           text='Left'
@@ -27,7 +27,7 @@ function ChooseTreasureLocation({ setAnswer, answer, hiding, disabled = false }:
           disabled={disabled}
         />
       </div>
-      <p className='self-center whitespace-nowrap text-center text-sm font-extrabold tracking-tight text-primary-green'>
+      <p className='self-center whitespace-nowrap text-center text-xs sm:text-sm font-extrabold tracking-tight text-primary-green'>
         {((): string => {
           if (answer === undefined && hiding) {
             return 'Choose where to hide the booty';
@@ -65,18 +65,18 @@ const TreasureButton = ({
       onClick={onClick}
       className={`group flex flex-col self-center rounded-lg outline-primary hover:outline ${
         selected ? 'outline' : ''
-      } flex w-[150px] flex-col items-center gap-2 p-4 hover:opacity-100 disabled:opacity-40`}
+      } flex w-[100px] sm:w-[150px] flex-col items-center gap-2 p-4 hover:opacity-100 disabled:opacity-40`}
     >
       <img
         loading='lazy'
         src={imgSrc}
-        className={`aspect-square h-[100px] w-[100px] object-fit object-center ${
+        className={`aspect-square w-[100px] object-contain object-center ${
           selected || selected === undefined ? '' : 'opacity-40'
         }`}
         alt={text}
       />
       <div
-        className={`mt-2.5 whitespace-nowrap text-center text-sm font-extrabold ${
+        className={`whitespace-nowrap text-center text-sm font-extrabold ${
           selected
             ? 'text-primary'
             : selected === false

@@ -16,14 +16,14 @@ const Verified = () => {
       <p>Even though you don't know where the treasure is hidden, you can trust the game is not changing the hiding location based on your guess. Aleo verified the hiding with zero-knowledge proofs on chain.</p>
       <div className='flex w-full gap-4'>
         <Button
-          fullWidth
+          className='w-1/2'
           onClick={() => setStep(Step._02_HiddenTreasure)}
           variant='tertiary'
         >
           BACK
         </Button>
         <Button
-          fullWidth
+          className='w-1/2'
           onClick={() => setStep(Step._04_Rewards)}
           variant='primary'
         >

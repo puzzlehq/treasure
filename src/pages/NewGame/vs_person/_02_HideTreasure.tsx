@@ -18,7 +18,7 @@ function HideTreasure() {
       <div className='flex h-full w-full flex-col items-center gap-2'>
         <Nav step={1} totalSteps={5}/>
         <PageHeader
-          text='WHERE WOULD YOU LIKE TO HIDE THE TREASURE?'
+          text='HIDE THE TREASURE'
           bg='bg-primary-blue'
         />
         <ChooseTreasureLocation
@@ -31,14 +31,14 @@ function HideTreasure() {
         <div className='flex flex-grow flex-col' />
         <div className='flex w-full gap-4'>
           <Button
-            fullWidth
+            className='w-1/2'
             onClick={() => setStep(Step._01_NewGame)}
             variant='tertiary'
           >
             BACK
           </Button>
           <Button
-            fullWidth
+            className='w-1/2'
             onClick={() => setStep(Step._03_StartWager)}
             disabled={!inputs || !inputs.challenger_answer}
             variant='primary'

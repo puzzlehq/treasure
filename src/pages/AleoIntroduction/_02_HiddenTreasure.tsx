@@ -16,14 +16,14 @@ const HiddenTreasure = () => {
       <p>The game is built on Aleo’s privacy-enabled blockchain, so there’s no way for you to know where we hid the treasure.</p>
       <div className='flex w-full gap-4'>
         <Button
-          fullWidth
+          className='w-1/2'
           onClick={() => setStep(Step._01_HiddenInformation)}
           variant='tertiary'
         >
           BACK
         </Button>
         <Button
-          fullWidth
+          className='w-1/2'
           onClick={() => setStep(Step._03_Verified)}
           variant='primary'
         >

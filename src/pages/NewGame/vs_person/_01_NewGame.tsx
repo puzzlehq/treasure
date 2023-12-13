@@ -38,14 +38,14 @@ function NewGame() {
       <div className='flex flex-grow flex-col' />
       <div className='flex w-full gap-4'>
         <Button
-          fullWidth
+          className='w-1/2'
           onClick={() => navigate('/new-game')}
           variant='tertiary'
         >
           BACK
         </Button>
         <Button
-          fullWidth
+          className='w-1/2'
           onClick={() => setStep(Step._02_HideBooty)}
           variant='primary'
           disabled={

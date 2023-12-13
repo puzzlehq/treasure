@@ -21,7 +21,7 @@ const Header = ({ step, text }: {step: number , text?: string}) => {
         </div>
         <div></div> {/* This is a placeholder to keep the space on the right side equal to the left side */}
       </div>
-      {text && <p className='self-center opacity-60 font-bold'>{text}</p>}
+      {text && <p className='self-center opacity-60 font-bold text-sm sm:text-base'>{text}</p>}
     </div>
   )
 }

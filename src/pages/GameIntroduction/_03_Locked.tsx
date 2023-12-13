@@ -21,14 +21,14 @@ const Locked = () => {
       </div>
       <div className='flex w-full gap-4'>
         <Button
-          fullWidth
+          className='w-1/2'
           onClick={() => setStep(Step._02_ChestInfo)}
           variant='tertiary'
         >
           BACK
         </Button>
         <Button
-          fullWidth
+          className='w-1/2'
           onClick={() => setStep(Step._04_Unlocked)}
           variant='primary'
         >

@@ -15,8 +15,8 @@ const buttonVariants = cva(
         transparent: 'bg-transparent disabled:opacity-40',
       },
       size: {
-        md: 'h-10 rounded-full px-3 py-2 text-[24px]',
-        lg: 'h-22 rounded-full px-8 py-3 text-[36px]',
+        md: 'h-10 rounded-full px-3 py-2 text-[16px] sm:text-[24px] ',
+        lg: 'h-22 rounded-full px-8 py-3 text-[16px] sm:text-[36px] ',
       },
     },
     defaultVariants: {

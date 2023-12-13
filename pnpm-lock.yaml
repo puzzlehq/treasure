@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@puzzlehq/sdk':
-    specifier: 0.1.44
-    version: 0.1.44(@types/react@18.2.37)(react-dom@18.2.0)
+    specifier: 0.1.45
+    version: 0.1.45(@types/react@18.2.37)(react-dom@18.2.0)
   '@radix-ui/react-progress':
     specifier: ^1.0.3
     version: 1.0.3(@types/react-dom@18.2.15)(@types/react@18.2.37)(react-dom@18.2.0)(react@18.2.0)
@@ -902,8 +902,8 @@ packages:
       '@parcel/watcher-win32-x64': 2.3.0
     dev: false
 
-  /@puzzlehq/sdk@0.1.44(@types/react@18.2.37)(react-dom@18.2.0):
-    resolution: {integrity: sha512-ui7RUIdFeicF8cpsVVc4+P44lGkKsU41LOID8rpABH3dcRcqEKcGtY0hOU83M0vqSmmhghXLXXinEqPKZRUxPA==}
+  /@puzzlehq/sdk@0.1.45(@types/react@18.2.37)(react-dom@18.2.0):
+    resolution: {integrity: sha512-Wh+0HGP4Gv8SXUp32akp/oT1nj+wZSrtS6SG/DBr1KEcLJWAyXDsz3a0WHgglf2uHmFdP1UI13hoJYKjLDlJ7w==}
     dependencies:
       '@puzzlehq/types': 1.0.8
       '@tanstack/react-query': 4.36.1(react-dom@18.2.0)(react@18.2.0)

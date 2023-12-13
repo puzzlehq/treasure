@@ -74,10 +74,10 @@ function YourTurnItem({ game }: { game: Game }) {
 
   return (
     <div className='mb-2 grid w-full grid-cols-[1fr,auto,1fr] items-center gap-5'>
-      <div className='my-auto self-center text-left text-base font-bold tracking-tight text-primary-pink max-sm:ml-2'>
+      <div className='my-auto self-center text-left text-sm sm:text-base font-bold tracking-tight text-primary-pink max-sm:ml-2'>
         {shortenAddress(vs)}
       </div>
-      <div className='my-auto self-center text-left text-base font-bold tracking-tight text-primary-pink max-sm:ml-2'>
+      <div className='my-auto self-center text-left text-sm sm:text-base font-bold tracking-tight text-primary-pink max-sm:ml-2'>
         {wager} pieces
       </div>
       <div className='flex justify-end'>{renderActionButton()}</div>

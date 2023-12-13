@@ -15,8 +15,8 @@ const GameParts = () => {
       <Header step={0} />
       <div className="grid grid-rows-3 gap-2 md:gap-4 w-full items-center grid-cols-[1fr_65px] sm:grid-cols-[1fr_115px]">
         <div className="col-start-1 col-span-1 flex flex-col gap-1">
-          <p className="font-header text-4xl">Leo the Pirate</p>
-          <p className="font-body text-base">Aleo's Leo the Lion is now a pirate — and a bot! — to challenge you to find the treasure.</p>
+          <p className="font-header text-2xl sm:text-4xl">Leo the Pirate</p>
+          <p className="font-body text-xs sm:text-base">Aleo's Leo the Lion is now a pirate — and a bot! — to challenge you to find the treasure.</p>
         </div>
         <div className="col-start-2 col-span-1 w-auto">
           <img
@@ -28,8 +28,8 @@ const GameParts = () => {
 
         <div className="col-start-1 col-span-1">
           <div className="col-start-1 col-span-1 flex flex-col gap-1">
-            <p className="font-header text-4xl">Puzzle pieces</p>
-            <p className="font-body text-base">Puzzle Pieces are what you use to wager and play the game. Collect as many as you can!</p>
+            <p className="font-header text-2xl sm:text-4xl">Puzzle pieces</p>
+            <p className="font-body text-xs sm:text-base">Puzzle Pieces are what you use to wager and play the game. Collect as many as you can!</p>
           </div>
         </div>
         <div className="col-start-2 col-span-1 w-auto">
@@ -42,8 +42,8 @@ const GameParts = () => {
 
         <div className="col-start-1 col-span-1">
           <div className="col-start-1 col-span-1 flex flex-col gap-1">
-            <p className="font-header text-4xl">Treasure Chest</p>
-            <p className="font-body text-base">A magic safe that requires puzzle pieces or a master key to open.</p>
+            <p className="font-header text-2xl sm:text-4xl">Treasure Chest</p>
+            <p className="font-body text-xs sm:text-base">A magic safe that requires puzzle pieces or a master key to open.</p>
           </div>
         </div>
         <div className="col-start-2 col-span-1 w-auto">

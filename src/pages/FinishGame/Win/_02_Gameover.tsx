@@ -12,7 +12,7 @@ const GameOver = () => {
   const wager = (currentGame?.gameNotification.recordData.total_pot ?? 0) / 2;
 
   return (
-    <div className='flex h-full w-full flex-col justify-center gap-8'>
+    <div className='flex h-full w-full flex-col justify-center gap-2'>
       <PageHeader bg='bg-primary-blue' text='CONGRATS WINNER!' />
       <div className='flex flex-col items-center gap-2'>
         <Wager wagerAmount={getNumberAmount(wager)} winnings={true} />
@@ -25,10 +25,11 @@ const GameOver = () => {
       </div>
       <div className='flex flex-grow flex-col' />
       <div className='flex w-full flex-col gap-2'>
-        <Button color='gray' onClick={() => navigate('/new-game')}>
+        <Button fullWidth color='gray' onClick={() => navigate('/new-game')}>
           START ANOTHER GAME
         </Button>
         <Button
+          fullWidth
           color='transparent'
           className=' text-primary-gray'
           onClick={() => navigate('/')}

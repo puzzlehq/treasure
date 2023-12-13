@@ -12,8 +12,7 @@ const Conclusion = () => {
 
   return (
     <>
-      <Header step={4} />
-      <p className='self-center opacity-60'>How the game works</p>
+      <Header step={4} text='How the game works'/>
       <div className="flex flex-col align-middle gap-8">
         <div className='flex w-full gap-4 items-center'>
           <img
@@ -60,14 +59,14 @@ const Conclusion = () => {
       </div>
       <div className='flex w-full gap-4'>
         <Button
-          fullWidth
+          className='w-1/2'
           onClick={() => setStep(Step._04_Unlocked)}
           variant='tertiary'
         >
           BACK
         </Button>
         <Button
-          fullWidth
+          className='w-1/2'
           onClick={() => {
             navigate('/');
             close();

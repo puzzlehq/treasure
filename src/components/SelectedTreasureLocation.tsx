@@ -16,7 +16,7 @@ function SelectedTreasureLocation({ answer, win }: SelectedTreasureLocationProps
         <img
           loading='lazy'
           src={win === undefined ? treasure_closed : win === true ? treasure_open_full : treasure_open_empty}
-          className={`aspect-square w-full self-stretch overflow-hidden object-fit object-center
+          className={`aspect-square w-[100px] sm:w-full object-contain object-center
                       ${isSelected ? '' : 'opacity-40'}`}
           alt={side}
         />
@@ -47,7 +47,7 @@ function SelectedTreasureLocation({ answer, win }: SelectedTreasureLocationProps
 
   return (
     <div className='flex w-full flex-col items-center gap-8'>
-      <div className='flex w-[298px] max-w-full items-center justify-between gap-5 self-center'>
+      <div className='flex max-w-full items-center justify-between gap-5 self-center'>
         {win === undefined ? (
           <>
             <Treasure side={Answer.left} />

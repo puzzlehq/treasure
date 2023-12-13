@@ -36,7 +36,7 @@ function App() {
   useInitGame();
 
   return (
-    <div className='flex min-h-screen justify-center bg-gradient-to-b from-[#7CF7FF] to-[#0DD4FF] font-body'>
+    <div className='flex min-h-screen justify-center bg-gradient-to-b from-[#7CF7FF] to-[#0DD4FF] font-body text-xs sm:text-base'>
       <Router>
         <div className='z-10 flex w-full max-w-screen-sm flex-col overflow-y-auto'>
           <Rerouter />
