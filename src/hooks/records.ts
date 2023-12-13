@@ -4,7 +4,7 @@ export const useGameRecords = () => {
   const { records } = useRecords({
     filter: {
       programIds: [
-        'treasure_hunt_v009.aleo',
+        'treasure_hunt_v010.aleo',
       ],
       type: 'unspent',
     },
