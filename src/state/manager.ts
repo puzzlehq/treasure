@@ -1,7 +1,7 @@
 import { RecordWithPlaintext } from '@puzzlehq/sdk';
 import { Answer } from './RecordTypes/treasure_hunt_vxxx';
 
-export const GAME_PROGRAM_ID = 'treasure_hunt_v006.aleo';
+export const GAME_PROGRAM_ID = 'treasure_hunt_v009.aleo';
 
 export const GAME_FUNCTIONS = {
   propose_game: 'propose_game',
