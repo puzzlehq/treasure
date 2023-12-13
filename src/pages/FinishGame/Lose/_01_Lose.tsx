@@ -49,14 +49,14 @@ const Lose = () => {
             win={false}
           />
         )}
-        <div className='self-center whitespace-nowrap text-center text-sm font-extrabold tracking-tight text-primary-green'>
+        <div className='self-center whitespace-nowrap text-center text-sm font-extrabold tracking-tight text-primary-red'>
           {isChallenger
             ? `You put the booty ${getAnswer(challenger_answer)}`
             : `${shortenAddress(challenger_address)} put the booty ${getAnswer(
                 challenger_answer
               )}`}
         </div>
-        <div className='self-center whitespace-nowrap text-center text-sm font-extrabold tracking-tight text-primary-green'>
+        <div className='self-center whitespace-nowrap text-center text-sm font-extrabold tracking-tight text-primary-red'>
           {!isChallenger
             ? `You guessed the booty was ${getAnswer(opponent_answer)}`
             : `${shortenAddress(opponent_address)} guessed the booty was ${getAnswer(

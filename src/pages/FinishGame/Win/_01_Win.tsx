@@ -156,8 +156,8 @@ const Win = () => {
     !inputs?.game_record ||
     !inputs?.joint_piece_winner ||
     !inputs?.piece_joint_stake ||
-    !inputs?.joint_piece_time_claim;
-  msPublicBalance < transitionFees.finish_game;
+    !inputs?.joint_piece_time_claim ||
+    msPublicBalance < transitionFees.finish_game;
 
   return (
     <div className='flex h-full w-full flex-col justify-center gap-4'>
