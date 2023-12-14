@@ -20,7 +20,6 @@ import { useEffect, useState } from 'react';
 import { Answer } from '@state/RecordTypes/treasure_hunt_vxxx.js';
 import { Step, useAcceptGameStore } from './store.js';
 import { useGameStore } from '@state/gameStore.js';
-import { useMsRecords } from '@hooks/msRecords.js';
 import { useEventHandling } from '@hooks/eventHandling.js';
 import { useSearchParams } from 'react-router-dom';
 

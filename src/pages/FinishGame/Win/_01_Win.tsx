@@ -93,9 +93,9 @@ const Win = () => {
     if (!loading) {
       setButtonText('CLAIM WINNINGS');
     } else if (event?.status === EventStatus.Creating) {
-      setButtonText('CREATING EVENT...');
+      setButtonText('CREATING...');
     } else if (event?.status === EventStatus.Pending) {
-      setButtonText('EVENT PENDING...');
+      setButtonText('PENDING...');
     }
   }, [loading, event?.status]);
 
