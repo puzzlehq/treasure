@@ -154,7 +154,9 @@ export const useGameStore = create<GameStore>()(
           (acc, gameNotification) => {
             const game_state = getGameState(gameNotification);
             const _records = records.filter((r) => r.data.game_multisig?.replace('.private', '')  === gameNotification.recordData.game_multisig?.replace('.private', '') );
-            const _msRecords = msRecords?.filter((r) => r.data.owner?.replace('.private', '') === gameNotification.recordData.game_multisig?.replace('.private', '') );
+            const _msRecords = msRecords?.
+              filter((r) => r.data.owner?.replace('.private', '') === gameNotification.recordData.game_multisig?.replace('.private', ''))
+              .filter((r) => !(r.functionId === 'propose_game' && [r.data.opponent?.replace('.private', ''), r.data.challenger?.replace('.private', '')].includes(gameNotification.recordData.game_multisig)));
             console.log('_msRecords', _msRecords); 
             const game: Game = {
               gameNotification,
