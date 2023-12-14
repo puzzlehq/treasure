@@ -153,8 +153,8 @@ export const useGameStore = create<GameStore>()(
         }>(
           (acc, gameNotification) => {
             const game_state = getGameState(gameNotification);
-            const _records = records.filter((r) => r.data.game_multisig.replace('.private', '')  === gameNotification.recordData.game_multisig.replace('.private', '') );
-            const _msRecords = msRecords?.filter((r) => r.data.owner.replace('.private', '') === gameNotification.recordData.game_multisig.replace('.private', '') );
+            const _records = records.filter((r) => r.data.game_multisig?.replace('.private', '')  === gameNotification.recordData.game_multisig?.replace('.private', '') );
+            const _msRecords = msRecords?.filter((r) => r.data.owner?.replace('.private', '') === gameNotification.recordData.game_multisig?.replace('.private', '') );
             console.log('_msRecords', _msRecords); 
             const game: Game = {
               gameNotification,
