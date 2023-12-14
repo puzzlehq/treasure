@@ -72,16 +72,22 @@ function ConfirmStartGame() {
     setLoading(true);
     setConfirmStep(ConfirmStep.Signing);
     setError(undefined);
+    const signature = await requestSignature({ message: messageToSign });
+
+    if (signature.error || (!signature.messageFields || !signature.signature)) {
+      setError(signature.error);
+      setLoading(false);
+      return;
+    }
     const sharedStateResponse = await createSharedState();
     if (sharedStateResponse.error) {
       setError(sharedStateResponse.error);
+      setLoading(false);
+      return;
     } else if (sharedStateResponse.data) {
       const game_multisig_seed = sharedStateResponse.data.seed;
       const game_multisig = sharedStateResponse.data.address;
 
-      const signature = await requestSignature({ message: messageToSign });
-
-      setInputs({ ...inputs, game_multisig_seed, game_multisig });
       if (
         inputs?.opponent &&
         inputs?.wager_record &&
