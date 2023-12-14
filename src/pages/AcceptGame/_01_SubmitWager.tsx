@@ -76,6 +76,7 @@ const SubmitWager = () => {
     setConfirmStep(ConfirmStep.Signing);
     if (!signature.messageFields || !signature.signature) {
       setError('Signature or signature message fields not found');
+      setLoading(false);
       return;
     }
     setConfirmStep(ConfirmStep.RequestingEvent);
