@@ -17,6 +17,7 @@
     "html5-qrcode": "^2.3.8",
     "immer": "^10.0.3",
     "js-yaml": "^4.1.0",
+    "localforage": "^1.10.0",
     "lodash": "^4.17.21",
     "prettier": "^3.0.3",
     "react": "^18.2.0",

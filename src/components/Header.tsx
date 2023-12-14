@@ -2,6 +2,7 @@ import { useDisconnect, shortenAddress, useAccount } from '@puzzlehq/sdk';
 import Button from './Button';
 import { useGameStore } from '@state/gameStore';
 import { useNavigate } from 'react-router-dom';
+import localforage from 'localforage'
 
 export const AppHeader = () => {
   const { account } = useAccount();
@@ -26,9 +27,10 @@ export const AppHeader = () => {
             size='md'
             variant='secondary'
             className='w-fit'
-            onClick={() => {
-              disconnect();
+            onClick={async () => {
+              await disconnect();
               useGameStore.getState().clearFlowStores();
+              localforage.clear();
               navigate('/');
             }}
             disabled={loading}
