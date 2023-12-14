@@ -149,7 +149,7 @@ function AcceptGame() {
         functionId: 'transfer_public',
         programId: 'credits.aleo',
         inputs: [msAddress, (amountToFundMs * 1_000_000).toString() + 'u64'],
-        fee: 0.5,
+        fee: 0.263,
       })
       if (response.error) {
         setFundingError(response.error);

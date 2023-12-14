@@ -33,6 +33,8 @@ const Rerouter = () => {
 function App() {
   const { account } = useAccount();
 
+  console.log('account', account);
+
   useInitGame();
 
   return (
