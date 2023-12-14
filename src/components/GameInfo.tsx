@@ -1,8 +1,8 @@
 import treasure from '../assets/treasure_open_full.png';
 
 function GameInfo(props: {
-  multisig: string;
-  transactionId: string;
+  multisig?: string;
+  transactionId?: string;
   title: 'GAME BEGUN!' | 'GAME ACCEPTED!' | 'ANSWER REVEALED!';
 }) {
   return (
@@ -16,12 +16,16 @@ function GameInfo(props: {
         <h1 className='text-primary-black mt-1.5 max-w-[295px] self-center break-words text-center text-base font-extrabold leading-4'>
           {props.title}
         </h1>
-        <p className='mt-1.5 max-w-[295px] self-center break-words text-center text-base font-extrabold leading-4 text-primary-black'>
-          GAME ID: {props.multisig}
-        </p>
-        <p className='mt-1.5 max-w-[295px] self-center break-words text-center text-base font-extrabold leading-4 text-primary-black'>
-          Aleo Transaction ID: {props.transactionId}
-        </p>
+        {props.multisig &&
+          <p className='mt-1.5 max-w-[295px] self-center break-words text-center text-base font-extrabold leading-4 text-primary-black'>
+            GAME ID: {props.multisig}
+          </p>
+        }
+        {props.transactionId &&
+          <p className='mt-1.5 max-w-[295px] self-center break-words text-center text-base font-extrabold leading-4 text-primary-black'>
+            Aleo Transaction ID: {props.transactionId}
+          </p>
+        }
       </div>
     </section>
   );
