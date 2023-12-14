@@ -47,7 +47,7 @@ function AcceptGame() {
   const [currentGame] = useGameStore((state) => [state.currentGame]);
 
   const msAddress = currentGame?.gameNotification.recordData.game_multisig;
-  const msRecords = useMsRecords(msAddress);
+  const msRecords = currentGame?.msRecords;
 
   const { loading, error, event, setLoading, setError } = useEventHandling({
     id: eventIdAccept,
@@ -136,7 +136,7 @@ function AcceptGame() {
     );
   }, [
     currentGame?.gameNotification.recordData.game_multisig,
-    msRecords?.toString(),
+    currentGame?.msRecords?.toString()
   ]);
 
   const createFundEvent = async () => {
@@ -203,8 +203,10 @@ function AcceptGame() {
       });
       if (response.error) {
         setError(response.error);
+        setLoading(false);
       } else if (!response.eventId) {
         setError('No eventId found!');
+        setLoading(false);
       } else {
         console.log('success', response.eventId);
         setEventIdAccept(response.eventId);
@@ -275,7 +277,7 @@ function AcceptGame() {
         />
         <div className='flex flex-grow flex-col' />
         {error && <p>Error: {error}</p>}
-        <div className='flex flex-col items-center text-center'>
+        <div className='flex flex-col items-center text-center w-full'>
           <p>
             • Game multisig public balance: {msPublicBalance} public credits
           </p>
