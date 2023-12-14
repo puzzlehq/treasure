@@ -160,7 +160,7 @@ export const useGameStore = create<GameStore>()(
               gameState: game_state,
               records: _records,
               gameAction: getGameAction(game_state),
-              msRecords
+              msRecords: _msRecords
             }
             if (
               currentGame &&

@@ -77,7 +77,7 @@ function AcceptGame() {
   const amountToFundMs = (transitionFees.accept_game + transitionFees.finish_game - msPublicBalance);
 
   useEffect(() => {
-    if (!currentGame || !msRecords) return;
+    if (!currentGame) return;
     const game_record = msRecords?.find(
       (r) => r.data.ix === '16u32.private'
     );
@@ -89,7 +89,7 @@ function AcceptGame() {
         r.data.staker.replace('.private', '') ===
           currentGame.gameNotification.recordData.challenger_address
     );
-    const piece_claim_challenger = msRecords.find(
+    const piece_claim_challenger = msRecords?.find(
       (r) =>
         r.data.ix === '6u32.private' &&
         r.data.challenger.replace('.private', '') ===
@@ -97,7 +97,7 @@ function AcceptGame() {
         r.data.claimer.replace('.private', '') ===
           currentGame.gameNotification.recordData.challenger_address
     );
-    const piece_stake_opponent = msRecords.find(
+    const piece_stake_opponent = msRecords?.find(
       (r) =>
         r.data.ix === '3u32.private' &&
         r.data.opponent.replace('.private', '') ===
@@ -105,7 +105,7 @@ function AcceptGame() {
         r.data.staker.replace('.private', '') ===
           currentGame.gameNotification.recordData.opponent_address
     );
-    const piece_claim_opponent = msRecords.find(
+    const piece_claim_opponent = msRecords?.find(
       (r) =>
         r.data.ix === '6u32.private' &&
         r.data.opponent.replace('.private', '') ===
@@ -119,6 +119,7 @@ function AcceptGame() {
     console.log('piece_claim_challenger', piece_claim_challenger);
     console.log('piece_stake_opponent', piece_stake_opponent);
     console.log('piece_claim_opponent', piece_claim_opponent);
+    
     if (
       piece_claim_challenger === undefined ||
       piece_claim_opponent === undefined ||
