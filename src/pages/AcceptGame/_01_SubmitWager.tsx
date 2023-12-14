@@ -109,6 +109,7 @@ const SubmitWager = () => {
     });
     if (response.error) {
       setError(response.error);
+      setLoading(false);
     } else if (response.eventId) {
       /// todo - other things here?
       setEventIdSubmit(response.eventId);
