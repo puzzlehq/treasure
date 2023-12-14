@@ -16,7 +16,7 @@ function SelectedTreasureLocation({ answer, win }: SelectedTreasureLocationProps
         <img
           loading='lazy'
           src={win === undefined ? treasure_closed : win === true ? treasure_open_full : treasure_open_empty}
-          className={`aspect-square w-[100px] sm:w-full object-contain object-center
+          className={`aspect-square w-[100px] sm:w-[200px] object-contain object-center
                       ${isSelected ? '' : 'opacity-40'}`}
           alt={side}
         />
