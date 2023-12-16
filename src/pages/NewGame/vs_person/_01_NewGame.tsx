@@ -22,7 +22,7 @@ function NewGame() {
     <div className='flex h-full w-full flex-col items-center justify-between gap-2'>
       <Nav step={0} totalSteps={5}/>
       <PageHeader
-        text='CHOOSE YOUR CHALLENGER'
+        text='CHOOSE YOUR OPPONENT'
         bg='bg-primary-blue'
       />
       <input
