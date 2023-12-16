@@ -4,9 +4,11 @@ import PageHeader from '@components/PageHeader.js';
 import { getNumberAmount } from '../../../utils.js';
 import Button from '@components/Button.js';
 import { useGameStore } from '@state/gameStore.js';
+import { useClaimPrizeWinStore } from './store.js';
 
 const GameOver = () => {
   const [currentGame] = useGameStore((state) => [state.currentGame]);
+  const [_close] = useClaimPrizeWinStore((state) => [state.close]);
   const navigate = useNavigate();
 
   const wager = (currentGame?.gameNotification.recordData.total_pot ?? 0) / 2;
@@ -25,14 +27,24 @@ const GameOver = () => {
       </div>
       <div className='flex flex-grow flex-col' />
       <div className='flex w-full flex-col gap-2'>
-        <Button fullWidth color='gray' onClick={() => navigate('/new-game')}>
+        <Button
+          fullWidth
+          color='gray'
+          onClick={() => {
+            navigate('/new-game');
+            _close();
+          }}
+        >
           START ANOTHER GAME
         </Button>
         <Button
           fullWidth
           color='transparent'
           className=' text-primary-gray'
-          onClick={() => navigate('/')}
+          onClick={() => {
+            navigate('/');
+            _close();
+          }}
         >
           TAKE ME BACK HOME
         </Button>

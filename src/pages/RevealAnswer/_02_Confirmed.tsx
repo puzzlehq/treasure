@@ -7,7 +7,7 @@ import { useEvent } from '@puzzlehq/sdk';
 import { useNavigate } from 'react-router-dom';
 
 function Confirmed() {
-  const [eventId] = useRevealAnswerStore((state) => [state.eventId]);
+  const [eventId, _close] = useRevealAnswerStore((state) => [state.eventId, state.close]);
   const [currentGame] = useGameStore((state) => [state.currentGame]);
   const navigate = useNavigate();
 
@@ -26,7 +26,10 @@ function Confirmed() {
         <div className='flex flex-col gap-4'>
           <Button
             variant='green'
-            onClick={() => navigate('/')}
+            onClick={() => {
+              navigate('/');
+              _close();
+            }}
           >
             GO HOME
           </Button>
