@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@puzzlehq/sdk':
-    specifier: 0.1.47
-    version: 0.1.47(@types/react@18.2.37)(react-dom@18.2.0)
+    specifier: 0.1.48
+    version: 0.1.48(@types/react@18.2.37)(react-dom@18.2.0)
   '@radix-ui/react-progress':
     specifier: ^1.0.3
     version: 1.0.3(@types/react-dom@18.2.15)(@types/react@18.2.37)(react-dom@18.2.0)(react@18.2.0)
@@ -905,12 +905,12 @@ packages:
       '@parcel/watcher-win32-x64': 2.3.0
     dev: false
 
-  /@puzzlehq/sdk@0.1.47(@types/react@18.2.37)(react-dom@18.2.0):
-    resolution: {integrity: sha512-LNrDU01qV5LxkUjyPxQuy5xfx+gmZVFaj6tEcBnWXe/vTP3BaxLsrzMRcMBhMcshnC2kXMi0dnYdHG2p5P6+mA==}
+  /@puzzlehq/sdk@0.1.48(@types/react@18.2.37)(react-dom@18.2.0):
+    resolution: {integrity: sha512-ag3xNrJaje1oN1ub9dPatBq6+GK3vjw2kDxVVEFiT4u8t6DHbsE9OPf2dzPvFIzewZJKY2h7xHPd93vs6g1f5w==}
     dependencies:
       '@puzzlehq/types': 1.0.8
       '@tanstack/react-query': 4.36.1(react-dom@18.2.0)(react@18.2.0)
-      '@tanstack/react-query-devtools': 5.14.0(@tanstack/react-query@4.36.1)(react@18.2.0)
+      '@tanstack/react-query-devtools': 5.14.2(@tanstack/react-query@4.36.1)(react@18.2.0)
       '@trpc/client': 10.44.1(@trpc/server@10.44.1)
       '@trpc/react-query': 10.44.1(@tanstack/react-query@4.36.1)(@trpc/client@10.44.1)(@trpc/server@10.44.1)(react-dom@18.2.0)(react@18.2.0)
       '@trpc/server': 10.44.1
@@ -1199,10 +1199,10 @@ packages:
     resolution: {integrity: sha512-effSYz9AWcZ6sNd+c8LCBYFIuDZApoCTXEpRlEYChBZpMz9QUUVMLToThwCyUY49+T5pANL3XxgZf3HV7hwJlg==}
     dev: false
 
-  /@tanstack/react-query-devtools@5.14.0(@tanstack/react-query@4.36.1)(react@18.2.0):
-    resolution: {integrity: sha512-A/I/jYeyyNduI3+Kb84emkvqw5YOt7+MpO1ZpfYFyfHzCd5dQ7nWuCZzI67gS/JARwqRfGkuuuJkTfuKnipEzA==}
+  /@tanstack/react-query-devtools@5.14.2(@tanstack/react-query@4.36.1)(react@18.2.0):
+    resolution: {integrity: sha512-qSV88emQbUNM61IWCZqUdqjShPNyVcQnEaAJMFM1eaCAcUnDIpRtsGRMNEYYAjuWAXbkCjAo/JdwArF/z5hyMQ==}
     peerDependencies:
-      '@tanstack/react-query': ^5.14.0
+      '@tanstack/react-query': ^5.14.2
       react: ^18.0.0
     dependencies:
       '@tanstack/query-devtools': 5.13.5
