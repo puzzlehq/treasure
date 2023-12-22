@@ -56,24 +56,24 @@ function AcceptGame() {
     onSettled: () => setStep(Step._03_Confirmed),
   });
 
-  const { loading: fundingLoading, event: fundingEvent, setLoading: setFundingLoading, setError: setFundingError } = useEventHandling({
-    id: eventIdFund,
-    stepName: 'Funding Multisig'
-  });
+  // const { loading: fundingLoading, event: fundingEvent, setLoading: setFundingLoading, setError: setFundingError } = useEventHandling({
+  //   id: eventIdFund,
+  //   stepName: 'Funding Multisig'
+  // });
 
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const { balances: msBalances } = useBalance({
-    address: msAddress,
-    multisig: true,
-  });
-  const msPublicBalance =
-    msBalances && msBalances?.length > 0 ? msBalances[0].public : 0;
+  // const { balances: msBalances } = useBalance({
+  //   address: msAddress,
+  //   multisig: true,
+  // });
+  // const msPublicBalance =
+  //   msBalances && msBalances?.length > 0 ? msBalances[0].public : 0;
   
-  const { balances } = useBalance({});
-  const publicBalance =
-    balances && balances?.length > 0 ? balances[0].public : 0;
-  const amountToFundMs = (transitionFees.accept_game + transitionFees.finish_game - msPublicBalance);
+  // const { balances } = useBalance({});
+  // const publicBalance =
+  //   balances && balances?.length > 0 ? balances[0].public : 0;
+  // const amountToFundMs = (transitionFees.accept_game + transitionFees.finish_game - msPublicBalance);
 
   useEffect(() => {
     if (!currentGame) return;
@@ -139,30 +139,30 @@ function AcceptGame() {
     currentGame?.msRecords?.toString()
   ]);
 
-  const createFundEvent = async () => {
-    if (amountToFundMs < 0 || !msAddress) return;
-    setFundingLoading(true);
-    setError(undefined);
-    try {
-      const response = await requestCreateEvent({
-        type: EventType.Send,
-        functionId: 'transfer_public',
-        programId: 'credits.aleo',
-        inputs: [msAddress, (amountToFundMs * 1_000_000).toString() + 'u64'],
-        fee: 0.263,
-      })
-      if (response.error) {
-        setFundingError(response.error);
-        setFundingLoading(false);
-      } else if (response.eventId) {
-        setEventIdFund(response.eventId);
-        setSearchParams({ ...searchParams, eventIdFund: response.eventId });
-      }
-    } catch (e) {
-      setFundingError((e as Error).message);
-      setFundingLoading(false);
-    }
-  }
+  // const createFundEvent = async () => {
+  //   if (amountToFundMs < 0 || !msAddress) return;
+  //   setFundingLoading(true);
+  //   setError(undefined);
+  //   try {
+  //     const response = await requestCreateEvent({
+  //       type: EventType.Send,
+  //       functionId: 'transfer_public',
+  //       programId: 'credits.aleo',
+  //       inputs: [msAddress, (amountToFundMs * 1_000_000).toString() + 'u64'],
+  //       fee: 0.263,
+  //     })
+  //     if (response.error) {
+  //       setFundingError(response.error);
+  //       setFundingLoading(false);
+  //     } else if (response.eventId) {
+  //       setEventIdFund(response.eventId);
+  //       setSearchParams({ ...searchParams, eventIdFund: response.eventId });
+  //     }
+  //   } catch (e) {
+  //     setFundingError((e as Error).message);
+  //     setFundingLoading(false);
+  //   }
+  // }
 
   const createAcceptEvent = async () => {
     if (
@@ -220,7 +220,7 @@ function AcceptGame() {
 
   const answer = inputs?.opponent_answer_readable;
 
-  const disabledFund = amountToFundMs < 0 || (publicBalance < amountToFundMs)
+  // const disabledFund = amountToFundMs < 0 || (publicBalance < amountToFundMs)
 
   const disabledAccept =
     !inputs?.game_record ||
@@ -229,19 +229,19 @@ function AcceptGame() {
     !inputs.piece_claim_challenger ||
     !inputs.piece_stake_opponent ||
     !inputs.piece_claim_opponent ||
-    !answer ||
-    msPublicBalance < transitionFees.accept_game + transitionFees.finish_game;
+    !answer;
+    // msPublicBalance < transitionFees.accept_game + transitionFees.finish_game;
 
-  const [buttonFundText, setButtonFundText] = useState('FUND MULTISIG');
-  useEffect(() => {
-    if (!fundingLoading) {
-      setButtonFundText('FUND MULTISIG');
-    } else if (fundingEvent?.status === EventStatus.Creating) {
-      setButtonFundText('CREATING...');
-    } else if (fundingEvent?.status === EventStatus.Pending) {
-      setButtonFundText('PENDING...');
-    }
-  }, [fundingLoading, fundingEvent?.status]);
+  // const [buttonFundText, setButtonFundText] = useState('FUND MULTISIG');
+  // useEffect(() => {
+  //   if (!fundingLoading) {
+  //     setButtonFundText('FUND MULTISIG');
+  //   } else if (fundingEvent?.status === EventStatus.Creating) {
+  //     setButtonFundText('CREATING...');
+  //   } else if (fundingEvent?.status === EventStatus.Pending) {
+  //     setButtonFundText('PENDING...');
+  //   }
+  // }, [fundingLoading, fundingEvent?.status]);
   
   const [buttonAcceptText, setButtonAcceptText] = useState('ACCEPT');
   useEffect(() => {
@@ -277,7 +277,7 @@ function AcceptGame() {
         />
         <div className='flex flex-grow flex-col' />
         {error && <p>Error: {error}</p>}
-        <div className='flex flex-col items-center text-center w-full'>
+        {/* <div className='flex flex-col items-center text-center w-full'>
           <p>
             • Game multisig public balance: {msPublicBalance} public credits
           </p>
@@ -306,7 +306,7 @@ function AcceptGame() {
               </div>
             )
           }
-        </div>
+        </div> */}
         <Button
           fullWidth
           onClick={createAcceptEvent}
