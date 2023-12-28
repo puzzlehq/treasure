@@ -6,7 +6,7 @@ import { useGameStore } from '@state/gameStore';
 import { useMemo, useState } from 'react';
 import { Step, useNewGameVsPersonStore } from './store';
 
-function StartWager() {
+function SetWager() {
   const [error, setError] = useState<string | undefined>();
   const [inputs, setInputs, setStep] = useNewGameVsPersonStore((state) => [
     state.inputs,
@@ -92,4 +92,4 @@ function StartWager() {
   );
 }
 
-export default StartWager;
+export default SetWager;
