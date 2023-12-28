@@ -90,7 +90,7 @@ const Reveal = () => {
   const wagerAmount =
     (currentGame?.gameNotification.recordData.total_pot ?? 0) / 2;
   const answer =
-    inputs?.challenger_answer_record?.data.answer === '0field.private'
+    inputs?.challenger_answer_record?.data.answer === '0field'
       ? Answer.left
       : Answer.right;
 
