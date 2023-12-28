@@ -13,7 +13,7 @@ import { useAccount } from '@puzzlehq/sdk';
 
 const NewGameVsPerson = () => {
   const navigate = useNavigate();
-  const [step,eventId,inputs, setInputs, setEventId, setStep] = useNewGameVsPersonStore((state) => [
+  const [step, eventId, inputs, setInputs, setEventId, setStep] = useNewGameVsPersonStore((state) => [
     state.step,
     state.eventId,
     state.inputs,

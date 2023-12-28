@@ -12,7 +12,7 @@ import {
   transitionFees,
 } from '@state/manager.js';
 import { Step, useRevealAnswerStore } from './store.js';
-import { EventStatus, EventType, requestCreateEvent, useBalance } from '@puzzlehq/sdk';
+import { EventStatus, EventType, requestCreateEvent } from '@puzzlehq/sdk';
 import { useEventHandling } from '@hooks/eventHandling.js';
 import { useSearchParams } from 'react-router-dom';
 
@@ -36,9 +36,6 @@ const Reveal = () => {
   });
 
   const [searchParams, setSearchParams] = useSearchParams();
-
-  const { balances } = useBalance({});
-  const balance = balances?.[0].public ?? 0;
 
   useEffect(() => {
     if (
@@ -131,11 +128,6 @@ const Reveal = () => {
       setButtonText('PENDING...');
     }
   }, [loading, event?.status]);
-
-  console.log('reveal_answer_notification_record', inputs?.reveal_answer_notification_record)
-  console.log('challenger_answer_record', inputs?.challenger_answer_record)
-  console.log('joint_piece_stake', inputs?.joint_piece_stake)
-  console.log('challenger_claim_signature', inputs?.challenger_claim_signature)
 
   const disabled =
     !inputs?.reveal_answer_notification_record ||

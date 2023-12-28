@@ -27,19 +27,15 @@ function AcceptGame() {
   const [
     inputs,
     eventIdAccept,
-    eventIdFund,
     setInputs,
     setEventIdAccept,
-    setEventIdFund,
     initializeAcceptGame,
     setStep,
   ] = useAcceptGameStore((state) => [
     state.inputsAcceptGame,
     state.eventIdAccept,
-    state.eventIdFund,
     state.setAcceptGameInputs,
     state.setEventIdAccept,
-    state.setEventIdFund,
     state.initializeAcceptGame,
     state.setStep,
   ]);

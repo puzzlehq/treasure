@@ -11,7 +11,6 @@ import {
   importSharedState,
   requestCreateEvent,
   requestSignature,
-  useBalance,
 } from '@puzzlehq/sdk';
 import {
   GAME_FUNCTIONS,
@@ -58,10 +57,6 @@ const SubmitWager = () => {
     stepName: 'Submit Wager',
     onSettled: () => setStep(Step._02_AcceptGame),
   });
-
-  const { balances } = useBalance({});
-  console.log(balances);
-  const balance = balances?.[0].public ?? 0;
 
   const createEvent = async () => {
     if (
