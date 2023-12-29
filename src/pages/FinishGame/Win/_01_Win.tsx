@@ -22,6 +22,8 @@ import {
 import { useMsRecords } from '@hooks/msRecords';
 import { useEventHandling } from '@hooks/eventHandling';
 import LoadingEllipses from '@components/LoadingEllipses';
+import { toast } from 'react-hot-toast';
+import { mediaQuery } from '../../../main';
 
 const Win = () => {
   const [inputs, eventId, setEventId, initialize, setStep] =
@@ -95,7 +97,7 @@ const Win = () => {
     if (!loading) {
       setButtonText('CLAIM WINNINGS');
     } else if (event?.status === EventStatus.Creating) {
-      setButtonText('CREATING');
+      setButtonText('PROVING');
     } else if (event?.status === EventStatus.Pending) {
       setButtonText('PENDING');
     }
@@ -124,7 +126,7 @@ const Win = () => {
       return;
     setLoading(true);
     setError(undefined);
-    const response = await requestCreateEvent({
+    const createEventPromise = requestCreateEvent({
       type: EventType.Execute,
       programId: GAME_PROGRAM_ID,
       functionId: GAME_FUNCTIONS.finish_game,
@@ -132,6 +134,15 @@ const Win = () => {
       inputs: Object.values(inputs),
       address: msAddress,
     });
+
+    const createEventMessage = mediaQuery.matches ? 'Open Puzzle Wallet to reveal' : 'Accept the request';
+    toast.promise(createEventPromise, {
+      loading: createEventMessage,
+      success: 'Event created!',
+      error: (e) => e
+    })
+    const response = await createEventPromise;
+    
     if (response.error) {
       setError(response.error);
       setLoading(false);

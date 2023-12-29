@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import './index.css';
 import { PuzzleWalletProvider } from '@puzzlehq/sdk';
+import { Toaster } from 'react-hot-toast';
+
+export const mediaQuery = window.matchMedia("(max-width: 600px)");
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <div className='h-screen w-screen'>
@@ -13,6 +16,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       dAppIconURL='https://i.imgur.com/TXRCKod.png'
     >
       <App />
+      <Toaster
+        position='bottom-center'
+      />
     </PuzzleWalletProvider>
   </div>
 );

@@ -16,6 +16,8 @@ import { EventStatus, EventType, requestCreateEvent } from '@puzzlehq/sdk';
 import { useEventHandling } from '@hooks/eventHandling.js';
 import { useSearchParams } from 'react-router-dom';
 import LoadingEllipses from '@components/LoadingEllipses.js';
+import { mediaQuery } from '../../main.js';
+import { toast } from 'react-hot-toast';
 
 const Reveal = () => {
   const [inputs, eventId, initialize, setEventId, setStep] =
@@ -102,13 +104,22 @@ const Reveal = () => {
       return;
     setLoading(true);
     setError(undefined);
-    const response = await requestCreateEvent({
+    const createEventPromise = requestCreateEvent({
       type: EventType.Execute,
       programId: GAME_PROGRAM_ID,
       functionId: GAME_FUNCTIONS.reveal_answer,
       fee: transitionFees.reveal_answer,
       inputs: Object.values(inputs),
     });
+
+    const createEventMessage = mediaQuery.matches ? 'Open Puzzle Wallet to reveal' : 'Accept the request';
+    toast.promise(createEventPromise, {
+      loading: createEventMessage,
+      success: 'Event created!',
+      error: (e) => e
+    })
+    const response = await createEventPromise;
+
     if (response.error) {
       setError(response.error);
       setLoading(false);
@@ -124,7 +135,7 @@ const Reveal = () => {
     if (!loading) {
       setButtonText('REVEAL');
     } else if (event?.status === EventStatus.Creating) {
-      setButtonText('CREATING');
+      setButtonText('PROVING');
     } else if (event?.status === EventStatus.Pending) {
       setButtonText('PENDING');
     }

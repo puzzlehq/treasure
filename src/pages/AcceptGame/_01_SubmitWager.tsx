@@ -23,11 +23,14 @@ import { useGameStore } from '@state/gameStore';
 import jsyaml from 'js-yaml';
 import { useEventHandling } from '@hooks/eventHandling';
 import LoadingEllipses from '@components/LoadingEllipses';
+import { mediaQuery } from '../../main';
+import { toast } from 'react-hot-toast';
 
 const messageToSign = '1234567field';
 
 enum ConfirmStep {
   Signing,
+  Multisig,
   RequestingEvent,
 }
 
@@ -68,8 +71,17 @@ const SubmitWager = () => {
       return;
     setLoading(true);
     setError(undefined);
-    const signature = await requestSignature({ message: messageToSign });
     setConfirmStep(ConfirmStep.Signing);
+    const signaturePromise = requestSignature({ message: messageToSign });
+    const signatureToastMessage = mediaQuery.matches ? 'Open Puzzle Wallet to sign' : 'Sign the message';
+    toast.promise(signaturePromise, {
+      loading: signatureToastMessage,
+      success: 'Message signed!',
+      error: (e) => e
+    })
+
+    const signature = await signaturePromise;
+    
     if (!signature.messageFields || !signature.signature) {
       setError('Signature or signature message fields not found');
       setLoading(false);
@@ -91,11 +103,12 @@ const SubmitWager = () => {
     };
     const game_multisig_seed = inputs.key_record.data.seed ?? '';
     console.log('game_multisig seed', game_multisig_seed);
+    setConfirmStep(ConfirmStep.Multisig);
     const { data } = await importSharedState(game_multisig_seed);
     console.log(`Shared state imported: ${data?.address}`);
 
     setSubmitWagerInputs(newInputs);
-    const response = await requestCreateEvent({
+    const createEventPromise = requestCreateEvent({
       type: EventType.Execute,
       programId: GAME_PROGRAM_ID,
       functionId: GAME_FUNCTIONS.submit_wager,
@@ -103,6 +116,13 @@ const SubmitWager = () => {
       inputs: Object.values(newInputs),
       address: inputs.game_req_notification.owner, // opponent address
     });
+    const createEventMessage = mediaQuery.matches ? 'Open Puzzle Wallet to accept' : 'Accept the request';
+    toast.promise(createEventPromise, {
+      loading: createEventMessage,
+      success: 'Event created!',
+      error: (e) => e
+    })
+    const response = await createEventPromise;
     if (response.error) {
       setError(response.error);
       setLoading(false);
@@ -126,11 +146,13 @@ const SubmitWager = () => {
     if (!loading) {
       setButtonText('SUBMIT');
     } else if (event?.status === EventStatus.Creating) {
-      setButtonText('CREATING');
+      setButtonText('PROVING');
     } else if (event?.status === EventStatus.Pending) {
       setButtonText('PENDING');
     } else if (confirmStep === ConfirmStep.Signing) {
       setButtonText('SIGNING');
+    } else if (confirmStep === ConfirmStep.Multisig) {
+      setButtonText('IMPORTING MS');
     } else if (confirmStep === ConfirmStep.RequestingEvent) {
       setButtonText('REQUESTING');
     }

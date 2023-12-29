@@ -28,11 +28,14 @@ import { Step, useNewGameVsPersonStore } from './store.js';
 import { useSearchParams } from 'react-router-dom';
 import Nav from '@components/Nav.js';
 import LoadingEllipses from '@components/LoadingEllipses.js';
+import { mediaQuery } from '../../../main.js';
+import { toast } from 'react-hot-toast';
 
 const messageToSign = '1234567field';
 
 enum ConfirmStep {
   Signing,
+  Multisig,
   RequestingEvent,
 }
 
@@ -73,13 +76,22 @@ function ConfirmStartGame() {
     setLoading(true);
     setConfirmStep(ConfirmStep.Signing);
     setError(undefined);
-    const signature = await requestSignature({ message: messageToSign });
+    const signaturePromise = requestSignature({ message: messageToSign });
+    const signatureToastMessage = mediaQuery.matches ? 'Open Puzzle Wallet to sign' : 'Sign the message';
+    toast.promise(signaturePromise, {
+      loading: signatureToastMessage,
+      success: 'Message signed!',
+      error: (e) => e
+    })
+
+    const signature = await signaturePromise;
 
     if (signature.error || (!signature.messageFields || !signature.signature)) {
       setError(signature.error);
       setLoading(false);
       return;
     }
+    setConfirmStep(ConfirmStep.Multisig);
     const sharedStateResponse = await createSharedState();
     if (sharedStateResponse.error) {
       setError(sharedStateResponse.error);
@@ -124,13 +136,20 @@ function ConfirmStartGame() {
               : '1field',
           game_multisig_seed,
         };
-        const response = await requestCreateEvent({
+        const createEventPromise = requestCreateEvent({
           type: EventType.Execute,
           programId: GAME_PROGRAM_ID,
           functionId: GAME_FUNCTIONS.propose_game,
           fee: transitionFees.propose_game,
           inputs: Object.values(proposalInputs),
         });
+        const createEventMessage = mediaQuery.matches ? 'Open Puzzle Wallet to create game' : 'Accept the request';
+        toast.promise(createEventPromise, {
+          loading: createEventMessage,
+          success: 'Event created!',
+          error: (e) => e
+        })
+        const response = await createEventPromise;
         if (response.error) {
           setError(response.error);
         } else if (!response.eventId) {
@@ -158,11 +177,13 @@ function ConfirmStartGame() {
     if (!loading) {
       setButtonText('PROPOSE GAME');
     } else if (event?.status === EventStatus.Creating) {
-      setButtonText('CREATING');
+      setButtonText('PROVING');
     } else if (event?.status === EventStatus.Pending) {
       setButtonText('PENDING');
     } else if (confirmStep === ConfirmStep.Signing) {
       setButtonText('SIGNING');
+    } else if (confirmStep === ConfirmStep.Multisig) {
+      setButtonText('CREATING MULTISIG');
     } else if (confirmStep === ConfirmStep.RequestingEvent) {
       setButtonText('REQUESTING');
     }

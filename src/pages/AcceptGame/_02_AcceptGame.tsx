@@ -23,6 +23,8 @@ import { useGameStore } from '@state/gameStore.js';
 import { useEventHandling } from '@hooks/eventHandling.js';
 import { useSearchParams } from 'react-router-dom';
 import LoadingEllipses from '@components/LoadingEllipses.js';
+import { mediaQuery } from '../../main.js';
+import { toast } from 'react-hot-toast';
 
 function AcceptGame() {
   const [
@@ -190,7 +192,7 @@ function AcceptGame() {
         piece_claim_opponent: inputs.piece_claim_opponent,
         block_ht: block_ht.toString() + 'u32',
       };
-      const response = await requestCreateEvent({
+      const createEventPromise = requestCreateEvent({
         type: EventType.Execute,
         programId: GAME_PROGRAM_ID,
         functionId: GAME_FUNCTIONS.accept_game,
@@ -198,6 +200,13 @@ function AcceptGame() {
         inputs: Object.values(acceptGameInputs),
         address: inputs.game_record.owner,
       });
+      const createEventMessage = mediaQuery.matches ? 'Open Puzzle Wallet to accept' : 'Accept the request';
+      toast.promise(createEventPromise, {
+        loading: createEventMessage,
+        success: 'Event created!',
+        error: (e) => e
+      })
+      const response = await createEventPromise;
       if (response.error) {
         setError(response.error);
         setLoading(false);
@@ -245,7 +254,7 @@ function AcceptGame() {
     if (!loading) {
       setButtonAcceptText('ACCEPT');
     } else if (event?.status === EventStatus.Creating) {
-      setButtonAcceptText('CREATING');
+      setButtonAcceptText('PROVING');
     } else if (event?.status === EventStatus.Pending) {
       setButtonAcceptText('PENDING');
     }
