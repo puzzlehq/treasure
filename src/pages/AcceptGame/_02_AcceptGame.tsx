@@ -135,7 +135,7 @@ function AcceptGame() {
     );
   }, [
     currentGame?.gameNotification.recordData.game_multisig,
-    currentGame?.msRecords?.toString()
+    msRecords?.toString()
   ]);
 
   // const createFundEvent = async () => {
