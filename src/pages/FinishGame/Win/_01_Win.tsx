@@ -21,6 +21,7 @@ import {
 } from '@puzzlehq/sdk';
 import { useMsRecords } from '@hooks/msRecords';
 import { useEventHandling } from '@hooks/eventHandling';
+import LoadingEllipses from '@components/LoadingEllipses';
 
 const Win = () => {
   const [inputs, eventId, setEventId, initialize, setStep] =
@@ -94,9 +95,9 @@ const Win = () => {
     if (!loading) {
       setButtonText('CLAIM WINNINGS');
     } else if (event?.status === EventStatus.Creating) {
-      setButtonText('CREATING...');
+      setButtonText('CREATING');
     } else if (event?.status === EventStatus.Pending) {
-      setButtonText('PENDING...');
+      setButtonText('PENDING');
     }
   }, [loading, event?.status]);
 
@@ -197,6 +198,7 @@ const Win = () => {
       )}
       <Button variant='primary' disabled={disabled || loading} onClick={claim}>
         {buttonText}
+        {loading && <LoadingEllipses/>}
       </Button>
     </div>
   );

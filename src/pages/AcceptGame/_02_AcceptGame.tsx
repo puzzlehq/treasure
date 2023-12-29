@@ -22,6 +22,7 @@ import { Step, useAcceptGameStore } from './store.js';
 import { useGameStore } from '@state/gameStore.js';
 import { useEventHandling } from '@hooks/eventHandling.js';
 import { useSearchParams } from 'react-router-dom';
+import LoadingEllipses from '@components/LoadingEllipses.js';
 
 function AcceptGame() {
   const [
@@ -244,9 +245,9 @@ function AcceptGame() {
     if (!loading) {
       setButtonAcceptText('ACCEPT');
     } else if (event?.status === EventStatus.Creating) {
-      setButtonAcceptText('CREATING...');
+      setButtonAcceptText('CREATING');
     } else if (event?.status === EventStatus.Pending) {
-      setButtonAcceptText('PENDING...');
+      setButtonAcceptText('PENDING');
     }
   }, [loading, event?.status]);
 
@@ -310,6 +311,7 @@ function AcceptGame() {
           color='green'
         >
           {buttonAcceptText}
+          {loading && <LoadingEllipses/>}
         </Button>
       </div>
     </div>

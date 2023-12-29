@@ -15,6 +15,7 @@ import { Step, useRevealAnswerStore } from './store.js';
 import { EventStatus, EventType, requestCreateEvent } from '@puzzlehq/sdk';
 import { useEventHandling } from '@hooks/eventHandling.js';
 import { useSearchParams } from 'react-router-dom';
+import LoadingEllipses from '@components/LoadingEllipses.js';
 
 const Reveal = () => {
   const [inputs, eventId, initialize, setEventId, setStep] =
@@ -123,9 +124,9 @@ const Reveal = () => {
     if (!loading) {
       setButtonText('REVEAL');
     } else if (event?.status === EventStatus.Creating) {
-      setButtonText('CREATING...');
+      setButtonText('CREATING');
     } else if (event?.status === EventStatus.Pending) {
-      setButtonText('PENDING...');
+      setButtonText('PENDING');
     }
   }, [loading, event?.status]);
 
@@ -158,6 +159,7 @@ const Reveal = () => {
         variant='primary'
       >
         {buttonText}
+        {loading && <LoadingEllipses/>}
       </Button>
     </div>
   );

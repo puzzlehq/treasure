@@ -22,6 +22,7 @@ import { Step, useAcceptGameStore } from './store';
 import { useGameStore } from '@state/gameStore';
 import jsyaml from 'js-yaml';
 import { useEventHandling } from '@hooks/eventHandling';
+import LoadingEllipses from '@components/LoadingEllipses';
 
 const messageToSign = '1234567field';
 
@@ -125,13 +126,13 @@ const SubmitWager = () => {
     if (!loading) {
       setButtonText('SUBMIT');
     } else if (event?.status === EventStatus.Creating) {
-      setButtonText('CREATING...');
+      setButtonText('CREATING');
     } else if (event?.status === EventStatus.Pending) {
-      setButtonText('PENDING...');
+      setButtonText('PENDING');
     } else if (confirmStep === ConfirmStep.Signing) {
-      setButtonText('SIGNING...');
+      setButtonText('SIGNING');
     } else if (confirmStep === ConfirmStep.RequestingEvent) {
-      setButtonText('REQUESTING...');
+      setButtonText('REQUESTING');
     }
   }, [loading, event?.status, confirmStep]);
 
@@ -163,6 +164,7 @@ const SubmitWager = () => {
           onClick={createEvent}
         >
           {buttonText}
+          {loading && <LoadingEllipses/>}
         </Button>
 
       </div>

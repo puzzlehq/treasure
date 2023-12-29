@@ -27,6 +27,7 @@ import jsyaml from 'js-yaml';
 import { Step, useNewGameVsPersonStore } from './store.js';
 import { useSearchParams } from 'react-router-dom';
 import Nav from '@components/Nav.js';
+import LoadingEllipses from '@components/LoadingEllipses.js';
 
 const messageToSign = '1234567field';
 
@@ -157,13 +158,13 @@ function ConfirmStartGame() {
     if (!loading) {
       setButtonText('PROPOSE GAME');
     } else if (event?.status === EventStatus.Creating) {
-      setButtonText('CREATING...');
+      setButtonText('CREATING');
     } else if (event?.status === EventStatus.Pending) {
-      setButtonText('PENDING...');
+      setButtonText('PENDING');
     } else if (confirmStep === ConfirmStep.Signing) {
-      setButtonText('SIGNING...');
+      setButtonText('SIGNING');
     } else if (confirmStep === ConfirmStep.RequestingEvent) {
-      setButtonText('REQUESTING...');
+      setButtonText('REQUESTING');
     }
   }, [loading, event?.status, confirmStep]);
 
@@ -199,6 +200,7 @@ function ConfirmStartGame() {
           disabled={disabled || loading}
         >
           {buttonText}
+          {loading && <LoadingEllipses/>}
         </Button>
       </div>
     </div>
