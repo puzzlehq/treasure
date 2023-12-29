@@ -29,6 +29,9 @@ export const useInitCurrentGame = () => {
     }
   }, [game_multisig, currentGame, [...yourTurn, ...theirTurn].toString()]);
 
-  console.log('current game', currentGame)
+  useEffect(() => {
+    console.log('current game', currentGame)
+  }, [currentGame]);
+
   return { currentGame };
 };

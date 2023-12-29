@@ -42,6 +42,7 @@ export const useEventHandling = ({
   }, [event?.status])
 
   useEffect(() => {
+    console.log('useEffect 1')
     if (!id) return;
     if (eventStatus === EventStatus.Settled) {
       onSettled && onSettled();
@@ -51,7 +52,7 @@ export const useEventHandling = ({
       setLoading(false);
       setError(event?.error);
     }
-  }, [eventStatus]);
+  }, [eventStatus, id]);
 
   return { loading, error, event, setLoading, setError };
 };

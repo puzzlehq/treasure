@@ -1,4 +1,5 @@
 import { useRecords } from '@puzzlehq/sdk';
+import { useEffect } from 'react';
 
 export const useGameRecords = () => {
   const { records } = useRecords({
@@ -11,7 +12,9 @@ export const useGameRecords = () => {
     multisig: false,
   });
 
-  console.log('records', records);
+  useEffect(() => {
+    console.log('records', records);
+  }, [records?.toString()]);
 
   return records;
 };

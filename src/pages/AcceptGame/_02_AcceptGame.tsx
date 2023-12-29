@@ -7,8 +7,6 @@ import {
   requestCreateEvent,
   EventType,
   EventStatus,
-  useBalance,
-  shortenAddress,
 } from '@puzzlehq/sdk';
 import {
   AcceptGameInputs,

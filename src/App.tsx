@@ -19,6 +19,7 @@ import MapImage from '@components/MapImage.js';
 import GameIntroduction from '@pages/GameIntroduction/index.js';
 import NewGame from '@pages/NewGame/index.js';
 import AleoIntroduction from '@pages/AleoIntroduction/index.js';
+import { useEffect } from 'react';
 
 const Rerouter = () => {
   const navigate = useNavigate();
@@ -33,8 +34,10 @@ const Rerouter = () => {
 function App() {
   const { account } = useAccount();
 
-  console.log('account', account);
-
+  useEffect(() => {
+    console.log('account', account);
+  }, [account]);
+  
   useInitGame();
 
   return (

@@ -1,4 +1,5 @@
 import { useRecords } from '@puzzlehq/sdk';
+import { useEffect } from 'react';
 
 export const useMsRecords = (address?: string) => {
   const { records } = useRecords({
@@ -12,7 +13,9 @@ export const useMsRecords = (address?: string) => {
     multisig: true,
   });
 
-  console.log('msRecords', records);
+  useEffect(() => {
+    console.log('msRecords', records);
+  }, [records?.toString()]);
 
   return records;
 };
