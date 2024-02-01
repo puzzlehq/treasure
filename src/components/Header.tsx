@@ -28,7 +28,11 @@ export const AppHeader = () => {
             variant='secondary'
             className='w-fit'
             onClick={async () => {
-              await disconnect();
+              try {
+                await disconnect();
+              } catch (e){
+                console.error(e)
+              }
               useGameStore.getState().clearFlowStores();
               localforage.clear();
               navigate('/');
