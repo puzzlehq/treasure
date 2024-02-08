@@ -163,7 +163,7 @@ const Reveal = () => {
         </div>
       )}
       <div className='flex flex-grow flex-col' />
-      {error && <p>{error}</p>}
+      {error && <p className='break-words'>Error {error}</p>}
       <Button
         onClick={createEvent}
         disabled={disabled || loading}

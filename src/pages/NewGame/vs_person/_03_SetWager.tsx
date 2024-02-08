@@ -66,7 +66,7 @@ function SetWager() {
         className={`flex w-full flex-col rounded-lg border-[3px] border-primary-gray bg-transparent px-5 py-7 max-md:mt-10 ${inputTextColor} ${inputOpacity} self-center text-center text-3xl font-bold focus:outline-none focus:border-primary`}
         placeholder='Enter amount'
       />
-      {error && <p className='mx-auto text-primary-red'>{error}</p>}
+      {error && <p className='mx-auto text-primary-red break-words'>{error}</p>}
       <div className='flex flex-grow flex-col' />
       <div className='flex gap-4 w-full'>
         <Button

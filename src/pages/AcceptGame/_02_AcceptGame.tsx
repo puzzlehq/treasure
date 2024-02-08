@@ -280,7 +280,7 @@ function AcceptGame() {
           disabled={loading}
         />
         <div className='flex flex-grow flex-col' />
-        {error && <p>Error: {error}</p>}
+        {error && <p className='break-words'>Error: {error}</p>}
         {/* <div className='flex flex-col items-center text-center w-full'>
           <p>
             • Game multisig public balance: {msPublicBalance} public credits

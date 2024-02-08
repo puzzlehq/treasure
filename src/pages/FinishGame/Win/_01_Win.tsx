@@ -189,7 +189,7 @@ const Win = () => {
         </div>
       </div>
       <div className='flex flex-grow flex-col' />
-      {error && <p>{error}</p>}
+      {error && <p className='break-words'>Error {error}</p>}
       <Button variant='primary' disabled={disabled || loading} onClick={claim}>
         {buttonText}
         {loading && <LoadingEllipses/>}

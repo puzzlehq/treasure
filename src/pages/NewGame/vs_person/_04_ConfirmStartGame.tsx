@@ -200,7 +200,7 @@ function ConfirmStartGame() {
         </div>
       )}
       <div className='flex flex-grow flex-col' />
-      {error && <p>Error: {error}</p>}
+      {error && <p className='break-words'>Error: {error}</p>}
       <div className='flex gap-4'>
         <Button
           className='w-1/2'
