@@ -21,7 +21,7 @@ import { useGameStore } from '@state/gameStore.js';
 import { useEventHandling } from '@hooks/eventHandling.js';
 import { useSearchParams } from 'react-router-dom';
 import LoadingEllipses from '@components/LoadingEllipses.js';
-import { mediaQuery } from '../../main.js';
+import { ALEO_NETWORK_URL, mediaQuery } from '../../main.js';
 import { toast } from 'react-hot-toast';
 
 function AcceptGame() {
@@ -175,7 +175,7 @@ function AcceptGame() {
     setError(undefined);
     try {
       const response_block_ht = await fetch(
-        'https://jigsaw.puzzle.online/api/aleoapi/latest/height'
+        `${ALEO_NETWORK_URL}/testnet3/latest/height`
       );
       const block_ht = Number(await response_block_ht.json());
       const acceptGameInputs: Omit<
