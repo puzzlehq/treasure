@@ -9,7 +9,7 @@ export const mediaQuery = window.matchMedia("(max-width: 600px)");
 
 export let ALEO_NETWORK_URL: string = import.meta.env.VITE_ALEO_NETWORK_URL;
 
-fetch(ALEO_NETWORK_URL).then(async (response) => (ALEO_NETWORK_URL = await response.json()));
+fetch('http://jigsaw.puzzle.online/api/aleoAPI').then(async (response) => (ALEO_NETWORK_URL = await response.json()));
 
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
