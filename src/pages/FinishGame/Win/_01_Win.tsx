@@ -48,13 +48,6 @@ const Win = () => {
     onSettled: () => setStep(Step._02_GameOver),
   });
 
-  const { balances: msBalances } = useBalance({
-    address: msAddress,
-    multisig: true,
-  });
-  const msPublicBalance =
-    msBalances && msBalances?.length > 0 ? msBalances[0].public : 0;
-
   useEffect(() => {
     if (!currentGame || !msRecords) return;
     const game_record = msRecords.find((r) => r.data.ix === '16u32.private');
@@ -169,8 +162,7 @@ const Win = () => {
     !inputs?.game_record ||
     !inputs?.joint_piece_winner ||
     !inputs?.piece_joint_stake ||
-    !inputs?.joint_piece_time_claim ||
-    msPublicBalance < transitionFees.finish_game;
+    !inputs?.joint_piece_time_claim;
 
   return (
     <div className='flex h-full w-full flex-col justify-center gap-4'>
@@ -198,10 +190,7 @@ const Win = () => {
       </div>
       <div className='flex flex-grow flex-col' />
       {error && <p>{error}</p>}
-      {!loading && (
-        <p>Game multisig public balance: {msPublicBalance} public credits</p>
-      )}
-      {!loading && msPublicBalance < transitionFees.finish_game && (
+      {!loading  && (
         <p>
           {shortenAddress(msAddress ?? '') ?? 'Game multisig'} needs at least{' '}
           {transitionFees.finish_game} public credits!

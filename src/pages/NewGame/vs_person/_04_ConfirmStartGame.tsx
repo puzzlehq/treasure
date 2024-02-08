@@ -19,7 +19,6 @@ import {
   useAccount,
   EventType,
   EventStatus,
-  useBalance,
 } from '@puzzlehq/sdk';
 import { useEffect, useState } from 'react';
 import jsyaml from 'js-yaml';
@@ -56,8 +55,6 @@ function ConfirmStartGame() {
   const amount = inputs?.challenger_wager_amount ?? 0;
 
   const { account } = useAccount();
-  const { balances } = useBalance({});
-  const balance = balances?.[0]?.public ?? 0;
 
   const { loading, error, event, setLoading, setError } = useEventHandling({
     id: eventId,
@@ -168,7 +165,6 @@ function ConfirmStartGame() {
     inputs?.wager_record,
     inputs?.challenger_wager_amount,
     inputs?.challenger_answer,
-    balance === 0
   ].includes(undefined);
 
   const [buttonText, setButtonText] = useState('PROPOSE GAME');
