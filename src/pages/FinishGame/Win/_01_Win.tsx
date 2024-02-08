@@ -190,12 +190,6 @@ const Win = () => {
       </div>
       <div className='flex flex-grow flex-col' />
       {error && <p>{error}</p>}
-      {!loading  && (
-        <p>
-          {shortenAddress(msAddress ?? '') ?? 'Game multisig'} needs at least{' '}
-          {transitionFees.finish_game} public credits!
-        </p>
-      )}
       <Button variant='primary' disabled={disabled || loading} onClick={claim}>
         {buttonText}
         {loading && <LoadingEllipses/>}
