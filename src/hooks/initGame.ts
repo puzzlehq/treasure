@@ -1,4 +1,4 @@
-import { useAccount } from '@puzzlehq/sdk';
+import { useAccount } from '@puzzlehq/sdk-react';
 import { useEffect } from 'react';
 import { useGameStore } from '@state/gameStore';
 import { useGameRecords } from './records';

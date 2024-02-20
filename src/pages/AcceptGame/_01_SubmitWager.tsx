@@ -11,7 +11,7 @@ import {
   importSharedState,
   requestCreateEvent,
   requestSignature,
-} from '@puzzlehq/sdk';
+} from '@puzzlehq/sdk-react';
 import {
   GAME_FUNCTIONS,
   GAME_PROGRAM_ID,

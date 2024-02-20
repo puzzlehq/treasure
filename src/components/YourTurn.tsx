@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import Button from './Button.js';
 import { Game, useGameStore } from '@state/gameStore.js';
-import { shortenAddress } from '@puzzlehq/sdk';
+import { shortenAddress } from '@puzzlehq/sdk-react';
 import {
   AcceptGameButton,
   SubmitWagerButton,

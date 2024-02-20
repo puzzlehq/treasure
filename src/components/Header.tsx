@@ -1,4 +1,4 @@
-import { useDisconnect, shortenAddress, useAccount } from '@puzzlehq/sdk';
+import { useDisconnect, shortenAddress, useAccount } from '@puzzlehq/sdk-react';
 import Button from './Button';
 import { useGameStore } from '@state/gameStore';
 import { useNavigate } from 'react-router-dom';

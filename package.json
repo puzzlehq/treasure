@@ -11,8 +11,10 @@
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx}\""
   },
   "dependencies": {
-    "@puzzlehq/sdk": "^0.2.4",
+    "@puzzlehq/sdk-react": "0.2.18",
     "@radix-ui/react-progress": "^1.0.3",
+    "@walletconnect/modal-sign-html": "^2.6.2",
+    "@walletconnect/utils": "^2.11.1",
     "class-variance-authority": "^0.7.0",
     "html5-qrcode": "^2.3.8",
     "immer": "^10.0.3",
@@ -47,7 +49,6 @@
     "prettier": "^3.0.3",
     "prettier-plugin-tailwindcss": "^0.5.6",
     "rollup-plugin-polyfill-node": "^0.11.0",
-    "sdk": "link:@types/puzzlehq/sdk",
     "tailwindcss": "^3.3.3",
     "typescript": "^5.0.2",
     "vite": "^4.4.5",

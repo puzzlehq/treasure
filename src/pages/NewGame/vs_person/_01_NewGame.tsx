@@ -2,7 +2,7 @@
 import Nav from '@components/Nav';
 import PageHeader from '@components/PageHeader';
 import Button from '@components/Button';
-import { useAccount } from '@puzzlehq/sdk';
+import { useAccount } from '@puzzlehq/sdk-react';
 import { aleoAddressRegex } from '../../../utils.js';
 import { Step, useNewGameVsPersonStore } from '../vs_person/store.js';
 import { useNavigate } from 'react-router-dom';

@@ -1,4 +1,4 @@
-import { RecordWithPlaintext, zodAddress } from '@puzzlehq/sdk';
+import { RecordWithPlaintext, zodAddress } from '@puzzlehq/sdk-react';
 import { z } from 'zod';
 
 export enum Answer {

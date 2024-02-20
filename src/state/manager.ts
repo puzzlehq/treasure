@@ -1,4 +1,4 @@
-import { RecordWithPlaintext } from '@puzzlehq/sdk';
+import { RecordWithPlaintext } from '@puzzlehq/sdk-react';
 import { Answer } from './RecordTypes/treasure_hunt_vxxx';
 
 export const GAME_PROGRAM_ID = 'treasure_hunt_v010.aleo';

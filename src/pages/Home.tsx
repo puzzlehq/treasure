@@ -5,7 +5,7 @@ import TheirTurn from '@components/TheirTurn';
 import YourTurn from '@components/YourTurn';
 import { useGameStore } from '@state/gameStore';
 import { useNewGameVsPersonStore } from './NewGame/vs_person/store';
-import { useAccount } from '@puzzlehq/sdk';
+import { useAccount } from '@puzzlehq/sdk-react';
 import { useGameIntroStore } from './GameIntroduction/store';
 import { useEffect } from 'react';
 import Info from '@components/Info';

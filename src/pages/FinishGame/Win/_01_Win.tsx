@@ -18,7 +18,7 @@ import {
   requestCreateEvent,
   shortenAddress,
   useBalance,
-} from '@puzzlehq/sdk';
+} from '@puzzlehq/sdk-react';
 import { useMsRecords } from '@hooks/msRecords';
 import { useEventHandling } from '@hooks/eventHandling';
 import LoadingEllipses from '@components/LoadingEllipses';

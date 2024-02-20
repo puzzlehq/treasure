@@ -7,7 +7,7 @@ import {
   requestCreateEvent,
   EventType,
   EventStatus,
-} from '@puzzlehq/sdk';
+} from '@puzzlehq/sdk-react';
 import {
   AcceptGameInputs,
   GAME_FUNCTIONS,

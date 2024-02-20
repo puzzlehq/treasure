@@ -5,7 +5,7 @@ import Button from '@components/Button';
 import { useNavigate } from 'react-router-dom';
 import { useGameStore } from '@state/gameStore';
 import { getAnswer } from '@state/RecordTypes/treasure_hunt_vxxx';
-import { shortenAddress } from '@puzzlehq/sdk';
+import { shortenAddress } from '@puzzlehq/sdk-react';
 import { useInitCurrentGame } from '@hooks/currentGame';
 
 const Lose = () => {

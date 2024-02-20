@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { RecordWithPlaintext } from '@puzzlehq/sdk';
+import { RecordWithPlaintext } from '@puzzlehq/sdk-react';
 import {
   GameAction,
   GameNotification,
