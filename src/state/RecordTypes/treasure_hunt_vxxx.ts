@@ -1,32 +1,32 @@
-import { RecordWithPlaintext, zodAddress } from '@puzzlehq/sdk-react';
-import { z } from 'zod';
+import { RecordWithPlaintext, zodAddress } from "@puzzlehq/sdk-react";
+import { z } from "zod";
 
 export enum Answer {
-  left = 'on the left',
-  right = 'on the right',
+  left = "on the left",
+  right = "on the right",
 }
 
-export const getAnswer = (answer: '0field' | '1field') =>
-  answer === '0field' ? Answer.left : Answer.right;
+export const getAnswer = (answer: "0field" | "1field") =>
+  answer === "0field" ? Answer.left : Answer.right;
 
 export const GameRecordSchema = z.object({
   owner: zodAddress,
   challenger_commit: z.string(),
-  opponent_answer: z.enum(['0field', '1field']),
+  opponent_answer: z.enum(["0field", "1field"]),
   total_pot: z.string().transform(Number),
   challenger_address: zodAddress,
   opponent_address: zodAddress,
   game_multisig: zodAddress,
   game_state: z.enum([
-    '0field',
-    '1field',
-    '2field',
-    '3field',
-    '4field',
-    '5field',
-    '6field',
+    "0field",
+    "1field",
+    "2field",
+    "3field",
+    "4field",
+    "5field",
+    "6field",
   ]),
-  ix: z.literal('16u32'),
+  ix: z.literal("16u32"),
   _nonce: z.string(),
 });
 export type GameRecord = {
@@ -37,12 +37,12 @@ export type GameRecord = {
 export const GameReqNotificationSchema = z.object({
   owner: zodAddress,
   game_multisig: zodAddress,
-  game_state: z.literal('1field'),
+  game_state: z.literal("1field"),
   your_turn: z.string().transform(Boolean),
   total_pot: z.string().transform(Number),
   challenger_address: zodAddress,
   opponent_address: zodAddress,
-  ix: z.literal('17u32'),
+  ix: z.literal("17u32"),
   _nonce: z.string(),
 });
 export type GameReqNotification = {
@@ -53,12 +53,12 @@ export type GameReqNotification = {
 export const WaitingAcceptanceNotificationSchema = z.object({
   owner: zodAddress, // challenger
   game_multisig: zodAddress,
-  game_state: z.literal('1field'),
+  game_state: z.literal("1field"),
   your_turn: z.string().transform(Boolean),
   total_pot: z.string().transform(Number),
   challenger_address: zodAddress,
   opponent_address: zodAddress,
-  ix: z.literal('18u32'),
+  ix: z.literal("18u32"),
   _nonce: z.string(),
 });
 export type WaitingAcceptanceNotification = {
@@ -69,13 +69,13 @@ export type WaitingAcceptanceNotification = {
 export const StakeRenegedNotificationSchema = z.object({
   owner: zodAddress, //opponent
   game_multisig: zodAddress,
-  game_state: z.literal('0field'),
+  game_state: z.literal("0field"),
   your_turn: z.string().transform(Boolean),
   total_pot: z.string().transform(Number),
   challenger_address: zodAddress,
   opponent_address: zodAddress,
   renege_address: zodAddress,
-  ix: z.literal('19u32'),
+  ix: z.literal("19u32"),
   _nonce: z.string(),
 });
 export type StakeRenegedNotification = {
@@ -86,12 +86,12 @@ export type StakeRenegedNotification = {
 export const ChallengerWagerNotificationSchema = z.object({
   owner: zodAddress, //opponent
   game_multisig: zodAddress,
-  game_state: z.literal('2field'),
+  game_state: z.literal("2field"),
   your_turn: z.string().transform(Boolean),
   total_pot: z.string().transform(Number),
   challenger_address: zodAddress,
   opponent_address: zodAddress,
-  ix: z.literal('20u32'),
+  ix: z.literal("20u32"),
   _nonce: z.string(),
 });
 export type ChallengerWagerNotification = {
@@ -102,12 +102,12 @@ export type ChallengerWagerNotification = {
 export const OpponentWagerNotificationSchema = z.object({
   owner: zodAddress, //opponent
   game_multisig: zodAddress,
-  game_state: z.literal('2field'),
+  game_state: z.literal("2field"),
   your_turn: z.string().transform(Boolean),
   total_pot: z.string().transform(Number),
   challenger_address: zodAddress,
   opponent_address: zodAddress,
-  ix: z.literal('21u32'),
+  ix: z.literal("21u32"),
   _nonce: z.string(),
 });
 export type OpponentWagerNotification = {
@@ -118,12 +118,12 @@ export type OpponentWagerNotification = {
 export const WaitingRevealNotificationSchema = z.object({
   owner: zodAddress, //opponent
   game_multisig: zodAddress,
-  game_state: z.literal('3field'),
+  game_state: z.literal("3field"),
   your_turn: z.string().transform(Boolean),
   total_pot: z.string().transform(Number),
   challenger_address: zodAddress,
   opponent_address: zodAddress,
-  ix: z.literal('22u32'),
+  ix: z.literal("22u32"),
   _nonce: z.string(),
 });
 export type WaitingRevealNotification = {
@@ -134,13 +134,13 @@ export type WaitingRevealNotification = {
 export const RevealAnswerNotificationSchema = z.object({
   owner: zodAddress, //opponent
   game_multisig: zodAddress,
-  game_state: z.literal('3field'),
+  game_state: z.literal("3field"),
   your_turn: z.string().transform(Boolean),
   total_pot: z.string().transform(Number),
   challenger_address: zodAddress,
   opponent_address: zodAddress,
-  opponent_answer: z.enum(['0field', '1field']),
-  ix: z.literal('23u32'),
+  opponent_answer: z.enum(["0field", "1field"]),
+  ix: z.literal("23u32"),
   _nonce: z.string(),
 });
 export type RevealAnswerNotification = {
@@ -151,16 +151,16 @@ export type RevealAnswerNotification = {
 export const GameFinishReqNotificationSchema = z.object({
   owner: zodAddress, //opponent
   game_multisig: zodAddress,
-  game_state: z.literal('4field'),
+  game_state: z.literal("4field"),
   your_turn: z.string().transform(Boolean),
   total_pot: z.string().transform(Number),
   challenger_address: zodAddress,
   opponent_address: zodAddress,
-  challenger_answer: z.enum(['0field', '1field']),
-  opponent_answer: z.enum(['0field', '1field']),
+  challenger_answer: z.enum(["0field", "1field"]),
+  opponent_answer: z.enum(["0field", "1field"]),
   winner: zodAddress,
   loser: zodAddress,
-  ix: z.literal('24u32'),
+  ix: z.literal("24u32"),
   _nonce: z.string(),
 });
 export type GameFinishReqNotification = {
@@ -171,14 +171,14 @@ export type GameFinishReqNotification = {
 export const GameFinishedNotificationSchema = z.object({
   owner: zodAddress, //opponent
   game_multisig: zodAddress,
-  game_state: z.enum(['5field', '6field']),
+  game_state: z.enum(["5field", "6field"]),
   your_turn: z.string().transform(Boolean),
   total_pot: z.string().transform(Number),
   challenger_address: zodAddress,
   opponent_address: zodAddress,
   winner: zodAddress,
   loser: zodAddress,
-  ix: z.literal('25u32'),
+  ix: z.literal("25u32"),
   _nonce: z.string(),
 });
 export type GameFinishedNotification = {
@@ -199,110 +199,110 @@ export type GameNotification =
 
 export const removeVisibilitySuffix = (obj: { [key: string]: string }) => {
   for (const key in obj) {
-    if (typeof obj[key] === 'string') {
+    if (typeof obj[key] === "string") {
       obj[key] = obj[key]
-        .replace('.private', '')
-        .replace('.public', '')
-        .replace('u64', '');
+        .replace(".private", "")
+        .replace(".public", "")
+        .replace("u64", "");
     }
   }
   return obj;
 };
 
 export type GameState =
-  | 'challenger:0'
-  | 'challenger:1'
-  | 'challenger:2'
-  | 'challenger:3'
-  | 'challenger:5'
-  | 'challenger:6'
-  | 'opponent:0'
-  | 'opponent:1'
-  | 'opponent:2'
-  | 'opponent:3'
-  | 'opponent:5'
-  | 'opponent:6'
-  | 'winner:4'
-  | 'loser:4';
+  | "challenger:0"
+  | "challenger:1"
+  | "challenger:2"
+  | "challenger:3"
+  | "challenger:5"
+  | "challenger:6"
+  | "opponent:0"
+  | "opponent:1"
+  | "opponent:2"
+  | "opponent:3"
+  | "opponent:5"
+  | "opponent:6"
+  | "winner:4"
+  | "loser:4";
 
 export const getGameState = (game: GameNotification): GameState => {
   const challenger_or_opponent =
     game.recordData.challenger_address === game.recordData.owner
-      ? 'challenger'
-      : 'opponent';
+      ? "challenger"
+      : "opponent";
 
   switch (game.recordData.ix) {
-    case '17u32':
+    case "17u32":
       return `opponent:1`;
-    case '18u32':
+    case "18u32":
       return `challenger:1`;
-    case '19u32':
+    case "19u32":
       return `${challenger_or_opponent}:0`;
-    case '20u32':
+    case "20u32":
       return `challenger:2`;
-    case '21u32':
+    case "21u32":
       return `opponent:2`;
-    case '22u32':
+    case "22u32":
       return `opponent:3`;
-    case '23u32':
+    case "23u32":
       return `challenger:3`;
-    case '24u32': {
+    case "24u32": {
       const isWinner = game.recordData.winner === game.recordData.owner;
       return isWinner ? `winner:4` : `loser:4`;
     }
-    case '25u32':
+    case "25u32":
       return `${challenger_or_opponent}:5`;
     default:
-      return 'challenger:0';
+      return "challenger:0";
   }
 };
 
 export type GameAction =
-  | 'Renege'
-  | 'Reveal'
-  | 'Claim'
-  | 'Accept'
-  | 'Submit Wager'
-  | 'Ping'
-  | 'Claim'
-  | 'Lose'
+  | "Renege"
+  | "Reveal"
+  | "Claim"
+  | "Accept"
+  | "Submit Wager"
+  | "Ping"
+  | "Claim"
+  | "Lose"
   | undefined;
 
 export const getGameAction = (gameState: GameState): GameAction => {
   switch (gameState) {
-    case 'challenger:0':
+    case "challenger:0":
       return undefined;
-    case 'challenger:1':
-      return 'Renege'; // and ping
-    case 'challenger:2':
-      return 'Renege'; // and ping
-    case 'challenger:3':
-      return 'Reveal';
-    case 'winner:4':
-      return 'Claim';
-    case 'loser:4':
-      return 'Lose';
-    case 'challenger:5':
+    case "challenger:1":
+      return "Renege"; // and ping
+    case "challenger:2":
+      return "Renege"; // and ping
+    case "challenger:3":
+      return "Reveal";
+    case "winner:4":
+      return "Claim";
+    case "loser:4":
+      return "Lose";
+    case "challenger:5":
       return undefined;
-    case 'challenger:6':
+    case "challenger:6":
       return undefined;
-    case 'opponent:0':
+    case "opponent:0":
       return undefined;
-    case 'opponent:1':
-      return 'Submit Wager';
-    case 'opponent:2':
-      return 'Accept';
-    case 'opponent:3':
-      return 'Ping';
-    case 'opponent:5':
+    case "opponent:1":
+      return "Submit Wager";
+    case "opponent:2":
+      return "Accept";
+    case "opponent:3":
+      return "Ping";
+    case "opponent:5":
       return undefined;
-    case 'opponent:6':
+    case "opponent:6":
       return undefined;
   }
 };
 
 export const parseGameRecord = (
-  recordWithPlaintext: RecordWithPlaintext
+  recordWithPlaintext: RecordWithPlaintext,
 ): GameNotification | undefined => {
   const schemas = [
     GameReqNotificationSchema,
@@ -319,7 +319,7 @@ export const parseGameRecord = (
   for (const schema of schemas) {
     try {
       const result = schema.parse(
-        removeVisibilitySuffix(recordWithPlaintext.data)
+        removeVisibilitySuffix(recordWithPlaintext.data),
       );
       return {
         recordData: result,

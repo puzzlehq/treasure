@@ -1,8 +1,8 @@
-import { useDisconnect, shortenAddress, useAccount } from '@puzzlehq/sdk-react';
-import Button from './Button';
-import { useGameStore } from '@state/gameStore';
-import { useNavigate } from 'react-router-dom';
-import localforage from 'localforage'
+import { useDisconnect, shortenAddress, useAccount } from "@puzzlehq/sdk-react";
+import Button from "./Button";
+import { useGameStore } from "@state/gameStore";
+import { useNavigate } from "@tanstack/react-router";
+import localforage from "localforage";
 
 export const AppHeader = () => {
   const { account } = useAccount();
@@ -10,32 +10,30 @@ export const AppHeader = () => {
   const navigate = useNavigate();
 
   return (
-    <div className='flex w-full items-stretch justify-between gap-5 p-4'>
+    <div className="flex w-full items-stretch justify-between gap-5 p-4">
       {account && account.address ? (
         <>
           <button
             onClick={() => {
               useGameStore.getState().clearFlowStores();
-              navigate('/');
+              navigate("/");
             }}
           >
-            <p className='font-header text-2xl text-black'>
-              Treasure Hunt
-            </p>
+            <p className="font-header text-2xl text-black">Treasure Hunt</p>
           </button>
           <Button
-            size='md'
-            variant='secondary'
-            className='w-fit'
+            size="md"
+            variant="secondary"
+            className="w-fit"
             onClick={async () => {
               try {
                 await disconnect();
-              } catch (e){
-                console.error(e)
+              } catch (e) {
+                console.error(e);
               }
               useGameStore.getState().clearFlowStores();
               localforage.clear();
-              navigate('/');
+              navigate("/");
             }}
             disabled={loading}
           >
@@ -43,7 +41,7 @@ export const AppHeader = () => {
           </Button>
         </>
       ) : (
-        <div className='w-full self-stretch' />
+        <div className="w-full self-stretch" />
       )}
     </div>
   );

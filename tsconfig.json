@@ -23,6 +23,7 @@
     "sourceMap": true,
     "paths": {
       "@pages/*": ["./src/pages/*"],
+      "@routes/*": ["./src/routes/*"],
       "@assets/*": ["./src/assets/*"],
       "@components/*": ["./src/components/*"],
       "@state/*": ["./src/state/*"],

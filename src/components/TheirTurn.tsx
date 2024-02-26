@@ -1,7 +1,7 @@
-import { useNavigate } from 'react-router-dom';
-import Button from './Button';
-import { Game, useGameStore } from '@state/gameStore';
-import { shortenAddress } from '@puzzlehq/sdk-react';
+import { useNavigate } from "@tanstack/react-router";
+import Button from "./Button";
+import { Game, useGameStore } from "@state/gameStore";
+import { shortenAddress } from "@puzzlehq/sdk-react";
 
 function TheirTurnItem({ game }: { game: Game }) {
   const user = game.gameNotification.recordData.owner;
@@ -17,25 +17,26 @@ function TheirTurnItem({ game }: { game: Game }) {
   // Function to handle the ping button click
   const handlePingClick = () => {
     // You might want to replace 'ENTER_PHONE_NUMBER' with the actual number if needed
-    const phoneNumber = 'ENTER_PHONE_NUMBER'; // Leave this as is if you want the user to enter the number.
+    const phoneNumber = "ENTER_PHONE_NUMBER"; // Leave this as is if you want the user to enter the number.
     let message = `I'm betting you puzzle pieces that you can't find where I hid the booty! Go to https://treasures.puzzle.online to play!`;
     switch (game.gameState) {
-      case 'challenger:1':
-      case 'challenger:2': {
+      case "challenger:1":
+      case "challenger:2": {
         message = `${
           game.gameNotification.recordData.total_pot / 2
-          } puzzle pieces are on the line. Go to https://treasures.puzzle.online to find the booty!`;
+        } puzzle pieces are on the line. Go to https://treasures.puzzle.online to find the booty!`;
         break;
       }
-      case 'opponent:3': {
+      case "opponent:3": {
         message = `I accepted your ${
           game.gameNotification.recordData.total_pot / 2
-          } piece wager. Go to https://treasures.puzzle.online to reveal the answer!`;
+        } piece wager. Go to https://treasures.puzzle.online to reveal the answer!`;
         break;
-      } case 'loser:4': {
+      }
+      case "loser:4": {
         message = `I lost, and you won ${
           game.gameNotification.recordData.total_pot / 2
-          } puzzle pieces!. Go to https://treasures.puzzle.online to claim your prize!`;
+        } puzzle pieces!. Go to https://treasures.puzzle.online to claim your prize!`;
         break;
       }
     }
@@ -47,28 +48,28 @@ function TheirTurnItem({ game }: { game: Game }) {
 
   const renderActionButton = () => {
     switch (game.gameAction) {
-      case 'Ping':
-      case 'Renege':
+      case "Ping":
+      case "Renege":
         // Assuming 'Claim' needs a special button not shown in this snippet
         // This is just an example
         return (
-          <div className='flex gap-2'>
-            <Button onClick={handlePingClick} color='pink' size='md'>
+          <div className="flex gap-2">
+            <Button onClick={handlePingClick} color="pink" size="md">
               Ping
             </Button>
           </div>
         );
-      case 'Lose':
+      case "Lose":
         return (
           <Button
             onClick={() => {
               setCurrentGame(game);
               navigate(
-                `/finish-game/lose/${game.gameNotification.recordData.game_multisig}`
+                `/finish-game/lose/${game.gameNotification.recordData.game_multisig}`,
               );
             }}
-            size='md'
-            color='gray'
+            size="md"
+            color="gray"
           >
             See Answer
           </Button>
@@ -77,27 +78,27 @@ function TheirTurnItem({ game }: { game: Game }) {
   };
 
   return (
-    <div className='mb-2 grid w-full grid-cols-[1fr,auto,1fr] items-center gap-5'>
-      <div className='my-auto self-center text-left text-base font-bold '>
+    <div className="mb-2 grid w-full grid-cols-[1fr,auto,1fr] items-center gap-5">
+      <div className="my-auto self-center text-left text-base font-bold ">
         {shortenAddress(vs)}
       </div>
-      <div className='my-auto self-center text-left text-base font-bold'>
+      <div className="my-auto self-center text-left text-base font-bold">
         {wager} pieces
       </div>
-      <div className='flex justify-end'>{renderActionButton()}</div>
+      <div className="flex justify-end">{renderActionButton()}</div>
     </div>
   );
 }
 
 function TheirTurn({ games }: { games: Game[] }) {
   return (
-    <section className='flex grow flex-col rounded-b-[10px] rounded-tr-[10px] border-2 border-solid border-bg2 bg-bg1 pb-6'>
-      <div className='flex max-w-full flex-col self-start bg-bg2 px-5 py-2'>
-        <div className='self-center whitespace-nowrap text-left text-xs font-extrabold leading-3'>
+    <section className="flex grow flex-col rounded-b-[10px] rounded-tr-[10px] border-2 border-solid border-bg2 bg-bg1 pb-6">
+      <div className="flex max-w-full flex-col self-start bg-bg2 px-5 py-2">
+        <div className="self-center whitespace-nowrap text-left text-xs font-extrabold leading-3">
           THEIR TURN
         </div>
       </div>
-      <div className='flex flex-col px-5 pt-2'>
+      <div className="flex flex-col px-5 pt-2">
         {games.map((game, ix) => (
           <TheirTurnItem key={ix} game={game} />
         ))}

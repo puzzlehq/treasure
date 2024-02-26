@@ -1,14 +1,14 @@
-import { RecordWithPlaintext } from '@puzzlehq/sdk-react';
-import { Answer } from './RecordTypes/treasure_hunt_vxxx';
+import { RecordWithPlaintext } from "@puzzlehq/sdk-react";
+import { Answer } from "./RecordTypes/treasure_hunt_vxxx";
 
-export const GAME_PROGRAM_ID = 'treasure_hunt_v010.aleo';
+export const GAME_PROGRAM_ID = "treasure_hunt_v010.aleo";
 
 export const GAME_FUNCTIONS = {
-  propose_game: 'propose_game',
-  accept_game: 'accept_game',
-  submit_wager: 'submit_wager',
-  reveal_answer: 'reveal_answer_game',
-  finish_game: 'finish_game',
+  propose_game: "propose_game",
+  accept_game: "accept_game",
+  submit_wager: "submit_wager",
+  reveal_answer: "reveal_answer_game",
+  finish_game: "finish_game",
 };
 
 /// todo - update these
@@ -20,7 +20,7 @@ export const transitionFees = {
   finish_game: 0.5,
 };
 
-export type LoadingStatus = 'idle' | 'loading' | 'success' | 'error';
+export type LoadingStatus = "idle" | "loading" | "success" | "error";
 
 export type ProposeGameInputs = {
   wager_record: RecordWithPlaintext;
@@ -55,7 +55,7 @@ export type SubmitWagerInputs = {
 // used for submit wager and accept game
 export type AcceptGameInputs = {
   game_record: RecordWithPlaintext;
-  opponent_answer: '0field' | '1field';
+  opponent_answer: "0field" | "1field";
   opponent_answer_readable: Answer;
   piece_stake_challenger: RecordWithPlaintext;
   piece_claim_challenger: RecordWithPlaintext;

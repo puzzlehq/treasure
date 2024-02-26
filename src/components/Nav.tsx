@@ -5,12 +5,12 @@ export type NavDotsProps = {
 
 function NavDots({ step, totalSteps }: NavDotsProps) {
   return (
-    <nav className='flex justify-center gap-3'>
+    <nav className="flex justify-center gap-3">
       {Array.from({ length: totalSteps }).map((_, ix) => (
         <div
           key={ix}
           className={`h-3 w-3 rounded-full  ${
-            ix > step ? 'bg-primary-light' : 'bg-primary'
+            ix > step ? "bg-primary-light" : "bg-primary"
           }`}
         ></div>
       ))}

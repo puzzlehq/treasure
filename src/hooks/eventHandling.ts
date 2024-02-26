@@ -1,6 +1,6 @@
 // useEventHandling.ts
-import { useState, useEffect } from 'react';
-import { EventStatus, useEvent } from '@puzzlehq/sdk-react';
+import { useState, useEffect } from "react";
+import { EventStatus, useEvent } from "@puzzlehq/sdk-react";
 
 type UseEventHandlingProps = {
   id?: string;
@@ -39,10 +39,10 @@ export const useEventHandling = ({
     if ([EventStatus.Creating, EventStatus.Pending].includes(eventStatus)) {
       setLoading(true);
     }
-  }, [event?.status])
+  }, [event?.status]);
 
   useEffect(() => {
-    console.log('useEffect 1')
+    console.log("useEffect 1");
     if (!id) return;
     if (eventStatus === EventStatus.Settled) {
       onSettled && onSettled();

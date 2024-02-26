@@ -1,8 +1,6 @@
-import '../index.css'
+import "../index.css";
 const LoadingEllipses = () => {
-  return (
-    <span className="loading"></span>
-  )
-}
+  return <span className="loading"></span>;
+};
 
-export default LoadingEllipses
+export default LoadingEllipses;

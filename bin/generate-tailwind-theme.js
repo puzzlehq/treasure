@@ -1,8 +1,8 @@
-import fs from 'fs';
-import resolveConfig from 'tailwindcss/resolveConfig.js';
-import prettier from 'prettier';
-import path from 'path';
-import tailwindConfig from '../tailwind.config.cjs';
+import fs from "fs";
+import resolveConfig from "tailwindcss/resolveConfig.js";
+import prettier from "prettier";
+import path from "path";
+import tailwindConfig from "../tailwind.config.cjs";
 
 const { theme } = resolveConfig(tailwindConfig);
 console.log(theme.colors);
@@ -20,9 +20,9 @@ try {
   // write the file to src/theme.js after
   // having prettier format the string for us
   fs.writeFileSync(
-    path.resolve(process.cwd(), '../src/theme.ts'),
-    await prettier.format(js, { parser: 'babel' }),
-    'utf-8'
+    path.resolve(process.cwd(), "../src/theme.ts"),
+    await prettier.format(js, { parser: "babel" }),
+    "utf-8",
   );
 } catch (err) {
   // uh-oh, something happened here!
