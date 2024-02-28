@@ -3,7 +3,7 @@ import GameInfo from '@components/GameInfo';
 import Button from '@components/Button';
 import { useGameStore } from '@state/gameStore';
 import { useRevealAnswerStore } from './store';
-import { useEvent } from '@puzzlehq/sdk-react';
+import { useEvent } from '@puzzlehq/sdk';
 import { useNavigate } from 'react-router-dom';
 
 function Confirmed() {

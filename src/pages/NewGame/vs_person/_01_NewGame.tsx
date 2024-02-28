@@ -2,10 +2,11 @@
 import Nav from '@components/Nav';
 import PageHeader from '@components/PageHeader';
 import Button from '@components/Button';
-import { useAccount } from '@puzzlehq/sdk-react';
+import { useAccount } from '@puzzlehq/sdk';
 import { aleoAddressRegex } from '../../../utils.js';
 import { Step, useNewGameVsPersonStore } from '../vs_person/store.js';
 import { useNavigate } from 'react-router-dom';
+import { PasteyQR } from '@components/QR.js';
 
 function NewGame() {
   const [inputs, setInputs, setStep] = useNewGameVsPersonStore((state) => [
@@ -25,16 +26,9 @@ function NewGame() {
         text='CHOOSE YOUR OPPONENT'
         bg='bg-primary-blue'
       />
-      <input
-        type='text'
-        className='mt-5 w-full rounded-lg border-[3px] border-solid border-bg2 bg-transparent p-4 text-sm font-semibold leading-4 max-md:mr-px focus:outline-none focus:border-primary'
-        placeholder="Enter Opponent's Address"
-        id='opponent'
-        value={opponent ?? ''}
-        onChange={(e) => {
-          setInputs({ ...inputs, opponent: e.target.value });
-        }}
-      />
+      <div className='flex flex-row gap-2 w-full'>
+        <PasteyQR opponent={opponent ?? ''} setOpponent={(address) => setInputs({ ...inputs, opponent: address })} />
+      </div>
       <div className='flex flex-grow flex-col' />
       <div className='flex w-full gap-4'>
         <Button

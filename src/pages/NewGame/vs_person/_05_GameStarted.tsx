@@ -2,7 +2,7 @@
 import GameInfo from '@components/GameInfo.js';
 import Button from '@components/Button.js';
 import { useNewGameVsPersonStore } from './store';
-import { useEvent } from '@puzzlehq/sdk-react';
+import { useEvent } from '@puzzlehq/sdk';
 import Nav from '@components/Nav';
 
 function GameStarted(props: { done: () => void }) {

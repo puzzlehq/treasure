@@ -1,4 +1,4 @@
-import { shortenAddress } from "@puzzlehq/sdk-react";
+import { shortenAddress } from "@puzzlehq/sdk";
 
 type VersusProps = {
   versus: string;

@@ -9,7 +9,7 @@ import { useEffect } from 'react';
 import { useInitCurrentGame } from '@hooks/currentGame';
 import { useEventHandling } from '@hooks/eventHandling';
 import { Box } from '@components/Box';
-import { useAccount } from '@puzzlehq/sdk-react';
+import { useAccount } from '@puzzlehq/sdk';
 
 const NewGameVsPerson = () => {
   const navigate = useNavigate();

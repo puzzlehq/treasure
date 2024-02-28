@@ -39,14 +39,6 @@ const NewGame = () => {
         <Button
           fullWidth
           variant='primary'
-          onClick={() => navigate('./vs_bot')}
-          disabled
-        >
-          Play with Leo
-        </Button>
-        <Button
-          fullWidth
-          variant='primary'
           onClick={() => navigate('./vs_person')}
         >
           Play with a friend

@@ -1,6 +1,6 @@
 // useEventHandling.ts
 import { useState, useEffect } from 'react';
-import { EventStatus, useEvent } from '@puzzlehq/sdk-react';
+import { EventStatus, useEvent } from '@puzzlehq/sdk';
 
 type UseEventHandlingProps = {
   id?: string;

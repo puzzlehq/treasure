@@ -1,4 +1,4 @@
-import { useAccount, useConnect } from '@puzzlehq/sdk-react';
+import { useAccount, useConnect } from '@puzzlehq/sdk';
 import leo from '../assets/leo.png';
 import Button from '../components/Button.js';
 import { useNavigate } from 'react-router-dom';

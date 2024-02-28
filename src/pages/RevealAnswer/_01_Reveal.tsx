@@ -12,7 +12,7 @@ import {
   transitionFees,
 } from '@state/manager.js';
 import { Step, useRevealAnswerStore } from './store.js';
-import { EventStatus, EventType, importSharedState, requestCreateEvent } from '@puzzlehq/sdk-react';
+import { EventStatus, EventType, importSharedState, requestCreateEvent } from '@puzzlehq/sdk';
 import { useEventHandling } from '@hooks/eventHandling.js';
 import { useSearchParams } from 'react-router-dom';
 import LoadingEllipses from '@components/LoadingEllipses.js';

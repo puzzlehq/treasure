@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { AcceptGameInputs, SubmitWagerInputs } from '@state/manager';
-import { RecordWithPlaintext } from '@puzzlehq/sdk-react';
+import { RecordWithPlaintext } from '@puzzlehq/sdk';
 
 export enum Step {
   _01_SubmitWager,

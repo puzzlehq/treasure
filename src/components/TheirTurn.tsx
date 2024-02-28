@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import Button from './Button';
 import { Game, useGameStore } from '@state/gameStore';
-import { shortenAddress } from '@puzzlehq/sdk-react';
+import { shortenAddress } from '@puzzlehq/sdk';
 
 function TheirTurnItem({ game }: { game: Game }) {
   const user = game.gameNotification.recordData.owner;

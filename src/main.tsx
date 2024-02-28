@@ -2,7 +2,7 @@
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import './index.css';
-import { PuzzleWalletProvider } from '@puzzlehq/sdk-react';
+import { PuzzleWalletProvider } from '@puzzlehq/sdk';
 import { Toaster } from 'react-hot-toast';
 
 export const mediaQuery = window.matchMedia("(max-width: 600px)");

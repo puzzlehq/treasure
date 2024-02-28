@@ -1,4 +1,4 @@
-import { useRecords } from '@puzzlehq/sdk-react';
+import { useRecords } from '@puzzlehq/sdk';
 import { useEffect } from 'react';
 
 export const useGameRecords = () => {

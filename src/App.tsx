@@ -8,7 +8,7 @@ import {
 } from 'react-router-dom';
 import { AppHeader } from '@components/Header.js';
 import { Welcome } from './pages/Welcome.js';
-import { useAccount, useOnSessionDelete } from '@puzzlehq/sdk-react';
+import { useAccount, useOnSessionDelete } from '@puzzlehq/sdk';
 import AcceptGame from './pages/AcceptGame/index.js';
 import { LoseRoute } from './pages/FinishGame/Lose/index.js';
 import WinRoute from './pages/FinishGame/Win/index.js';

@@ -19,7 +19,7 @@ import {
   useAccount,
   EventType,
   EventStatus,
-} from '@puzzlehq/sdk-react';
+} from '@puzzlehq/sdk';
 import { useEffect, useState } from 'react';
 import jsyaml from 'js-yaml';
 
