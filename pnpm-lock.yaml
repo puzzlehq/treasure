@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@puzzlehq/sdk':
-    specifier: 0.3.0
-    version: 0.3.0(@types/react@18.2.37)(react-dom@18.2.0)(react@18.2.0)
+    specifier: ^0.3.1
+    version: 0.3.1(@types/react@18.2.37)(react-dom@18.2.0)(react@18.2.0)
   '@radix-ui/react-progress':
     specifier: ^1.0.3
     version: 1.0.3(@types/react-dom@18.2.15)(@types/react@18.2.37)(react-dom@18.2.0)(react@18.2.0)
@@ -915,15 +915,15 @@ packages:
       '@parcel/watcher-win32-x64': 2.4.0
     dev: false
 
-  /@puzzlehq/sdk@0.3.0(@types/react@18.2.37)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-x9n8HeWp06PArdPVS0p0ZZEjskGwGhrkn9BIOOIwHgZk9jfrHIB6RDOCA14A3otXG26TepOWzgxonrYKVAoNow==}
+  /@puzzlehq/sdk@0.3.1(@types/react@18.2.37)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-qIPB5D4kfRzPMD7+a9U9wex35GpnZQ9X/kSdHcytQLp/xWrgFMGrdWeHMSN6Vf31y5hNsg/t+7Iff85sk0mqNQ==}
     peerDependencies:
       react: ^18.2.0
     dependencies:
       '@puzzlehq/sdk-core': link:../core
       '@puzzlehq/types': 1.0.11
       '@tanstack/react-query': 4.36.1(react-dom@18.2.0)(react@18.2.0)
-      '@trpc/server': 10.45.1
+      '@trpc/server': 10.45.2
       '@walletconnect/modal-sign-html': 2.6.2(@types/react@18.2.37)(react@18.2.0)
       '@walletconnect/types': 2.11.2
       '@walletconnect/utils': 2.11.2
@@ -1220,8 +1220,8 @@ packages:
       use-sync-external-store: 1.2.0(react@18.2.0)
     dev: false
 
-  /@trpc/server@10.45.1:
-    resolution: {integrity: sha512-KOzBEVaHW9IxEedUP9E50y0tYxAuvlzyjn80Bpemw4rcNbT4WtJnhkFPUY+qDJl7Crt3B/oY2qMgSxVWi9toLg==}
+  /@trpc/server@10.45.2:
+    resolution: {integrity: sha512-wOrSThNNE4HUnuhJG6PfDRp4L2009KDVxsd+2VYH8ro6o/7/jwYZ8Uu5j+VaW+mOmc8EHerHzGcdbGNQSAUPgg==}
     dev: false
 
   /@types/babel__core@7.20.4:
