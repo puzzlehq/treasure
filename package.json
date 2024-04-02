@@ -11,7 +11,7 @@
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx}\""
   },
   "dependencies": {
-    "@puzzlehq/sdk": "^0.3.1",
+    "@puzzlehq/sdk": "^0.3.2-beta.1",
     "@radix-ui/react-progress": "^1.0.3",
     "@walletconnect/modal-sign-html": "^2.6.2",
     "@walletconnect/utils": "^2.11.1",
