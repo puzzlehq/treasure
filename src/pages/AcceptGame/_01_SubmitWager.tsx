@@ -114,7 +114,7 @@ const SubmitWager = () => {
       functionId: GAME_FUNCTIONS.submit_wager,
       fee: transitionFees.submit_wager,
       inputs: Object.values(newInputs),
-      address: inputs.game_req_notification.owner, // opponent address
+      address: inputs.game_req_notification.owner ?? undefined, // opponent address
     });
     const createEventMessage = mediaQuery.matches ? 'Open Puzzle Wallet to accept' : 'Accept the request';
     toast.promise(createEventPromise, {

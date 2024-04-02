@@ -196,7 +196,7 @@ function AcceptGame() {
         functionId: GAME_FUNCTIONS.accept_game,
         fee: transitionFees.accept_game,
         inputs: Object.values(acceptGameInputs),
-        address: inputs.game_record.owner,
+        address: inputs.game_record.owner ?? undefined,
       });
       const createEventMessage = mediaQuery.matches ? 'Open Puzzle Wallet to accept' : 'Accept the request';
       toast.promise(createEventPromise, {
