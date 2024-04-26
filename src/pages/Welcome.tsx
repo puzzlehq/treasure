@@ -1,4 +1,4 @@
-import { useAccount, useConnect } from '@puzzlehq/sdk';
+import { useAccount, useConnect, useDisconnect } from '@puzzlehq/sdk';
 import leo from '../assets/leo.png';
 import Button from '../components/Button.js';
 import { useNavigate } from 'react-router-dom';
@@ -7,7 +7,30 @@ import { useEffect } from 'react';
 export const Welcome = () => {
   const navigate = useNavigate();
   const { account } = useAccount();
-  const { loading: connectLoading, connect } = useConnect();
+
+  const isConnected = !!account;
+  console.log('isConnected', isConnected);
+
+  const isInAppBrowser: boolean =
+    window.aleo &&
+    window.aleo.puzzleWalletClient &&
+    /AppleWebKit/.test(navigator.userAgent) &&
+    !/Safari/.test(navigator.userAgent);
+
+  const { loading: connectLoading, connect } = useConnect(!isInAppBrowser);
+  const { disconnect } = useDisconnect();
+
+  useEffect(() => {
+    console.log('isInAppBrowser', isInAppBrowser);
+    if (!isInAppBrowser) return;
+    if (isConnected) {
+      disconnect().then(() => {
+        connect();
+      });
+    } else {
+      connect();
+    }
+  }, []);
 
   useEffect(() => {
     if (account) {
