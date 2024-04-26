@@ -11,11 +11,8 @@ export const Welcome = () => {
   const isConnected = !!account;
   console.log('isConnected', isConnected);
 
-  const isInAppBrowser: boolean =
-    window.aleo &&
-    window.aleo.puzzleWalletClient &&
-    /AppleWebKit/.test(navigator.userAgent) &&
-    !/Safari/.test(navigator.userAgent);
+  // @ts-expect-error - Checking for custom properties on window object for in-app browser detection.
+  const isInAppBrowser: boolean = window.aleo && window.aleo.puzzleWalletClient && /AppleWebKit/.test(navigator.userAgent) && !/Safari/.test(navigator.userAgent);
 
   const { loading: connectLoading, connect } = useConnect(!isInAppBrowser);
   const { disconnect } = useDisconnect();
