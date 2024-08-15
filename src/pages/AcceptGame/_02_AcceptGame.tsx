@@ -80,32 +80,40 @@ function AcceptGame() {
     const piece_stake_challenger = msRecords?.find(
       (r) =>
         r.data.ix === '3u32.private' &&
+        typeof r.data.challenger === 'string' && 
         r.data.challenger.replace('.private', '') ===
           currentGame.gameNotification.recordData.challenger_address &&
+        typeof r.data.staker === 'string' && 
         r.data.staker.replace('.private', '') ===
           currentGame.gameNotification.recordData.challenger_address
     );
     const piece_claim_challenger = msRecords?.find(
       (r) =>
         r.data.ix === '6u32.private' &&
+        typeof r.data.challenger === 'string' && 
         r.data.challenger.replace('.private', '') ===
-          currentGame.gameNotification.recordData.challenger_address &&
+        currentGame.gameNotification.recordData.challenger_address &&
+        typeof r.data.claimer === 'string' && 
         r.data.claimer.replace('.private', '') ===
           currentGame.gameNotification.recordData.challenger_address
     );
     const piece_stake_opponent = msRecords?.find(
       (r) =>
         r.data.ix === '3u32.private' &&
+        typeof r.data.opponent === 'string' && 
         r.data.opponent.replace('.private', '') ===
-          currentGame.gameNotification.recordData.opponent_address &&
+        currentGame.gameNotification.recordData.opponent_address &&
+        typeof r.data.staker === 'string' && 
         r.data.staker.replace('.private', '') ===
           currentGame.gameNotification.recordData.opponent_address
     );
     const piece_claim_opponent = msRecords?.find(
       (r) =>
         r.data.ix === '6u32.private' &&
+      typeof r.data.opponent === 'string' && 
         r.data.opponent.replace('.private', '') ===
-          currentGame.gameNotification.recordData.opponent_address &&
+        currentGame.gameNotification.recordData.opponent_address &&
+        typeof r.data.claimer === 'string' && 
         r.data.claimer.replace('.private', '') ===
           currentGame.gameNotification.recordData.opponent_address
     );
