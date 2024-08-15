@@ -230,7 +230,7 @@ function mint_pieces:
     input r0 as u64.private;
     input r1 as address.private;
     cast r1 r0 into r2 as Piece.record;
-    cast aleo16hf8hfpwasnn9cf7k2c0dllc56nn7qt547qxgvgwu6pznw4trvqsx68kls r1 r0 into r3 as AuditMint.record;
+    cast aleo142y6qzj0448tynuwhrwchp78uj94exuy0zfqgcaakw2y60g53u9q5qj5sd r1 r0 into r3 as AuditMint.record;
     output r2 as Piece.record;
     output r3 as AuditMint.record;
 
@@ -250,7 +250,7 @@ function join_pieces:
     add r0.amount r1.amount into r6;
     cast self.signer r6 into r7 as Piece.record;
     add r0.amount r1.amount into r8;
-    cast aleo16hf8hfpwasnn9cf7k2c0dllc56nn7qt547qxgvgwu6pznw4trvqsx68kls self.signer r8 into r9 as AuditJoin.record;
+    cast aleo142y6qzj0448tynuwhrwchp78uj94exuy0zfqgcaakw2y60g53u9q5qj5sd self.signer r8 into r9 as AuditJoin.record;
     output r7 as Piece.record;
     output r9 as AuditJoin.record;
 

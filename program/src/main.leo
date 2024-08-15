@@ -1,4 +1,6 @@
 program treasure_hunt_v001.aleo {
+    const AUDITOR: address = aleo142y6qzj0448tynuwhrwchp78uj94exuy0zfqgcaakw2y60g53u9q5qj5sd;
+
     // Never owned by multisig
     record Piece {
         owner: address,
@@ -301,9 +303,6 @@ program treasure_hunt_v001.aleo {
         AuditMint,
     )
     {
-        // set puzzle issuing address as issuer:
-        let puzzle_issuer: address = aleo16hf8hfpwasnn9cf7k2c0dllc56nn7qt547qxgvgwu6pznw4trvqsx68kls;
-
         // no checks on minting right now. test actions and audit without address check
 
         // puzzle pieces minted
@@ -314,7 +313,7 @@ program treasure_hunt_v001.aleo {
 
         // audit record for issuer to know supply
         let audit_record: AuditMint = AuditMint {
-            owner: puzzle_issuer,
+            owner: AUDITOR,
             minter: to,
             amount: amount
         };
@@ -345,9 +344,6 @@ program treasure_hunt_v001.aleo {
         assert(piece_record_one.amount > 0u64);
         assert(piece_record_two.amount > 0u64);
 
-        // set puzzle issuing address as issuer:
-        let puzzle_issuer: address = aleo16hf8hfpwasnn9cf7k2c0dllc56nn7qt547qxgvgwu6pznw4trvqsx68kls;
-
         let joined_piece_record: Piece = Piece {
             owner: self.signer,
             amount: piece_record_one.amount + piece_record_two.amount
@@ -355,7 +351,7 @@ program treasure_hunt_v001.aleo {
 
         // audit record for issuer to know supply
         let audit_join_record: AuditJoin = AuditJoin {
-            owner: puzzle_issuer,
+            owner: AUDITOR,
             joiner: self.signer,
             amount: piece_record_one.amount + piece_record_two.amount
         };
@@ -418,9 +414,6 @@ program treasure_hunt_v001.aleo {
         assert(challenger_wager_amount > 0u64);
         // assert that the wager record has >= amount wagered
         assert(wager_record.amount >= challenger_wager_amount);
-
-        // set puzzle issuing address as issuer:
-        // let puzzle_issuer: address = aleo16hf8hfpwasnn9cf7k2c0dllc56nn7qt547qxgvgwu6pznw4trvqsx68kls;
 
          // ownership checks on sender == self.signer cant be done until Leo is updated
         assert_eq(wager_record.owner, self.signer);
@@ -613,8 +606,6 @@ program treasure_hunt_v001.aleo {
         assert_eq(self.caller, self.signer);
 
         // stake transfer out logic
-        // set puzzle issuing address as issuer:
-        // let puzzle_issuer: address = aleo16hf8hfpwasnn9cf7k2c0dllc56nn7qt547qxgvgwu6pznw4trvqsx68kls;
 
         // 1. Check Claim & Stake are from same game_multisig
         assert_eq(piece_stake_challenger.owner, piece_claim_challenger.owner);
@@ -715,9 +706,6 @@ program treasure_hunt_v001.aleo {
         assert(opponent_wager_record.amount >= game_req_notification.total_pot / 2u64);
 
         // stake in logic
-
-        // set puzzle issuing address as issuer:
-        // let puzzle_issuer: address = aleo16hf8hfpwasnn9cf7k2c0dllc56nn7qt547qxgvgwu6pznw4trvqsx68kls;
 
         let wager_amount: u64 = game_req_notification.total_pot / 2u64;
 
@@ -823,9 +811,6 @@ program treasure_hunt_v001.aleo {
 
         // stake out logic
 
-        // set puzzle issuing address as issuer:
-        // let puzzle_issuer: address = aleo16hf8hfpwasnn9cf7k2c0dllc56nn7qt547qxgvgwu6pznw4trvqsx68kls;
-
         // 1. Check Claim & Stake are from same game_multisig
         assert_eq(piece_stake_opponent.owner, piece_claim_opponent.owner);
 
@@ -922,9 +907,6 @@ program treasure_hunt_v001.aleo {
 
         // assert that player 1s answer is either "in weeds" or "behind building"
         assert(opponent_answer == 0field || opponent_answer == 1field);
-
-        // set puzzle issuing address as issuer:
-        // let puzzle_issuer: address = aleo16hf8hfpwasnn9cf7k2c0dllc56nn7qt547qxgvgwu6pznw4trvqsx68kls;
 
         let total_pot: u64 = game_record.total_pot;
 
@@ -1098,8 +1080,6 @@ program treasure_hunt_v001.aleo {
         let challenger_sig: signature = challenger_claim_signature.sig;
 
         // retrieve revealedanswer record logic
-        // set puzzle issuing address as issuer:
-        // let puzzle_issuer: address = aleo16hf8hfpwasnn9cf7k2c0dllc56nn7qt547qxgvgwu6pznw4trvqsx68kls;
 
         // Verify that owner is challenger
         assert_eq(challenger_answer_record.owner, challenger_answer_record.challenger_address);
@@ -1278,8 +1258,6 @@ program treasure_hunt_v001.aleo {
         let loser_address: address = joint_piece_winner.winner == game_record.challenger_address ? game_record.opponent_address : game_record.challenger_address;
 
         // transfer to winner logic
-        // set puzzle issuing address as issuer:
-        // let puzzle_issuer: address = aleo16hf8hfpwasnn9cf7k2c0dllc56nn7qt547qxgvgwu6pznw4trvqsx68kls;
 
         // 0. Add a self.signer check against
         let game_multisig: address = joint_piece_winner.owner;
@@ -1437,8 +1415,6 @@ program treasure_hunt_v001.aleo {
         };
 
         // Payout to winner
-        // set puzzle issuing address as issuer:
-        // let puzzle_issuer: address = aleo16hf8hfpwasnn9cf7k2c0dllc56nn7qt547qxgvgwu6pznw4trvqsx68kls;
 
         // 1. Check that all are from the same multisig
         let game_multisig: address = joint_piece_time_claim.owner;
