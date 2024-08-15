@@ -149,16 +149,16 @@ program treasure_hunt_v001.aleo {
         opponent_address: address,
     }
 
-    record StakeRenegedNotification {
-        owner: address, //opponent
-        game_multisig: address,
-        game_state: field,
-        your_turn: bool,
-        total_pot: u64,
-        challenger_address: address,
-        opponent_address: address,
-        renege_address: address,
-    }
+    // record StakeRenegedNotification {
+    //     owner: address, //opponent
+    //     game_multisig: address,
+    //     game_state: field,
+    //     your_turn: bool,
+    //     total_pot: u64,
+    //     challenger_address: address,
+    //     opponent_address: address,
+    //     renege_address: address,
+    // }
 
     // sent to challenger on submit wager for FE/client detection.
     // consumed in reveal answer
@@ -559,90 +559,90 @@ program treasure_hunt_v001.aleo {
     //AuditStakeOut,
     // challenger calls this function with Multisig key and signature as input
     // that was submitted when proposing game and that exists on claim record
-    transition challenger_renege_stake
-    (
-        waiting_accept_game_notification: WaitingAcceptanceNotification,
-        piece_stake_challenger: PieceStake,
-        piece_claim_challenger: PieceClaim,
-        challenger_sig: signature,
-    ) -> (
-        Piece,
-        StakeRenegedNotification,
-        StakeRenegedNotification,
-        )
-    {
-        // assert contracts can't call this
-        assert_eq(self.caller, self.signer);
+    // transition challenger_renege_stake
+    // (
+    //     waiting_accept_game_notification: WaitingAcceptanceNotification,
+    //     piece_stake_challenger: PieceStake,
+    //     piece_claim_challenger: PieceClaim,
+    //     challenger_sig: signature,
+    // ) -> (
+    //     Piece,
+    //     StakeRenegedNotification,
+    //     StakeRenegedNotification,
+    //     )
+    // {
+    //     // assert contracts can't call this
+    //     assert_eq(self.caller, self.signer);
 
-        // stake transfer out logic
+    //     // stake transfer out logic
 
-        // 1. Check Claim & Stake are from same game_multisig
-        assert_eq(piece_stake_challenger.owner, piece_claim_challenger.owner);
+    //     // 1. Check Claim & Stake are from same game_multisig
+    //     assert_eq(piece_stake_challenger.owner, piece_claim_challenger.owner);
 
-        // 2. Check Claim & Stake have the same game details
-        assert_eq(piece_stake_challenger.challenger, piece_claim_challenger.challenger);
-        assert_eq(piece_stake_challenger.opponent, piece_claim_challenger.opponent);
-        assert_eq(piece_stake_challenger.amount, piece_claim_challenger.amount);
+    //     // 2. Check Claim & Stake have the same game details
+    //     assert_eq(piece_stake_challenger.challenger, piece_claim_challenger.challenger);
+    //     assert_eq(piece_stake_challenger.opponent, piece_claim_challenger.opponent);
+    //     assert_eq(piece_stake_challenger.amount, piece_claim_challenger.amount);
 
-        // 3. Check Claimer has verified this with a fresh signature against the message
-        let msg: Message = Message {
-            field_1: piece_claim_challenger.message_1,
-            field_2: piece_claim_challenger.message_2,
-            field_3: piece_claim_challenger.message_3,
-            field_4: piece_claim_challenger.message_4,
-            field_5: piece_claim_challenger.message_5
-        };
+    //     // 3. Check Claimer has verified this with a fresh signature against the message
+    //     let msg: Message = Message {
+    //         field_1: piece_claim_challenger.message_1,
+    //         field_2: piece_claim_challenger.message_2,
+    //         field_3: piece_claim_challenger.message_3,
+    //         field_4: piece_claim_challenger.message_4,
+    //         field_5: piece_claim_challenger.message_5
+    //     };
 
-        // check against same signature and message submitted from propose_game
-        let signature_check: bool = true;
-        let is_valid_sig: bool = challenger_sig.verify(piece_claim_challenger.claimer, msg);
-        assert_eq(signature_check, is_valid_sig);
+    //     // check against same signature and message submitted from propose_game
+    //     let signature_check: bool = true;
+    //     let is_valid_sig: bool = challenger_sig.verify(piece_claim_challenger.claimer, msg);
+    //     assert_eq(signature_check, is_valid_sig);
 
-        let piece_record: Piece = Piece {
-            owner: piece_claim_challenger.claimer,
-            amount: piece_claim_challenger.amount
-        };
+    //     let piece_record: Piece = Piece {
+    //         owner: piece_claim_challenger.claimer,
+    //         amount: piece_claim_challenger.amount
+    //     };
 
-        // let audit_stake_out_record: AuditStakeOut = AuditStakeOut {
-        //     owner: puzzle_issuer,
-        //     staker: piece_claim_challenger.claimer,
-        //     amount_in: piece_claim_challenger.amount,
-        //     challenger: piece_claim_challenger.challenger,
-        //     opponent: piece_claim_challenger.opponent,
-        //     game_multisig: piece_claim_challenger.owner
-        // };
+    //     // let audit_stake_out_record: AuditStakeOut = AuditStakeOut {
+    //     //     owner: puzzle_issuer,
+    //     //     staker: piece_claim_challenger.claimer,
+    //     //     amount_in: piece_claim_challenger.amount,
+    //     //     challenger: piece_claim_challenger.challenger,
+    //     //     opponent: piece_claim_challenger.opponent,
+    //     //     game_multisig: piece_claim_challenger.owner
+    //     // };
 
-        let notify_challenger_stake_reneged: StakeRenegedNotification = StakeRenegedNotification {
-            owner: waiting_accept_game_notification.challenger_address, //opponent
-            game_multisig: waiting_accept_game_notification.game_multisig,
-            game_state: 0field,
-            your_turn: false,
-            total_pot: waiting_accept_game_notification.total_pot,
-            challenger_address: waiting_accept_game_notification.challenger_address,
-            opponent_address: waiting_accept_game_notification.opponent_address,
-            renege_address: waiting_accept_game_notification.challenger_address
-        };
+    //     let notify_challenger_stake_reneged: StakeRenegedNotification = StakeRenegedNotification {
+    //         owner: waiting_accept_game_notification.challenger_address, //opponent
+    //         game_multisig: waiting_accept_game_notification.game_multisig,
+    //         game_state: 0field,
+    //         your_turn: false,
+    //         total_pot: waiting_accept_game_notification.total_pot,
+    //         challenger_address: waiting_accept_game_notification.challenger_address,
+    //         opponent_address: waiting_accept_game_notification.opponent_address,
+    //         renege_address: waiting_accept_game_notification.challenger_address
+    //     };
 
 
-        let notify_opponent_stake_reneged: StakeRenegedNotification = StakeRenegedNotification {
-            owner: waiting_accept_game_notification.opponent_address, //opponent
-            game_multisig: waiting_accept_game_notification.game_multisig,
-            game_state: 0field,
-            your_turn: false,
-            total_pot: waiting_accept_game_notification.total_pot,
-            challenger_address: waiting_accept_game_notification.challenger_address,
-            opponent_address: waiting_accept_game_notification.opponent_address,
-            renege_address: waiting_accept_game_notification.challenger_address
-        };
+    //     let notify_opponent_stake_reneged: StakeRenegedNotification = StakeRenegedNotification {
+    //         owner: waiting_accept_game_notification.opponent_address, //opponent
+    //         game_multisig: waiting_accept_game_notification.game_multisig,
+    //         game_state: 0field,
+    //         your_turn: false,
+    //         total_pot: waiting_accept_game_notification.total_pot,
+    //         challenger_address: waiting_accept_game_notification.challenger_address,
+    //         opponent_address: waiting_accept_game_notification.opponent_address,
+    //         renege_address: waiting_accept_game_notification.challenger_address
+    //     };
 
-        return (
-            piece_record,
-            // audit_stake_out_record,
-            notify_challenger_stake_reneged,
-            notify_opponent_stake_reneged
-        );
+    //     return (
+    //         piece_record,
+    //         // audit_stake_out_record,
+    //         notify_challenger_stake_reneged,
+    //         notify_opponent_stake_reneged
+    //     );
 
-    }
+    // }
 
     // todo: add below back as outputs
     //AuditStakeIn,
@@ -763,88 +763,88 @@ program treasure_hunt_v001.aleo {
     //AuditStakeOut,
     // opponent calls this function with Multisig key and signature as input
     // that was submitted when submitting wager that exists on claim record
-    transition opponent_renege_stake
-    (
-        waiting_accept_game_notification: WaitingAcceptanceNotification,
-        piece_stake_opponent: PieceStake,
-        piece_claim_opponent: PieceClaim,
-        opponent_sig: signature,
-    ) -> (
-        Piece,
-        StakeRenegedNotification,
-        StakeRenegedNotification,
-        )
-    {
-        // assert contracts can't call this
-        assert_eq(self.caller, self.signer);
+    // transition opponent_renege_stake
+    // (
+    //     waiting_accept_game_notification: WaitingAcceptanceNotification,
+    //     piece_stake_opponent: PieceStake,
+    //     piece_claim_opponent: PieceClaim,
+    //     opponent_sig: signature,
+    // ) -> (
+    //     Piece,
+    //     StakeRenegedNotification,
+    //     StakeRenegedNotification,
+    //     )
+    // {
+    //     // assert contracts can't call this
+    //     assert_eq(self.caller, self.signer);
 
-        // stake out logic
+    //     // stake out logic
 
-        // 1. Check Claim & Stake are from same game_multisig
-        assert_eq(piece_stake_opponent.owner, piece_claim_opponent.owner);
+    //     // 1. Check Claim & Stake are from same game_multisig
+    //     assert_eq(piece_stake_opponent.owner, piece_claim_opponent.owner);
 
-        // 2. Check Claim & Stake have the same game details
-        assert_eq(piece_stake_opponent.challenger, piece_claim_opponent.challenger);
-        assert_eq(piece_stake_opponent.opponent, piece_claim_opponent.opponent);
-        assert_eq(piece_stake_opponent.amount, piece_claim_opponent.amount);
+    //     // 2. Check Claim & Stake have the same game details
+    //     assert_eq(piece_stake_opponent.challenger, piece_claim_opponent.challenger);
+    //     assert_eq(piece_stake_opponent.opponent, piece_claim_opponent.opponent);
+    //     assert_eq(piece_stake_opponent.amount, piece_claim_opponent.amount);
 
-        // 3. Check Claimer has verified this with a fresh signature against the message
-        let msg: Message = Message {
-            field_1: piece_claim_opponent.message_1,
-            field_2: piece_claim_opponent.message_2,
-            field_3: piece_claim_opponent.message_3,
-            field_4: piece_claim_opponent.message_4,
-            field_5: piece_claim_opponent.message_5
-        };
+    //     // 3. Check Claimer has verified this with a fresh signature against the message
+    //     let msg: Message = Message {
+    //         field_1: piece_claim_opponent.message_1,
+    //         field_2: piece_claim_opponent.message_2,
+    //         field_3: piece_claim_opponent.message_3,
+    //         field_4: piece_claim_opponent.message_4,
+    //         field_5: piece_claim_opponent.message_5
+    //     };
 
-        let signature_check: bool = true;
-        let is_valid_sig: bool = opponent_sig.verify(piece_claim_opponent.claimer, msg);
-        assert_eq(signature_check, is_valid_sig);
+    //     let signature_check: bool = true;
+    //     let is_valid_sig: bool = opponent_sig.verify(piece_claim_opponent.claimer, msg);
+    //     assert_eq(signature_check, is_valid_sig);
 
-        let piece_record: Piece = Piece {
-            owner: piece_claim_opponent.claimer,
-            amount: piece_claim_opponent.amount
-        };
+    //     let piece_record: Piece = Piece {
+    //         owner: piece_claim_opponent.claimer,
+    //         amount: piece_claim_opponent.amount
+    //     };
 
-        // let audit_stake_out_record: AuditStakeOut = AuditStakeOut {
-        //     owner: puzzle_issuer,
-        //     staker: piece_claim_opponent.claimer,
-        //     amount_in: piece_claim_opponent.amount,
-        //     challenger: piece_claim_opponent.challenger,
-        //     opponent: piece_claim_opponent.opponent,
-        //     game_multisig: piece_claim_opponent.owner
-        // };
+    //     // let audit_stake_out_record: AuditStakeOut = AuditStakeOut {
+    //     //     owner: puzzle_issuer,
+    //     //     staker: piece_claim_opponent.claimer,
+    //     //     amount_in: piece_claim_opponent.amount,
+    //     //     challenger: piece_claim_opponent.challenger,
+    //     //     opponent: piece_claim_opponent.opponent,
+    //     //     game_multisig: piece_claim_opponent.owner
+    //     // };
 
-        let notify_challenger_stake_reneged: StakeRenegedNotification = StakeRenegedNotification {
-            owner: waiting_accept_game_notification.challenger_address, //opponent
-            game_multisig: waiting_accept_game_notification.game_multisig,
-            game_state: 0field,
-            your_turn: false,
-            total_pot: waiting_accept_game_notification.total_pot,
-            challenger_address: waiting_accept_game_notification.challenger_address,
-            opponent_address: waiting_accept_game_notification.opponent_address,
-            renege_address: waiting_accept_game_notification.opponent_address
-        };
+    //     let notify_challenger_stake_reneged: StakeRenegedNotification = StakeRenegedNotification {
+    //         owner: waiting_accept_game_notification.challenger_address, //opponent
+    //         game_multisig: waiting_accept_game_notification.game_multisig,
+    //         game_state: 0field,
+    //         your_turn: false,
+    //         total_pot: waiting_accept_game_notification.total_pot,
+    //         challenger_address: waiting_accept_game_notification.challenger_address,
+    //         opponent_address: waiting_accept_game_notification.opponent_address,
+    //         renege_address: waiting_accept_game_notification.opponent_address
+    //     };
 
-        let notify_opponent_stake_reneged: StakeRenegedNotification = StakeRenegedNotification {
-            owner: waiting_accept_game_notification.opponent_address, //opponent
-            game_multisig: waiting_accept_game_notification.game_multisig,
-            game_state: 0field,
-            your_turn: false,
-            total_pot: waiting_accept_game_notification.total_pot,
-            challenger_address: waiting_accept_game_notification.challenger_address,
-            opponent_address: waiting_accept_game_notification.opponent_address,
-            renege_address: waiting_accept_game_notification.opponent_address
-        };
+    //     let notify_opponent_stake_reneged: StakeRenegedNotification = StakeRenegedNotification {
+    //         owner: waiting_accept_game_notification.opponent_address, //opponent
+    //         game_multisig: waiting_accept_game_notification.game_multisig,
+    //         game_state: 0field,
+    //         your_turn: false,
+    //         total_pot: waiting_accept_game_notification.total_pot,
+    //         challenger_address: waiting_accept_game_notification.challenger_address,
+    //         opponent_address: waiting_accept_game_notification.opponent_address,
+    //         renege_address: waiting_accept_game_notification.opponent_address
+    //     };
 
-        return (
-            piece_record,
-            // audit_stake_out_record,
-            notify_challenger_stake_reneged,
-            notify_opponent_stake_reneged
-        );
+    //     return (
+    //         piece_record,
+    //         // audit_stake_out_record,
+    //         notify_challenger_stake_reneged,
+    //         notify_opponent_stake_reneged
+    //     );
 
-    }
+    // }
 
     // todo: add below back as outputs
     // AuditJointStake,
@@ -1123,7 +1123,7 @@ program treasure_hunt_v001.aleo {
         let is_valid_sig_two: bool = challenger_sig.verify(joint_piece_state.state_updater_address, joint_piece_msg);
         assert_eq(signature_check_two, is_valid_sig_two);
 
-// The logic for the answer and computing winner is in wheres_alex program
+        // The logic for the answer and computing winner is in wheres_alex program
         // The enforcement to prevent the challenger calling this function without going through
         // where's alex is via the Piece Keepers
         //

@@ -105,16 +105,6 @@ record WaitingAcceptanceNotification:
     challenger_address as address.private;
     opponent_address as address.private;
 
-record StakeRenegedNotification:
-    owner as address.private;
-    game_multisig as address.private;
-    game_state as field.private;
-    your_turn as boolean.private;
-    total_pot as u64.private;
-    challenger_address as address.private;
-    opponent_address as address.private;
-    renege_address as address.private;
-
 record ChallengerWagerNotification:
     owner as address.private;
     game_multisig as address.private;
@@ -295,27 +285,6 @@ function propose_game:
     output r34 as WaitingAcceptanceNotification.record;
 
 
-function challenger_renege_stake:
-    input r0 as WaitingAcceptanceNotification.record;
-    input r1 as PieceStake.record;
-    input r2 as PieceClaim.record;
-    input r3 as signature.private;
-    assert.eq self.caller self.signer;
-    assert.eq r1.owner r2.owner;
-    assert.eq r1.challenger r2.challenger;
-    assert.eq r1.opponent r2.opponent;
-    assert.eq r1.amount r2.amount;
-    cast r2.message_1 r2.message_2 r2.message_3 r2.message_4 r2.message_5 into r4 as Message;
-    sign.verify r3 r2.claimer r4 into r5;
-    assert.eq true r5;
-    cast r2.claimer r2.amount into r6 as Piece.record;
-    cast r0.challenger_address r0.game_multisig 0field false r0.total_pot r0.challenger_address r0.opponent_address r0.challenger_address into r7 as StakeRenegedNotification.record;
-    cast r0.opponent_address r0.game_multisig 0field false r0.total_pot r0.challenger_address r0.opponent_address r0.challenger_address into r8 as StakeRenegedNotification.record;
-    output r6 as Piece.record;
-    output r7 as StakeRenegedNotification.record;
-    output r8 as StakeRenegedNotification.record;
-
-
 function submit_wager:
     input r0 as Piece.record;
     input r1 as Key.record;
@@ -346,27 +315,6 @@ function submit_wager:
     output r17 as Piece.record;
     output r18 as ChallengerWagerNotification.record;
     output r19 as OpponentWagerNotification.record;
-
-
-function opponent_renege_stake:
-    input r0 as WaitingAcceptanceNotification.record;
-    input r1 as PieceStake.record;
-    input r2 as PieceClaim.record;
-    input r3 as signature.private;
-    assert.eq self.caller self.signer;
-    assert.eq r1.owner r2.owner;
-    assert.eq r1.challenger r2.challenger;
-    assert.eq r1.opponent r2.opponent;
-    assert.eq r1.amount r2.amount;
-    cast r2.message_1 r2.message_2 r2.message_3 r2.message_4 r2.message_5 into r4 as Message;
-    sign.verify r3 r2.claimer r4 into r5;
-    assert.eq true r5;
-    cast r2.claimer r2.amount into r6 as Piece.record;
-    cast r0.challenger_address r0.game_multisig 0field false r0.total_pot r0.challenger_address r0.opponent_address r0.opponent_address into r7 as StakeRenegedNotification.record;
-    cast r0.opponent_address r0.game_multisig 0field false r0.total_pot r0.challenger_address r0.opponent_address r0.opponent_address into r8 as StakeRenegedNotification.record;
-    output r6 as Piece.record;
-    output r7 as StakeRenegedNotification.record;
-    output r8 as StakeRenegedNotification.record;
 
 
 
