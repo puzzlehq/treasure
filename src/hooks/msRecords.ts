@@ -1,4 +1,5 @@
 import { useRecords } from '@puzzlehq/sdk';
+import { RecordStatus } from '@puzzlehq/types';
 import { useEffect } from 'react';
 
 export const useMsRecords = (address?: string) => {
@@ -7,7 +8,7 @@ export const useMsRecords = (address?: string) => {
       programIds: [
         'treasure_hunt_v010.aleo',
       ],
-      type: 'unspent',
+      status: RecordStatus.Unspent,
     },
     address,
     multisig: true,
