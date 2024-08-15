@@ -1,21 +1,7 @@
 program treasure_hunt_v001.aleo {
-    const AUDITOR: address = aleo142y6qzj0448tynuwhrwchp78uj94exuy0zfqgcaakw2y60g53u9q5qj5sd;
-
     // Never owned by multisig
     record Piece {
         owner: address,
-        amount: u64,
-    }
-
-    record AuditMint {
-        owner: address,
-        minter: address,
-        amount: u64,
-    }
-
-    record AuditJoin {
-        owner: address,
-        joiner: address,
         amount: u64,
     }
 
@@ -299,8 +285,7 @@ program treasure_hunt_v001.aleo {
         to: address,
     ) ->
     (
-        Piece,
-        AuditMint,
+        Piece
     )
     {
         // no checks on minting right now. test actions and audit without address check
@@ -311,15 +296,7 @@ program treasure_hunt_v001.aleo {
             amount: amount
         };
 
-        // audit record for issuer to know supply
-        let audit_record: AuditMint = AuditMint {
-            owner: AUDITOR,
-            minter: to,
-            amount: amount
-        };
-
-        return (minted_puzzle_pieces, audit_record);
-
+        return (minted_puzzle_pieces);
     }
 
     // join 2 pieces
@@ -330,7 +307,6 @@ program treasure_hunt_v001.aleo {
     ) ->
     (
         Piece,
-        AuditJoin,
     )
     {
         // assert contracts can't call this
@@ -349,14 +325,7 @@ program treasure_hunt_v001.aleo {
             amount: piece_record_one.amount + piece_record_two.amount
         };
 
-        // audit record for issuer to know supply
-        let audit_join_record: AuditJoin = AuditJoin {
-            owner: AUDITOR,
-            joiner: self.signer,
-            amount: piece_record_one.amount + piece_record_two.amount
-        };
-
-        return (joined_piece_record, audit_join_record);
+        return (joined_piece_record);
     }
 
     // todo: add below back as outputs

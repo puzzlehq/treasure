@@ -4,16 +4,6 @@ record Piece:
     owner as address.private;
     amount as u64.private;
 
-record AuditMint:
-    owner as address.private;
-    minter as address.private;
-    amount as u64.private;
-
-record AuditJoin:
-    owner as address.private;
-    joiner as address.private;
-    amount as u64.private;
-
 record PieceStake:
     owner as address.private;
     amount as u64.private;
@@ -230,9 +220,7 @@ function mint_pieces:
     input r0 as u64.private;
     input r1 as address.private;
     cast r1 r0 into r2 as Piece.record;
-    cast aleo142y6qzj0448tynuwhrwchp78uj94exuy0zfqgcaakw2y60g53u9q5qj5sd r1 r0 into r3 as AuditMint.record;
     output r2 as Piece.record;
-    output r3 as AuditMint.record;
 
 
 function join_pieces:
@@ -249,10 +237,7 @@ function join_pieces:
     assert.eq r5 true;
     add r0.amount r1.amount into r6;
     cast self.signer r6 into r7 as Piece.record;
-    add r0.amount r1.amount into r8;
-    cast aleo142y6qzj0448tynuwhrwchp78uj94exuy0zfqgcaakw2y60g53u9q5qj5sd self.signer r8 into r9 as AuditJoin.record;
     output r7 as Piece.record;
-    output r9 as AuditJoin.record;
 
 
 function propose_game:
