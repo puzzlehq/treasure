@@ -54,7 +54,7 @@ const SubmitWager = () => {
   ]);
   const [confirmStep, setConfirmStep] = useState(ConfirmStep.Signing);
   const navigate = useNavigate();
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [_, setSearchParams] = useSearchParams();
 
   const { loading, error, event, setLoading, setError } = useEventHandling({
     id: eventIdSubmit,
@@ -66,7 +66,8 @@ const SubmitWager = () => {
     if (
       !inputs?.opponent_wager_record ||
       !inputs.key_record ||
-      !inputs.game_req_notification
+      !inputs.game_req_notification ||
+      typeof inputs.key_record.data.seed !== 'string'
     )
       return;
     setLoading(true);
@@ -101,7 +102,7 @@ const SubmitWager = () => {
       opponent_message_5: messageFields.field_5,
       opponent_sig: signature.signature,
     };
-    const game_multisig_seed = inputs.key_record.data.seed ?? '';
+    const game_multisig_seed = inputs.key_record.data.seed;
     console.log('game_multisig seed', game_multisig_seed);
     setConfirmStep(ConfirmStep.Multisig);
     const { data } = await importSharedState(game_multisig_seed);

@@ -15,16 +15,17 @@ import { useNewGameVsPersonStore } from '@pages/NewGame/vs_person/store';
 import { useClaimPrizeWinStore } from '@pages/FinishGame/Win/store';
 import { useRevealAnswerStore } from '@pages/RevealAnswer/store';
 import _ from 'lodash';
+import { RecordStatus } from '@puzzlehq/types';
 
 const parsePuzzlePieces = (records: RecordWithPlaintext[]) => {
   if (records.length > 0) {
     let availableBalance = 0;
     let largestPiece = records[0];
     const totalBalance = records
-      .filter((record) => !record.spent)
+      .filter((record) => record.status === RecordStatus.Unspent)
       .map((record) => {
-        const amount = record.data?.amount?.replace('u64.private', '');
-        if (amount && ['0u32.private', '0u32'].includes(record.data.ix)) {
+        const amount = typeof record.data.amount === 'string' ? record.data?.amount?.replace('u64.private', '') : '0u32';
+        if (amount && typeof record.data.ix === 'string' && ['0u32.private', '0u32'].includes(record.data.ix)) {
           /// find largestPiece (and thus availableBalance)
           const amountInt = parseInt(amount);
           availableBalance = Math.max(availableBalance, amountInt);
@@ -153,10 +154,10 @@ export const useGameStore = create<GameStore>()(
         }>(
           (acc, gameNotification) => {
             const game_state = getGameState(gameNotification);
-            const _records = records.filter((r) => r.data.game_multisig?.replace('.private', '')  === gameNotification.recordData.game_multisig?.replace('.private', '') );
+            const _records = records.filter((r) => typeof r.data.game_multisig === 'string' && r.data.game_multisig?.replace('.private', '')  === gameNotification.recordData.game_multisig?.replace('.private', '') );
             const _msRecords = msRecords?.
-              filter((r) => r.data.owner?.replace('.private', '') === gameNotification.recordData.game_multisig?.replace('.private', ''))
-              .filter((r) => !(r.functionId === 'propose_game' && [r.data.opponent?.replace('.private', ''), r.data.challenger?.replace('.private', '')].includes(gameNotification.recordData.game_multisig)));
+              filter((r) => typeof r.data.owner === 'string' && r.data.owner?.replace('.private', '') === gameNotification.recordData.game_multisig?.replace('.private', ''))
+              .filter((r) => !(r.functionId === 'propose_game' && [typeof r.data.opponent === 'string' && r.data.opponent?.replace('.private', ''), typeof r.data.challenger === 'string' && r.data.challenger?.replace('.private', '')].includes(gameNotification.recordData.game_multisig)));
             console.log('_msRecords', _msRecords); 
             const game: Game = {
               gameNotification,
